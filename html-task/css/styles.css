@@ -4,9 +4,13 @@ body {
 	vertical-align: top;
 }
 
-header {
-	margin-bottom: 30px;
+form {
+	line-height: 1.5;
 }
+
+/*header {
+	margin-bottom: 30px;
+}*/
 
 header > div {
     /* position: fixed; */
@@ -124,6 +128,7 @@ div#form, div.address {
 
 div#form {
 	border: 1px solid black;
+	margin: 30px;
 }
 
 div.category, main.grid div.product {
@@ -145,7 +150,7 @@ div.address {
 
 main.grid div.product {
 	width: 150px;
-	margin: 30px;
+	margin: 10px;
 }
 
 img#epam-logo {
