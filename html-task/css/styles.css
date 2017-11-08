@@ -45,6 +45,7 @@ header div#cart {
 header div#logo {
     background-color: #39C2D7;
     height: 100%;
+	padding: 0px 20px;
 }
 
 header div#search {
@@ -63,10 +64,10 @@ header div#logo span {
 }
 
 nav {
-	width: 200px;
-	display: inline-block;
+	padding-right: 30px;
+	/*display: inline-block;*/
 	float: left;
-	background-color: f5f5f5;
+	border-right: 1px solid #464547;
 	/*border: 1px solid gray;*/
 }
 
@@ -77,13 +78,15 @@ nav > ul {
 
 main {
 	/*left: 380px;*/
-	display: inline-block;
+	/*display: inline-block;*/
+	vertical-align: top;
 	text-align: center;
 	text-align-last: center;
 	-webkit-text-align-last: center;
 	-moz-text-align-last: center;
 	-ms-text-align-last: center;
 	-o-text-align-last: center;
+	overflow: auto;
 }
 
 main.list {
@@ -110,9 +113,14 @@ main.list p {
 	margin: 5px 110px;
 }
 
+#page-main {
+	overflow: hidden; /*for height control (= nav height)*/
+}
+
 main.categories {
-	width: calc(100% - 201px);
-	border-left: 1px solid gray;
+	/*display: inline-block;*/
+	width: auto;
+	/*width: calc(100% - 201px);*/
 }
 
 div#form, div.address {
