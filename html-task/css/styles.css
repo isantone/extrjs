@@ -108,8 +108,12 @@ nav {
 }
 
 nav > ul {
-	line-height: 2;
-	/*margin-bottom: 10px;*/
+	list-style-type: disc;
+	padding-left: 25px;
+}
+
+nav > ul > li {
+	margin: 10px 0; 
 }
 
 main {
@@ -166,7 +170,8 @@ main.list p {
 	margin: 5px 110px;
 }
 
-#page-main {
+.page-main {
+	display: flex;
 	overflow: hidden; /*for height control (= nav height)*/
 }
 
@@ -265,8 +270,8 @@ div.inputs {
 
 div.inputs ul {
 	display: block;
-	list-style-type: none;
-	padding-left: 0;
+	/* list-style-type: none; */
+	/* padding-left: 0; */
 	text-align: left;
 	text-align-last: left;
 	line-height: 1.5;
