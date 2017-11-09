@@ -32,7 +32,7 @@ a:link {
 	pointer-events: auto;
 }
 
-input[type="email"], input[type="password"], input[type="submit"], button {
+.default-size {
 	width: 300px;
 	height: 40px;
 	padding: 5px;
@@ -74,9 +74,6 @@ header {
 
 .profile { /* id - js, class - css */
 	margin-left: 1px;
-}
-
-.cart {
 }
 
 .logo {
@@ -251,7 +248,9 @@ table {
 }
 
 table td {
+	padding: 10px;
 	vertical-align: top;
+	text-align: center;
 }
 
 table td#remove {
