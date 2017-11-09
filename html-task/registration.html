@@ -6,21 +6,21 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-		<header>
-			<div>
-                <a href="index.html"><div id="logo"><span>The LOGO</span></div></a>
-                <div id="search"><input placeholder="Search"></div>
-                <div id="cart" class="image"><a href="cart.html"><img src="images/sc.png"></a></div>
-                <div id="profile" class="image"><a href="login.html"><img src="images/pr.png"></a></div>
-            </div>
+        <header>
+            <a href="index.html"><div class="logo"><span>The LOGO</span></div></a>
+            <input class="search" placeholder="Search">
+            <a href="cart.html"><img class="header-image cart" src="images/sc.png"></a>
+            <a href="login.html"><img class="header-image profile" src="images/pr.png"></a>
         </header>
         <div class="sign-bg">
 		    <main class="sign-pages">
+                <p class="sign-header bold-text">REGISTER NEW ACCOUNT</p>
                 <form>
-                  <input type="email" placeholder="E-mail address" required autofocus><br> 
-                   <input type="password" placeholder="Password" required><br> 
-                   <input type="submit" value="REGISTER">
+                    <input type="email" placeholder="E-mail@example.com" required autofocus><br> 
+                    <input type="password" placeholder="Password" required><br> 
+                    <input type="submit" value="REGISTER">
                     <br><span><a href="login.html">Sign In</a></span>
+                    <br><a href="index.html"><button class="bold-text">CANCEL</button></a>
                 </form>
             </main>
         </div>

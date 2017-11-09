@@ -7,22 +7,21 @@
     </head>
     <body>
 		<header>
-			<div>
-                <a href="index.html"><div id="logo"><span>The LOGO</span></div></a>
-                <div id="search"><input placeholder="Search"></div>
-                <div id="cart" class="image"><a href="cart.html"><img src="images/sc.png"></a></div>
-                <div id="profile" class="image"><a href="login.html"><img src="images/pr.png"></a></div>
-            </div>
+            <a href="index.html"><div class="logo"><span>The LOGO</span></div></a>
+            <input class="search" placeholder="Search">
+            <a href="cart.html"><img class="header-image cart" src="images/sc.png"></a>
+            <a href="login.html"><img class="header-image profile" src="images/pr.png"></a>
         </header>
         <div class="sign-bg">
 		    <main class="sign-pages">
-                <p id="sign-header">Please Sign In</p>
+                <p class="sign-header bold-text">PLEASE SIGN IN</p>
                 <form>
-                    <input type="email" placeholder="E-mail@domain.com" required autofocus><br> 
+                    <input type="email" placeholder="E-mail@example.com" required autofocus><br> 
                     <input type="password" placeholder="Password" required><br> 
                     <label><input type="checkbox"> Remember me</label> <br> 
-                    <input type="submit" value="SIGN IN">
+                    <input class="bold-text" type="submit" value="SIGN IN">
                     <br><span><a href="registration.html">Register</a></span>
+                    <br><a href="index.html"><button class="bold-text">CANCEL</button></a>
                 </form>
             </main>
         </div>
