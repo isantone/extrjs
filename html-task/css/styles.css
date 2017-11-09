@@ -4,11 +4,16 @@ body {
 	margin: 0;
 	font: 12pt Verdana, Tahoma, Arial;
 	vertical-align: top;
+	min-width: 600px;
 }
 
 form {
 	padding: 30px;
 	line-height: 50px;
+}
+
+a:link {
+    text-decoration: none;
 }
 
 .sign-bg {
@@ -27,7 +32,7 @@ form {
 	pointer-events: auto;
 }
 
-input[type="email"], input[type="password"], input[type="submit"], button, .search {
+input[type="email"], input[type="password"], input[type="submit"], button {
 	width: 300px;
 	height: 40px;
 	padding: 5px;
@@ -53,27 +58,25 @@ button {
 }
 
 header {
-	display: block;
-    height: 70px; 
+	display: flex;
+	align-items: center;
+	align-content: space-between;
+	justify-content: space-between;
+	min-height: 70px; 
     background-color: #464547;
 }
 
-header div {
-    display: inline-block;
-}
-
 .header-image {
-	position: absolute;
+	/* position: absolute; */
 	border: 20px solid #39C2D7;
     background-color: #39C2D7;
 }
 
 .profile { /* id - js, class - css */
-	right: 0px;
+	margin-left: 1px;
 }
 
 .cart {
-	right: 71px;
 }
 
 .logo {
@@ -83,10 +86,12 @@ header div {
 }
 
 .search {
-	position: absolute;
-	right: 160px;
-	width: 500px;
-    margin-top: 15px;
+	flex-grow: 2;
+
+	min-width: 150px;
+	margin: 0 15px;
+	height: 40px;
+	padding: 5px;
 }
 
 .logo span {
