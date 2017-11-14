@@ -1,18 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Cart</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
 		<header>
 			<a href="index.html"><div class="logo"><span>The LOGO</span></div></a>
 			<input class="search" placeholder="Search">
 			<a href="cart.html"><img class="header-image cart" src="images/sc.png"></a>
 			<a href="login.html"><img class="header-image profile" src="images/pr.png"></a>
 		</header>
-		<main class="categories list cart">
+		<main class="categories list-view cart">
 			<form>
 				<table>
 					<tr>
@@ -22,7 +22,7 @@
 						<td><p class="price">Price: $ 999</p></td>
 					</tr>
 					<tr>
-						<td id="remove" colspan="3"><a href=#>Remove</a></td>
+						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
 					</tr>
 				</table>
 				<table>
@@ -33,14 +33,14 @@
 						<td><p class="price">Price: $ 999</p></td>
 					</tr>
 					<tr>
-						<td id="remove" colspan="3"><a href=#>Remove</a></td>
+						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
 					</tr>
 				</table>
-				<div id="total"><span>Total: 1998 $</span> <button class="default-size bold-text">Proceed to Checkout</button> <button class="default-size bold-text">Continue Shopping</button></div>
+				<div class="total"><span>Total: 1998 $</span> <button class="default-size bold-text">Proceed to Checkout</button> <button class="default-size bold-text">Continue Shopping</button></div>
 			</form>		
 		</main>
 		<footer>
-			<!--<img id="epam-logo" src="images/epam_logo.svg"></img>--> <span> &copy; </span>
+			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>--> <span> &copy; </span>
 		</footer>
 	</body>
 </html>

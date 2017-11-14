@@ -1,10 +1,13 @@
 @import "reset.css"; /* normalize.css */
 
+/******* COMMON *******/
+
 body {
 	margin: 0;
 	font: 12pt Verdana, Tahoma, Arial;
 	vertical-align: top;
 	min-width: 600px;
+	/* overflow-y: hidden; */
 }
 
 form {
@@ -12,30 +15,50 @@ form {
 	line-height: 50px;
 }
 
-a:link {
-    text-decoration: none;
+button {
+	background-color: gray;
+	border: none;
 }
 
-.sign-bg {
-	/* position: fixed; */ /* modal window */
-	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	/* background: rgba(0,0,0,0.3); */ /* modal window */
-	z-index: 99999;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	display: block;
-	pointer-events: auto;
+main {
+	/*left: 380px;*/
+	/*display: inline-block;*/
+	vertical-align: top;
+	text-align: center;
+	text-align-last: center;
+	-webkit-text-align-last: center;
+	-moz-text-align-last: center;
+	-ms-text-align-last: center;
+	-o-text-align-last: center;
+	/* overflow: auto; */
+}
+
+table {
+	width: 80%;
+	margin: 20px;
+	border: 1px solid gray;
+	border-spacing: 10px;
+}
+
+td {
+	padding: 10px;
+	vertical-align: top;
+	text-align: center;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 .default-size {
 	width: 300px;
 	height: 40px;
 	padding: 5px;
+}
+
+.bold-text {
+	font: bold 14pt Arial, Verdana, Tahoma, serif;
+	color: white;
 }
 
 input[type="email"]:valid, input[type="password"]:valid {
@@ -47,15 +70,9 @@ input[type="submit"] {
 	border: none;
 }
 
-.bold-text {
-	font: bold 14pt Arial, Verdana, Tahoma, serif;
-	color: white;
-}
+/**********************/
 
-button {
-	background-color: gray;
-	border: none;
-}
+/******* HEADER *******/
 
 header {
 	display: flex;
@@ -63,23 +80,26 @@ header {
 	align-content: space-between;
 	justify-content: space-between;
 	min-height: 70px; 
-    background-color: #464547;
+  background-color: #1a9cb0;
 }
 
-.header-image {
-	/* position: absolute; */
+/* .header-image {
 	border: 20px solid #39C2D7;
-    background-color: #39C2D7;
-}
-
-.profile { /* id - js, class - css */
-	margin-left: 1px;
-}
+  background-color: #39C2D7;
+} */
 
 .logo {
-    background-color: #39C2D7;
-    height: 100%;
+  background-color: #39C2D7;
+  height: 100%;
 	padding: 0px 20px;
+}
+
+.logo span {
+	font: bold 24px Tahoma, Arial, Verdana, serif;
+	color: white;
+  line-height: 70px;
+  padding: 0 20px;
+  /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
 }
 
 .search {
@@ -88,16 +108,16 @@ header {
 	min-width: 150px;
 	margin: 0 15px;
 	height: 40px;
-	padding: 5px;
+	padding-left: 10px;
 }
 
-.logo span {
-	font: bold 24px Tahoma, Arial, Verdana, serif;
-	color: white;
-    line-height: 70px;
-    padding: 0 20px;
-    /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
+.profile { /* id - js, class - css */
+	margin: 0 10px;
 }
+
+/**********************/
+
+/******* MAIN *******/
 
 nav {
 	padding-right: 30px;
@@ -116,20 +136,33 @@ nav > ul > li {
 	margin: 10px 0; 
 }
 
-main {
-	/*left: 380px;*/
-	/*display: inline-block;*/
-	vertical-align: top;
-	text-align: center;
-	text-align-last: center;
-	-webkit-text-align-last: center;
-	-moz-text-align-last: center;
-	-ms-text-align-last: center;
-	-o-text-align-last: center;
-	/* overflow: auto; */
+/********************/
+
+/*--- LOGIN, REGISTRATION ---*/
+
+.sign-page-bg {
+	/* position: fixed; */ /* modal window */
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/* background: rgba(0,0,0,0.3); */ /* modal window */
+	z-index: 99999;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	display: block;
+	pointer-events: auto;
 }
 
-main.sign-pages {
+.sign-page-header {
+	background-color: #464547;
+	height: 70px;
+	line-height: 70px;
+}
+
+.sign-page {
 	width: 400px;
 	position: relative;
 	margin: 10% auto;
@@ -140,135 +173,95 @@ main.sign-pages {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
 }
 
-.sign-header {
-	background-color: #464547;
-	height: 70px;
-	line-height: 70px;
-}
+/*---------------------------*/
 
-main.list {
-	text-align: left;
-	text-align-last: left;
-}
+/*--- LIST, GRID, CART ---*/
 
-main.address {
-	padding: 20px;
-}
-
-main.list div.product {
-	display: block;
-	height: 100px;
-	margin: 20px 20px; 
-}
-
-p.price {
-	color: darkred;
-}
-
-main.list p {
+.view {
 	min-width: 250px;
-	margin: 5px 110px;
-}
-
-.page-main {
-	display: flex;
-	overflow: hidden; /*for height control (= nav height)*/
-}
-
-main.categories {
-	/*display: inline-block;*/
-	width: auto;
-	/*width: calc(100% - 201px);*/
-}
-
-div.address {
-    display: flex;
-    width: 400px;
-    height: 250px;
-    top: 0;
-    left: 0;
-    align-items: center;
-    justify-content: center;
-    overflow: auto;  
-}
-/* 
-div#form {
-	border: 1px solid black;
-	margin: 30px;
-} */
-
-div.category, main.grid div.product {
-	display: inline-block;
-	width: 150px;
-	margin: 30px;
-	/*background-color: gray;*/
-	text-align: center;
-	color: gray;
-}
-
-div#total {
-	padding: 20px;
-}
-
-div.address {
-	display: inline-block;
-}
-
-main.grid div.product {
-	width: 150px;
-	margin: 10px;
-}
-
-img#epam-logo {
-	height: 50px;
-	vertical-align: middle;
-	margin: 10px;
-}
-
-img.category, main.grid img.product {
-	display: block;
-	margin: 0 auto 5px auto;
-}
-
-main.grid img.product {
-	height: 50px;
-}
-
-main.list img.product {
-	float: left;
-	height: 100px;
-	vertical-align: top;
-}
-
-p#view {
+	margin: 5px 0px;
 	text-align: center;
 	text-align-last: center;
 }
 
-table {
-	width: 80%;
-	margin: 20px;
-	border: 1px solid gray;
-	border-spacing: 10px;
+.block-image {
+	display: block;
+	margin: 0 auto 5px auto;
 }
 
-table td {
-	padding: 10px;
-	vertical-align: top;
-	text-align: center;
+.price {
+	color: darkred;
 }
 
-table td#remove {
+.total {
+	padding: 20px;
+}
+
+.remove-button {
 	text-align: right;
 	text-align-last: right;
 }
 
-div.inputs {
+.page-main {
+	/* display: flex; */
+	overflow: hidden; /*for height control (= nav height)*/
+	padding-bottom: 150px;
+	margin-bottom: 200px;
+}
+
+.list-view {
+	/* flex-grow: 1; */
+	min-width: 500px;
+
+	text-align: left;
+	text-align-last: left;
+}
+
+.list.item {
+	display: block;
+	min-height: 100px;
+	/* height: 100px; */
+	margin: 20px 20px; 
+	padding-left: 170px;
+}
+
+.list.item p {
+	padding-left: 120px;
+}
+
+.list-image {
+	/* float: left; */
+	height: 100px;
+	position: absolute;
+	vertical-align: top;
+	margin-right: 15px;
+}
+
+.grid {
+	display: inline-block;
+	width: 150px;
+	margin: 30px;
+	text-align: center;
+	color: gray;
+}
+
+.grid.item {
+	margin: 10px;
+	vertical-align: top;
+}
+
+.grid-view .block-image {
+	height: 50px;
+}
+
+/*-------------------*/
+
+.inputs {
 	display: inline-block;
 	vertical-align: top;
 }
 
-div.inputs ul {
+.inputs ul {
 	display: block;
 	/* list-style-type: none; */
 	/* padding-left: 0; */
@@ -281,12 +274,35 @@ div.inputs ul {
 	font-size: 140px;
 }*/
 
+.address {
+	display: flex;
+  width: 400px;
+  height: 250px;
+  top: 0;
+	left: 0;
+	padding: 20px;
+
+  align-items: center;
+  justify-content: center;
+  overflow: auto;  
+}
+
+
 footer {
 /*	margin-top: 30px;*/
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
 	height: 70px;
 	line-height: 70px;
 	text-align: center;
 	color: white;
 	background-color: #464547;
 	vertical-align: middle;
+}
+
+.epam-logo {
+	height: 50px;
+	vertical-align: middle;
+	margin: 10px;
 }
