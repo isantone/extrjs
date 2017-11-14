@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <header>
-      <a href="index.html"><div class="logo"><span>The LOGO</span></div></a>
-      <input class="search" placeholder="Search">
-      <a href="cart.html"><img class="header-image cart" src="images/sc.png"></a>
-      <a href="login.html"><img class="header-image profile" src="images/pr.png"></a>
+    <header class="page-header">
+      <div class="logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></div></a>
+      <div class="right-buttons">
+        <div class="menu"><a href="#"><img src="images/menu.png"></a></div>
+        <div class="search"><a href="#"><img src="images/search.png"></a></div>
+        <div class="cart"><a href="cart.html"><img src="images/sc.png"></a></div>
+        <div class="profile"><a href="login.html"><img src="images/pr.png"></a></div>
+      </div>
+      <input class="search-input" placeholder="Search">
     </header>
-    <div class="sign-bg">
-		  <main class="sign-pages">
-        <p class="sign-header bold-text">REGISTER NEW ACCOUNT</p>
+    <div class="sign-page-bg">
+		  <main class="sign-page">
+        <p class="sign-page-header bold-text">REGISTER NEW ACCOUNT</p>
         <form>
           <input class="default-size" type="email" placeholder="E-mail@example.com" required autofocus>
           <br><input class="default-size" type="password" placeholder="Password" required>
