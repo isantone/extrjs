@@ -3,41 +3,20 @@
 /******* COMMON *******/
 
 body {
-	margin: 0;
-	font: 12pt Verdana, Tahoma, Arial;
-	vertical-align: top;
-	/* min-width: 565px; */
+	display: flex;
 	min-width: 381px; 
 	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	/* align-items: center;
-	align-content: center; */
+	flex-flow: column nowrap;
+	font: 12pt Verdana, Tahoma, Arial;
 }
 
 form {
-	/* line-height: 50px; */
 	padding: 40px;
 }
 
 button {
 	background-color: gray;
 	border: none;
-}
-
-main {
-	flex: 1 0 auto;
-	/*left: 380px;*/
-	/*display: inline-block;*/
-	/* vertical-align: top;
-	text-align: center;
-	text-align-last: center;
-	-webkit-text-align-last: center;
-	-moz-text-align-last: center;
-	-ms-text-align-last: center;
-	-o-text-align-last: center; */
-	/* overflow: auto; */
 }
 
 table {
@@ -84,19 +63,14 @@ input[type="submit"] {
 
 .page-header {
 	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	align-items: center;
-	align-content: space-between;
-	justify-content: space-between;
 	min-height: 70px; 
-	/* min-width: 400px; */
-	background-color: #18adc4;
 	padding: 15px 10px 10px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	background-color: #18adc4;
 }
-/* .menu {
-	order: 2;
-} */
 
 .logo {
 	flex-grow: 2;
@@ -105,34 +79,28 @@ input[type="submit"] {
 }
 
 .right-buttons {
-	flex-grow: 2;
 	display: flex;
-	order: 3;
-	justify-content: space-around;
 	margin: 20px 0;
+	/* flex-grow: 2; */
+	flex-grow: 0;
+	order: 3;
+	min-width: 367px;
+	/* justify-content: space-around; */
+	justify-content: space-between;
 }
 
 .search-input {
+	height: 40px;
+	min-width: 330px;
+	/* margin: 0 15px; */
+	padding-left: 10px;
 	flex-grow: 2;
 	order: 4;
-	margin: 0 15px;
-	height: 40px;
-	padding-left: 10px;
-	min-width: 330px;
-}
-
-.search {
-}
-
-.cart {
-}
-
-.profile {
 }
 
 /**********************/
 
-/******* MAIN *******/
+/******* INDEX *******/
 
 nav {
 	padding-right: 30px;
@@ -151,12 +119,23 @@ nav > ul > li {
 	margin: 10px 0; 
 }
 
+.index-page, .grid-view {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center; /* vertical */
+	justify-content: center; /* horizontal */
+}
+
 /********************/
+
+.index-page, .sign-page {
+	flex: 1 0 auto;
+}
 
 /*--- LOGIN, REGISTRATION ---*/
 .sign-page-bg {
-	width: 100%;
 	display: flex;
+	width: 100%;
 	flex: 1 0 auto;
 	align-self: center;
 	align-items: center;
@@ -206,16 +185,14 @@ nav > ul > li {
 }
 
 .page-main {
-	/* display: flex; */
-	/* overflow: hidden; for height control (= nav height) */
+	display: flex;
+	flex-direction: column;
 	flex: 1 0 auto;
-	/* padding-bottom: 150px;
-	margin-bottom: 200px; */
 }
 
 .list-view {
 	/* flex-grow: 1; */
-	min-width: 500px;
+	width: 100%; 
 
 	text-align: left;
 	text-align-last: left;
@@ -226,7 +203,7 @@ nav > ul > li {
 	min-height: 100px;
 	/* height: 100px; */
 	margin: 20px 20px; 
-	padding-left: 170px;
+	/* padding-left: 170px; */
 }
 
 .list.item p {
@@ -241,8 +218,11 @@ nav > ul > li {
 	margin-right: 15px;
 }
 
+.grid-view {
+	align-content: flex-start; /* vertical */
+}
+
 .grid {
-	display: inline-block;
 	width: 150px;
 	margin: 30px;
 	text-align: center;
@@ -251,7 +231,8 @@ nav > ul > li {
 
 .grid.item {
 	margin: 10px;
-	vertical-align: top;
+	padding: 10px;
+	border: 1px solid gray;
 }
 
 .grid-view .block-image {
@@ -308,8 +289,20 @@ footer {
 }
 
 @media screen and (min-width: 596px) {
-	.menu {
 
+	.page-header {
+		justify-content: space-between;
+	}
+
+	.logo {
+		flex-grow: 0;
+	}
+
+	.right-buttons {
+		min-width: auto;
+		flex-grow: 2;
+		margin-left: 20px;
+		justify-content: space-around;
 	}
 
 	.search {
@@ -319,10 +312,14 @@ footer {
 	.search-input {
 		min-width: 450px;
 	}
+
+	.page-main {
+		flex-direction: row;
+	}
 }
 
-@media screen and (min-width: 765px) {
-  header {
+@media screen and (min-width: 795px) {
+  .page-header {
 		flex-wrap: nowrap;
 	}
 
@@ -342,6 +339,7 @@ footer {
 	.search-input {
 		order: 2;
 		min-width: 140px;
+		margin: 0 20px;
 	}
 
 	.right-buttons {
@@ -353,7 +351,6 @@ footer {
 
 	.sign-page-bg {
 		width: auto;
-		/* height: auto; */
  
 	}
 
