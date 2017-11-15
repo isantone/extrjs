@@ -111,11 +111,22 @@ input[type="submit"] {
 	margin: 10px 0; 
 }
 
+.aligner {
+	margin: 0 auto;
+	text-align: center;
+}
+
 .index-page, .grid-view {
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center; /* vertical */
-	justify-content: center; /* horizontal */
+	width: auto;
+	/* justify-content: center; horizontal */
+}
+
+.index-page:after, .grid-view:after {
+  content: "";
+  flex: auto;
 }
 
 /********************/
