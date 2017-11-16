@@ -79,9 +79,11 @@ input[type="submit"] {
 	/* flex-grow: 2; */
 	flex-grow: 0;
 	order: 3;
-	min-width: 361px;
+    min-width: 361px;
+    min-height: 90px;
 	/* justify-content: space-around; */
-	justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search-input {
@@ -90,6 +92,28 @@ input[type="submit"] {
 	padding-left: 10px;
 	flex-grow: 2;
 	order: 4;
+}
+
+.profile {
+	animation: move-b 4s linear infinite;
+}
+
+@keyframes move-b {
+	5% {
+	  padding-bottom: 15px;
+	}
+	
+	10% {
+		padding-bottom: 0px;
+	}
+	
+	15% {
+		padding-bottom: 15px;
+	}
+	
+	20% {
+        padding-bottom: 0px;
+	}
 }
 
 /**********************/
@@ -111,28 +135,24 @@ input[type="submit"] {
 	margin: 10px 0; 
 }
 
-.aligner {
-	margin: 0 auto;
-	text-align: center;
-}
-
-.index-page, .grid-view {
+.index-page, .grid-view { 
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center; /* vertical */
 	width: auto;
-	/* justify-content: center; horizontal */
+	align-self: center;
+	/* justify-content: center; */
+	/* justify-content: space-around; */
 }
-
-.index-page:after, .grid-view:after {
-  content: "";
-  flex: auto;
-}
-
 /********************/
 
 .index-page, .sign-page {
 	flex: 1 0 auto;
+	width: auto;
+}
+
+.index-page {
+	max-width: 210px;
 }
 
 /*--- LOGIN, REGISTRATION ---*/
@@ -226,7 +246,7 @@ input[type="submit"] {
 
 .grid {
 	width: 150px;
-	margin: 30px;
+	margin: 20px;
 	text-align: center;
 	color: gray;
 }
@@ -307,6 +327,11 @@ footer {
 	margin: 10px;
 }
 
+@media screen and (min-width: 432px) {
+	.index-page { 
+		max-width: 420px;
+}
+
 @media screen and (min-width: 596px) {
 
 	.page-header {
@@ -335,6 +360,11 @@ footer {
 	.page-main {
 		flex-direction: row;
 	}
+}
+
+@media screen and (min-width: 642px) {
+	.index-page { 
+		max-width: 630px;
 }
 
 @media screen and (min-width: 795px) {
@@ -381,4 +411,29 @@ footer {
 		-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
 		-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	}
+}
+
+@media screen and (min-width: 852px) {
+	.index-page { 
+		max-width: 840px;
+}
+
+@media screen and (min-width: 1062px) {
+	.index-page { 
+		max-width: 1050px;
+}
+
+@media screen and (min-width: 1272px) {
+	.index-page { 
+		max-width: 1260px;
+}
+
+@media screen and (min-width: 1582px) {
+	.index-page { 
+		max-width: 1470px;
+}
+
+@media screen and (min-width: 1792px) {
+	.index-page { 
+		max-width: 1690px;
 }
