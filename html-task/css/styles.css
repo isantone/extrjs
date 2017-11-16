@@ -330,6 +330,7 @@ footer {
 @media screen and (min-width: 432px) {
 	.index-page { 
 		max-width: 420px;
+	}
 }
 
 @media screen and (min-width: 596px) {
@@ -365,6 +366,7 @@ footer {
 @media screen and (min-width: 642px) {
 	.index-page { 
 		max-width: 630px;
+	}
 }
 
 @media screen and (min-width: 795px) {
@@ -416,24 +418,29 @@ footer {
 @media screen and (min-width: 852px) {
 	.index-page { 
 		max-width: 840px;
+	}
 }
 
 @media screen and (min-width: 1062px) {
 	.index-page { 
 		max-width: 1050px;
+	}
 }
 
 @media screen and (min-width: 1272px) {
 	.index-page { 
 		max-width: 1260px;
+	}
 }
 
 @media screen and (min-width: 1582px) {
 	.index-page { 
 		max-width: 1470px;
+	}
 }
 
 @media screen and (min-width: 1792px) {
 	.index-page { 
 		max-width: 1690px;
+	}
 }
