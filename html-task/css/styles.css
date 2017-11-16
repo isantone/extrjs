@@ -8,6 +8,7 @@ body {
 	min-height: 100vh;
 	flex-flow: column nowrap;
 	font: 12pt Verdana, Tahoma, Arial;
+	align-content: flex-start;
 }
 
 button {
@@ -65,6 +66,7 @@ input[type="submit"] {
 	justify-content: center;
 	align-items: center;
 	background-color: #18adc4;
+	z-index: 1;
 }
 
 .logo {
@@ -98,21 +100,28 @@ input[type="submit"] {
 	animation: move-b 4s linear infinite;
 }
 
+.button-image:hover {
+	transition: 0.4s ease-in-out;
+	transform: rotate(-360deg);
+}
+
+
+
 @keyframes move-b {
 	5% {
-	  padding-bottom: 15px;
+		transform: translateY(-10px);
 	}
 	
 	10% {
-		padding-bottom: 0px;
+		transform: translateY(0px);
 	}
 	
 	15% {
-		padding-bottom: 15px;
+		transform: translateY(-10px);
 	}
 	
 	20% {
-        padding-bottom: 0px;
+		transform: translateY(0px);
 	}
 }
 
@@ -121,18 +130,31 @@ input[type="submit"] {
 /******* INDEX *******/
 
 .navigation {
-	padding-right: 30px;
-	float: left;
-	border: 1px solid #464547;
+	/* display: none; */
+	/* visibility: hidden; */
+	position: absolute;
+	transform: translateY(-300px);
+	transition: 1s ease;
 }
 
-.navigation > ul {
-	list-style-type: disc;
-	padding-left: 25px;
+.menu-item > a {
+	display: block;
+	padding: 10px 30px;
+	color: darkred;
 }
 
-.navigation li {
-	margin: 10px 0; 
+.menu-item > a {
+	border: 1px solid #ddd;
+	border-top: none;
+}
+
+.menu-item > a:hover {
+	background-color: darkred;
+	color: white;
+	border: 1px solid darkred;
+	/* border-left: 1px solid darkred; */
+	border-top: none;
+	transition: background-color 1s, color 0.5s, border-bottom 1s, border-left 1s;
 }
 
 .index-page, .grid-view { 
@@ -314,11 +336,62 @@ footer {
 	flex-shrink: 0;
 	width: 100%;
 	height: 70px;
-	line-height: 68px;
+	/* line-height: 68px; */
 	text-align: center;
 	color: white;
 	background-color: #464547;
 	vertical-align: middle;
+}
+
+.svg-logo {
+	margin-top: 3px;
+	display: inline-block;
+}
+
+.svg-l {
+	transform: translateX(3px);
+	animation: move-left 5s linear infinite;
+}
+
+.svg-r {
+	transform: translateX(-3px);
+	animation: move-right 5s linear infinite;
+}
+
+@keyframes move-left {
+	 5% {
+		transform: translateX(0px);
+	}
+	 10% {
+		transform: translateX(3px);
+	}
+	15% {
+		transform: translate(0px);
+	}
+	70% {
+		transform: translate(0px);
+	}
+	75% {
+		transform: translate(3px);
+	}
+}
+
+@keyframes move-right {
+	5% {
+	 transform: translateX(0px);
+ }
+	10% {
+	 transform: translateX(-3px);
+ }
+ 15% {
+	 transform: translate(0px);
+ }
+ 70% {
+	 transform: translate(0px);
+ }
+ 75% {
+	 transform: translate(-3px);
+ }
 }
 
 .epam-logo {
@@ -361,6 +434,14 @@ footer {
 	.page-main {
 		flex-direction: row;
 	}
+
+	.navigation {
+		display: block;
+		position: static;
+		transform: translateY(0);
+		align-self: flex-start;
+
+	}
 }
 
 @media screen and (min-width: 642px) {
@@ -379,7 +460,7 @@ footer {
 		flex-grow: 0;
 	}
 
-	.menu {
+	.menu-button {
 		display: none;
 	}
 
