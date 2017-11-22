@@ -59,6 +59,7 @@
 
 /////// Button ///////
 .button {
+  display: inline-block;
   font: $button-font;
 	color: $button-font-color;
   
@@ -90,6 +91,7 @@
 
   &__logo {
     order: 1;
+    flex-shrink: 1;
   }
 
   &__buttons {
@@ -398,7 +400,7 @@
 /*-------------------*/
 //////////////////////////////////////////////
 
-
+@import 'cart-page';
 
 
 

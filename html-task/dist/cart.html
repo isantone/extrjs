@@ -9,7 +9,7 @@
 
 		<script type="text/javascript" src="js/menu.js"></script>
   </head>
-  <body>
+  <body class="page">
 		<!-- <header class="header"><div class="header__container">
 			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
 			<div class="header__buttons">
@@ -33,7 +33,7 @@
 			delete navB;	
 		</script>
 
-		<main class="cart-page">
+		<!-- <main class="cart-page">
 			<form>
 				<table class="cart-item">
 					<tr>
@@ -58,6 +58,41 @@
 					</tr>
 				</table>
 				<div class="total"><span>Total: 1998 $</span> <button class="default-size bold-text">Proceed to Checkout</button> <button class="default-size bold-text">Continue Shopping</button></div>
+			</form>		
+		</main> -->
+		<main class="cart-page">
+			<form class="list-viewer cart-page__list-viewer">
+				<div class="list-viewer__list-item small-bottom-margin">
+					<div class="list-viewer__item-image small-right-margin"><img class="list-viewer__item-img" src="images/no-image.png"></div>
+					<div class="list-viewer__first-col small-right-margin">
+						<p class="list-viewer__item-name tiny-bottom-margin"><a href=#>K2 iKonic 84ti</a></p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat molestie dolor facilisis suscipit. Praesent sagittis ornare vulputate.</p>
+					</div>
+					<div class="list-viewer__second-col">
+						<a class="list-viewer__item-remove" href=#>Remove</a>
+						<p class="list-viewer__item-quantity tiny-top-margin"><label>Quantity: <input type="number" min="0" max="1000"></label></p>
+						<p class="list-viewer__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
+					</div>
+				</div>
+				
+				<div class="list-viewer__list-item small-bottom-margin">
+					<div class="list-viewer__item-image small-right-margin"><img class="list-viewer__item-img" src="images/no-image.png"></div>
+					<div class="list-viewer__first-col small-right-margin">
+						<p class="list-viewer__item-name tiny-bottom-margin"><a href=#>K2 iKonic 84ti</a></p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat molestie dolor facilisis suscipit. Praesent sagittis ornare vulputate.</p>
+					</div>
+					<div class="list-viewer__second-col">
+						<a class="list-viewer__item-remove" href=#>Remove</a>
+						<p class="list-viewer__item-quantity tiny-top-margin"><label>Quantity: <input type="number" min="0" max="1000"></label></p>
+						<p class="list-viewer__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
+					</div>
+				</div>
+				
+				<div class="list-viewer__total">
+					<button class="button cart-page__button input-size gray">Proceed to Checkout</button>
+					<button class="button cart-page__button input-size gray tiny-left-margin">Continue Shopping</button>
+					<span class="list-viewer__total-text tiny-left-margin">Total: <strong>1998</strong> $</span>
+				</div>
 			</form>		
 		</main>
 
