@@ -6,21 +6,32 @@
     <title>Product list view</title>
 		<!-- <link rel="stylesheet" href="css/styles.css"> -->
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="import" href="templates/all.html">
+
 		<script type="text/javascript" src="js/menu.js"></script>	
   </head>
   <body class="page">
-		<header class="header"><div class="header__container">
+		<!-- <header class="header"><div class="header__container">
 			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
 			<div class="header__buttons">
 				<div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div>
-				<div class="header__search"><a href="#"><img src="images/search.png"></a></div>
+				<div id="searchButton" class="header__search" onclick="toggleSearch();"><a href="#"><img src="images/search.png"></a></div>
 				<div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
 				<div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
 			</div>
-			<input class="header__search-input" placeholder="Search">
-		</div></header>
-		<div class="page-main">
-			<nav id="navigationMenu" class="navigation"><ul class="navigation__list">
+			<div id="searchForm" class="search-form header__search-form"><input class="header__search-input" placeholder="Search"></div>
+		</div></header> -->
+		<script>
+			var link = document.querySelector('link[rel="import"]');
+			var content = link.import;
+	
+			// Grab DOM from warning.html's document.
+			var el = content.querySelector('.header');
+			document.body.appendChild(el.cloneNode(true));
+		</script>
+
+		<div id="pageMain" class="page-main">
+			<!-- <nav id="navigationMenu" class="navigation"><ul class="navigation__list">
 				<li class="navigation__item"><a href=#>Snowboards</a></li>
 				<li class="navigation__item"><a href=#>Skis</a></li>
 				<li class="navigation__item"><a href=#>Apparel</a></li>
@@ -28,7 +39,15 @@
 				<li class="navigation__item"><a href=#>Protection</a></li>
 				<li class="navigation__item"><a href=#>Tools</a></li>
 				<li class="navigation__item"><a href=#>Accessories</a></li>
-			</ul></nav>
+			</ul></nav> -->
+			<script>
+				var link = document.querySelector('link[rel="import"]');
+				var content = link.import;
+
+				var el = content.querySelector('.navigation');
+				pageMain.appendChild(el.cloneNode(true));
+			</script>
+
 			<div class="page-main__content">
 				<p><a href="grid.html">Grid view</a></p>
 				<main class="page-main_list-view">
@@ -45,8 +64,15 @@
 				</main>
 			</div>
 		</div>
-		<footer class="footer">
+		<!-- <footer class="footer">
 			<span> &copy; </span>
-		</footer>
+		</footer> -->
+		<script>
+			var link = document.querySelector('link[rel="import"]');
+			var content = link.import;
+
+			var el = content.querySelector('.footer');
+			document.body.appendChild(el.cloneNode(true));
+		</script>
 	</body>
 </html>

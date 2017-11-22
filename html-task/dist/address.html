@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8">
       <title>Address</title>
-      <link rel="stylesheet" href="css/styles.css">
+      <!-- <link rel="stylesheet" href="css/styles.css"> -->
+      <link rel="stylesheet" href="css/main.css">
+      <script type="text/javascript" src="js/menu.js"></script>
   </head>
   <body class="page">
-    <header class="page-header">
-      <div class="logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></div></a>
-      <div class="right-buttons">
-        <div class="menu-button"><a href="#"><img src="images/menu.png"></a></div>
-        <div class="search"><a href="#"><img src="images/search.png"></a></div>
-        <div class="cart"><a href="cart.html"><img src="images/sc.png"></a></div>
-        <div class="profile"><a href="login.html"><img src="images/pr.png"></a></div>
-      </div>
-      <input class="search-input" placeholder="Search">
-    </header>
+		<header class="header"><div class="header__container">
+			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
+			<div class="header__buttons">
+				<div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div>
+				<div id="searchButton" class="header__search" onclick="toggleSearch();"><a href="#"><img src="images/search.png"></a></div>
+				<div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
+				<div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
+			</div>
+			<div id="searchForm" class="search-form header__search-form"><input class="header__search-input" placeholder="Search"></div>
+		</div></header>
 		<main class="address-page">
       <form class="address-form">
         <div class="address">
@@ -66,7 +68,7 @@
         <br><input class="default-size bold-text" type="submit" value="Continue">
       </form>
 		</main>
-		<footer>
+		<footer class="footer">
 			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>--> <span> &copy; </span>
 		</footer>
 	</body>

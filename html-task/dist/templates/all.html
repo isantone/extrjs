@@ -1,67 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Cart</title>
-		<!-- <link rel="stylesheet" href="css/styles.css"> -->
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="import" href="templates/all.html">
+	<body>
 
-		<script type="text/javascript" src="js/menu.js"></script>
-  </head>
-  <body>
-		<!-- <header class="header"><div class="header__container">
+		<!-- HEADER -->
+		<header class="header"><div class="header__container">
 			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
 			<div class="header__buttons">
-				<!-- <div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div> --
+				<div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div>
 				<div id="searchButton" class="header__search" onclick="toggleSearch();"><a href="#"><img src="images/search.png"></a></div>
 				<div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
 				<div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
 			</div>
 			<div id="searchForm" class="search-form header__search-form"><input class="header__search-input" placeholder="Search"></div>
-		</div></header>-->
-		<script>
-			var link = document.querySelector('link[rel="import"]');
-			var content = link.import;
-	
-			// Grab DOM from warning.html's document.
-			var el = content.querySelector('.header');
-			document.body.appendChild(el.cloneNode(true));
+		</div></header>
+		<!--  -->
 
-			var navB = document.getElementById("navButton");
-			navB.outerHTML = "";
-			delete navB;	
-		</script>
+		<!-- NAVIGATION -->
+		<nav id="navigationMenu" class="navigation"><ul class="navigation__list">
+			<li class="navigation__item"><a href=#>Snowboards</a></li>
+			<li class="navigation__item"><a href=#>Skis</a></li>
+			<li class="navigation__item"><a href=#>Apparel</a></li>
+			<li class="navigation__item"><a href=#>Boots</a></li>
+			<li class="navigation__item"><a href=#>Protection</a></li>
+			<li class="navigation__item"><a href=#>Tools</a></li>
+			<li class="navigation__item"><a href=#>Accessories</a></li>
+		</ul></nav>
+		<!--  -->
 
-		<main class="cart-page">
-			<form>
-				<table class="cart-item">
-					<tr>
-						<td rowspan="2"><img class="product" src="images/no-image.png"></img></td>
-						<td><p class="product"><a href=#>K2 iKonic 84ti</a></p></td>
-						<td><label>Quantity: <input class="quantity" type="number" min="0" max="1000"></td></label>
-						<td><p class="price">Price: $ 999</p></td>
-					</tr>
-					<tr>
-						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
-					</tr>
-				</table>
-				<table class="cart-item">
-					<tr>
-						<td rowspan="2"><img class="product" src="images/no-image.png"></img></td>
-						<td><p class="product"><a href=#>K2 iKonic 84ti</a></p></td>
-						<td><label>Quantity: <input class="quantity" type="number" min="0" max="1000"></td></label>
-						<td><p class="price">Price: $ 999</p></td>
-					</tr>
-					<tr>
-						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
-					</tr>
-				</table>
-				<div class="total"><span>Total: 1998 $</span> <button class="default-size bold-text">Proceed to Checkout</button> <button class="default-size bold-text">Continue Shopping</button></div>
-			</form>		
-		</main>
-
-		<!-- <footer class="footer">
+		<!-- FOOTER -->
+		<footer class="footer">
+			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>-->
 			<div class="svg-logo">
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					viewBox="0 0 88 32" enable-background="new 0 0 88 32" height="50" xml:space="preserve">
@@ -84,13 +52,8 @@
 				</svg>
 			</div>
 			<span> &copy; </span>
-		</footer> -->
-		<script>
-				var link = document.querySelector('link[rel="import"]');
-				var content = link.import;
+		</footer>
+		<!--  -->
 
-				var el = content.querySelector('.footer');
-				document.body.appendChild(el.cloneNode(true));
-		</script>
 	</body>
 </html>

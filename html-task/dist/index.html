@@ -6,19 +6,35 @@
       <title>Product categories</title>
 			<!-- <link rel="stylesheet" href="css/styles.css">	 -->
 			<link rel="stylesheet" href="css/main.css">	
+			<link rel="import" href="templates/all.html">
+
+			<script type="text/javascript" src="js/menu.js"></script>
 			<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
   </head>
   <body class="page">
-		<header class="header"><div class="header__container">
+		<!-- <header class="header"><div class="header__container">
 			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
 			<div class="header__buttons">
-				<div class="header__menu"><a href="#"><img src="images/menu.png"></a></div>
-				<div class="header__search"><a href="#"><img src="images/search.png"></a></div>
+				<!-- <div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div> --
+				<div id="searchButton" class="header__search" onclick="toggleSearch();"><a href="#"><img src="images/search.png"></a></div>
 				<div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
 				<div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
 			</div>
-			<input class="header__search-input" placeholder="Search">
-		</div></header>
+			<div id="searchForm" class="search-form header__search-form"><input class="header__search-input" placeholder="Search"></div>
+		</div></header>-->
+		<script>
+			var link = document.querySelector('link[rel="import"]');
+			var content = link.import;
+	
+			// Grab DOM from warning.html's document.
+			var el = content.querySelector('.header');
+			document.body.appendChild(el.cloneNode(true));
+
+			var navB = document.getElementById("navButton");
+			navB.outerHTML = "";
+			delete navB;	
+		</script>
+
 		<main class="index-page">
 			<!--<span id="noimage">&#9746;</span>-->
 			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Snowboards</a> (77)</p></div>
@@ -28,11 +44,8 @@
 			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Protection</a> (7)</p></div>
 			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Tools</a> (44)</p></div>
 			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Accessories</a> (88)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Accessories</a> (88)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Accessories</a> (88)</p></div>
 		</main>
-		<footer class="footer">
-			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>-->
+		<!-- <footer class="footer">
 			<div class="svg-logo">
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					viewBox="0 0 88 32" enable-background="new 0 0 88 32" height="50" xml:space="preserve">
@@ -55,6 +68,13 @@
 				</svg>
 			</div>
 			<span> &copy; </span>
-		</footer>
+		</footer> -->
+		<script>
+				var link = document.querySelector('link[rel="import"]');
+				var content = link.import;
+
+				var el = content.querySelector('.footer');
+				document.body.appendChild(el.cloneNode(true));
+		</script>
 	</body>
 </html>

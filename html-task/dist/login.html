@@ -6,18 +6,19 @@
     <title>Log In</title>
     <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/menu.js"></script>
   </head>
   <body class="page">
 		<header class="header"><div class="header__container">
-      <div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
-      <div class="header__buttons">
-        <div class="header__menu"><a href="#"><img src="images/menu.png"></a></div>
-        <div class="header__search"><a href="#"><img src="images/search.png"></a></div>
-        <div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
-        <div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
-      </div>
-      <input class="header__search-input" placeholder="Search">
-    </div></header>
+			<div class="header__logo"><a class="non-text-link" href="index.html"><img src="images/ex_shop_white.png"></a></div>
+			<div class="header__buttons">
+				<div id="navButton" class="header__menu" onclick="toggleNav();"><a href="#"><img src="images/menu.png"></a></div>
+				<div id="searchButton" class="header__search" onclick="toggleSearch();"><a href="#"><img src="images/search.png"></a></div>
+				<div class="header__cart"><a href="cart.html"><img src="images/sc.png"></a></div>
+				<div class="header__profile"><a href="login.html"><img src="images/pr.png"></a></div>
+			</div>
+			<div id="searchForm" class="search-form header__search-form"><input class="header__search-input" placeholder="Search"></div>
+		</div></header>
     <div class="sign-page">
 		  <main class="sign-form sign-page__sign-form">
         <p class="sign-form__header bold-text">PLEASE LOG IN</p>

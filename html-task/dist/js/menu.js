@@ -1,16 +1,19 @@
-var clicked = false;
 function toggleNav() {
-  //navButton.style.transition = "0.4s ease-in-out";
-  //navButton.style.transform = "rotate(-360deg)";
+  navButton.classList.toggle('header__animation');
+    //navigationMenu.style.maxHeight = "500px"; //280px
+  navigationMenu.classList.toggle('navigation_visible');
+}
 
-  navButton.classList.toggle('header__menu-animation');
+//var searchClicked = false;
+function toggleSearch() {
+  searchButton.classList.toggle('header__animation');
   
-  if (clicked) {
-    navigationMenu.style.height = "0";
-    clicked = false;
-  }
-  else {
-    navigationMenu.style.height = "280px";
-    clicked = true;
-  }
+  // if (searchClicked) {
+    searchForm.classList.toggle('header__search-form_visible');
+  //   searchClicked = false;
+  // }
+  // else {
+  //   searchForm.classList.toggle('header__search-form_visible');
+  //   searchClicked = true;
+  // }
 }
