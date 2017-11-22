@@ -40,14 +40,19 @@
   margin-bottom: 20px;
 }
 
+.small-top-margin {
+  margin-top: 20px;
+}
+
 .big-bottom-margin {
   margin-bottom: 35px;
 }
 
 .input-size {
-  display: block;
+  //display: block;
 
   width: 100%;
+  max-width: 500px;
 	height: $input-height;
   padding: $input-padding;
 
@@ -402,6 +407,55 @@
 
 @import 'cart-page';
 
+
+//////////// Address //////////////////
+.address-page {
+  display: flex;
+  flex: 1 0 auto;
+
+  //width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.address-form {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 900px;
+  justify-content: center;
+  
+  &__fieldset-name {
+    text-align: center;
+  }
+
+  &__inputs {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 50px;
+  }
+
+  &__fields-list {
+    display: block;
+    text-align: left;
+    text-align-last: left;
+    line-height: 45px;
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  &__remember {
+    display: block;
+  }
+
+  &__fieldset {
+    max-width: 390px;
+    padding: 20px;
+
+    text-align: center;
+  }
+}
+
+//////////////////////
 
 
 

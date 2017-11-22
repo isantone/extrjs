@@ -507,12 +507,15 @@ template {
 .small-bottom-margin {
   margin-bottom: 20px; }
 
+.small-top-margin {
+  margin-top: 20px; }
+
 .big-bottom-margin {
   margin-bottom: 35px; }
 
 .input-size {
-  display: block;
   width: 100%;
+  max-width: 500px;
   height: 40px;
   padding: 5px;
   box-sizing: border-box; }
@@ -786,14 +789,48 @@ template {
 .small-bottom-margin {
   margin-bottom: 15px; }
 
-.cart-page__list-viewer {
-  max-width: 1000px;
-  margin: 20px auto;
-  background-color: white;
-  padding: 15px; }
+.cart-page {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: flex-start; }
+  .cart-page__list-viewer {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 15px; }
+  .cart-page__button {
+    width: auto; }
 
-.cart-page__button {
-  width: auto; }
+.address-page {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: flex-start;
+  justify-content: center; }
+
+.address-form {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  justify-content: center; }
+  .address-form__fieldset-name {
+    text-align: center; }
+  .address-form__inputs {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 50px; }
+  .address-form__fields-list {
+    display: block;
+    text-align: left;
+    text-align-last: left;
+    line-height: 45px;
+    list-style-type: none;
+    padding-left: 0; }
+  .address-form__remember {
+    display: block; }
+  .address-form__fieldset {
+    max-width: 390px;
+    padding: 20px;
+    text-align: center; }
 
 .footer {
   flex-shrink: 0;

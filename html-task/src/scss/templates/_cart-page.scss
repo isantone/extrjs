@@ -21,6 +21,12 @@
 }
 
 .cart-page {
+  display: flex;
+  flex: 1 0 auto;
+
+  //width: 100%;
+  align-items: flex-start;
+
   &__list-viewer {
     max-width: 1000px;
     margin: 20px auto;
