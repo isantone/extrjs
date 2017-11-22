@@ -1,0 +1,9 @@
+.page {
+  @include display-flex(column, nowrap);
+  align-content: flex-start;
+
+	min-width: $min-width; 
+	min-height: $min-height;
+  
+	font: $font;
+}

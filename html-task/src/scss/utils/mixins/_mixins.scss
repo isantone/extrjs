@@ -1,0 +1,17 @@
+@import 'clearfix';
+
+// @mixin flex() {
+//   display: flex;
+// }
+
+// @mixin flex-dir($flex-direction) {
+//   flex-direction: $flex-direction;
+// }
+
+// @mixin flex-flow($flex-direction, $flex-wrap) {
+//   flex-flow: $flex-direction $flex-wrap;
+// }
+
+@mixin bg-color($color) {
+  background-color: $color;
+}
