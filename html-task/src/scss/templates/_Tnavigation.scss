@@ -1,0 +1,17 @@
+.navigation {
+  list-style-type: none;
+  @include clearfix;
+}
+
+.navigation__item {
+  float: left;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+}

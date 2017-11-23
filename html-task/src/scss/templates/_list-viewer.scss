@@ -1,0 +1,51 @@
+.list-viewer {
+  /*padding: 10px;*/
+  border: 1px solid gray;
+  
+  &__item-image {
+    /*display: inline-block;*/
+    // width: 100px;
+    // height: 100px;
+    flex-shrink: 0;
+    /*float: left;*/
+    // background-color: pink;
+  }
+
+  &__list-item {
+    box-sizing: border-box;
+    display: flex;
+
+    width: 100%;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px dashed gray;
+  }
+
+  &__list-item:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  &__item-name {
+    flex-grow: 1;
+  }
+
+  &__first-col {
+    flex-grow: 2;
+    text-align: justify;
+  }
+  
+  &__item-price, &__total-text, &__second-col {
+    text-align: right;
+  }
+
+  &__item-quantity {
+    text-align: center;
+  }
+
+  &__total {
+    text-align: right;
+  }
+}

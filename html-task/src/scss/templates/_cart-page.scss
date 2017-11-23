@@ -1,0 +1,40 @@
+@import 'list-viewer';
+
+.tiny-top-margin {
+  margin-top: 8px;
+}
+
+.tiny-bottom-margin {
+  margin-bottom: 8px;
+}
+
+.tiny-left-margin {
+  margin-left: 8px;
+}
+
+.small-right-margin {
+  margin-right: 15px;
+}
+
+.small-bottom-margin {
+  margin-bottom: 15px;
+}
+
+.cart-page {
+  display: flex;
+  flex: 1 0 auto;
+
+  //width: 100%;
+  align-items: flex-start;
+
+  &__list-viewer {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 15px;
+  }
+
+  &__button {
+    width: auto;
+  }
+}
