@@ -1,301 +1,44 @@
-//@import 'page';
-//@import 'button';
+@import 'page';
 
-//@import 'header';
-//@import 'navigation';
-//@import 'content';
+@import 'globals';
+@import 'button';
+
+@import 'header';
+
+@import 'navigation';
+
+@import 'sign-page';
+@import 'index-page';
+@import 'page-main';
+
+@import 'cart-page';
+@import 'address-page';
 
 /////// Page ///////
-.flex {
-  display: flex;
-}
 
-.block {
-  display: block;
-}
-
-.page {
-  @extend .flex;
-  //@include flex-dir(column);
-  flex-direction: column;
-  align-content: flex-start;
-
-	min-width: $min-width; 
-  min-height: $min-height;
-  
-	font: $font;
-}
 ////////////////////
 
 ////////////////////
-.gray {
-  @include bg-color(gray);
-}
 
-.turquoise {
-  @include bg-color($turquoise);
-}
-
-.small-bottom-margin {
-  margin-bottom: 20px;
-}
-
-.small-top-margin {
-  margin-top: 20px;
-}
-
-.big-bottom-margin {
-  margin-bottom: 35px;
-}
-
-.input-size {
-  //display: block;
-
-  width: 100%;
-  max-width: 500px;
-	height: $input-height;
-  padding: $input-padding;
-
-  box-sizing: border-box;
-
-  //display: inline-block;
-}
 ////////////////////
 
 /////// Button ///////
-.button {
-  display: inline-block;
-  font: $button-font;
-	color: $button-font-color;
-  
-  border: none;
-}
+
 
 //////////////////////
 
 /////// HEADER ///////
-.header {
-  width: 100%;
-  
-	background-color: $header-color;
 
-  &__container {
-    @extend .flex;
-    flex-wrap: wrap; //@include flex-flow(row, wrap);
-    //flex-direction: column;
-
-    min-height: $header-height; 
-    max-width: $header-width;
-
-    margin: 0 auto;
-    padding: 20px;
-
-	  justify-content: center;
-    align-items: center;
-  }
-
-  &__logo {
-    order: 1;
-    flex-shrink: 1;
-  }
-
-  &__buttons {
-    @extend .flex;
-    flex-grow: 0;
-    order: 3;
-
-    min-width: 361px;
-    //min-height: 90px;
-
-    margin-top: 15px;
-
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__animation {
-    transition: 0.5s ease-in-out;
-    transform: rotate(-360deg);
-  }
-
-  &__search-form {
-    //display: none;
-    height: 0;
-    min-width: 330px;
-
-    margin-top: 0;
-
-    align-self: center;
-    flex-grow: 2;
-    order: 4;
-
-    transition: 0.3s ease-in-out;
-    overflow: hidden;
-
-    &_visible {
-      height: 40px;
-      margin-top: 20px;
-    }
-  }
-
-  &__search-input {
-    box-sizing: border-box;
-
-    width: 100%;
-    height: 40px;
-
-    padding: 10px;
-  }
-}
-
-/*@keyframes move-b {
-	5% {
-		transform: translateY(-10px);
-	}
-	
-	10% {
-		transform: translateY(0px);
-	}
-	
-	15% {
-		transform: translateY(-10px);
-	}
-	
-	20% {
-		transform: translateY(0px);
-	}
-}*/
 ///////////////////
 
 ///////// LOGIN, REGISTRATION ////////
-
-.sign-page {
-	@extend .flex;
-  flex: 1 0 auto;
-  
-  width: 100%;
-
-  //align-self: center;
-  //justify-content: center;
-  align-items: flex-start;
-  
-  &__sign-form {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.sign-form {
-	text-align: center;
-	background-color: white;
-
-  &__header {
-    height: 70px;
-
-    margin: 0px;  // RESET
-
-    background-color: #464547;
-    color: white;
-
-    font: $button-font;
-    line-height: 70px; // Vertical centering
-  }
-
-  &__remember {
-    display: block;
-  }
-  
-  .sign-form__input {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .sign-form__form {
-    padding: 50px;
-  }
-}
-
-.two-cols-line {
-  @include clearfix;
-  display: block;
-
-  &__left {
-    float: left;
-  }
-
-  &__right {
-    float: right;
-  }
-}
 
 ///////////////////////////////
 
 ////////////// Index ////////////
 /******* INDEX *******/
 
-.navigation {
-	max-height: 0;
-	min-width: 200px;
-	transition: 0.5s ease-in-out;
-  overflow: hidden;
-  
-  &_visible {
-    max-height: 500px; ///////////////
-  }
-}
-
-.navigation__list {
-  list-style-type: none;
-  padding-left: 0px;
-}
-
-.navigation__item > a {
-	display: block;
-	padding: 10px 30px;
-	color: darkred;
-//}
-
-//.navigation__item > a {
-	border: 1px solid #ddd;
-	border-top: none;
-}
-
-.navigation__item > a:hover {
-	background-color: darkred;
-	color: white;
-	border: 1px solid darkred;
-	/* border-left: 1px solid darkred; */
-	border-top: none;
-	transition: background-color 1s, color 0.5s, border-bottom 1s, border-left 1s;
-}
-
-.index-page, .grid-view { 
-	@extend .flex;
-  flex-wrap: wrap;
-  
-  width: auto;
-
-	align-content: center; /* vertical */
-  align-self: center;
-  align-items: center;
-	/* justify-content: center; */
-	/* justify-content: space-around; */
-}
 /********************/
-
-.index-page {
-	flex: 1 0 auto;
-
-	max-width: 210px; // ?
-
-  &__grid {
-    margin: 25px 30px;
-  }
-
-  &__caption {
-    margin-top: 5px;
-  }
-}
 
 .grid {
 	//width: 150px;
@@ -326,27 +69,6 @@
 }
 //////////////////
 
-.page-main {
-	@extend .flex;
-  flex-direction: column;
-  
-	flex: 1 0 auto;
-
-  &__content {
-    @extend .flex;
-    flex-direction: column;
-
-    width: 100%;
-
-    align-items: center;
-  }
-}
-
-.page-main_list-view {
-	width: 100%; 
-	text-align: left;
-	text-align-last: left;
-}
 
 .list-item {
 	display: block;
@@ -365,18 +87,6 @@
 	height: 100px;
 	vertical-align: top;
 	margin-right: 15px;
-}
-
-.page-main_grid-view {
-  @extend .flex;
-  flex-wrap: wrap;
-  width: 100%;
-  //flex-direction: row;
-  align-content: flex-start; /* vertical */
-}
-
-.page-main__block-image {
-	height: 50px;
 }
 
 .grid {
@@ -405,55 +115,8 @@
 /*-------------------*/
 //////////////////////////////////////////////
 
-@import 'cart-page';
-
 
 //////////// Address //////////////////
-.address-page {
-  display: flex;
-  flex: 1 0 auto;
-
-  //width: 100%;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.address-form {
-	display: flex;
-	flex-wrap: wrap;
-	max-width: 900px;
-  justify-content: center;
-  
-  &__fieldset-name {
-    text-align: center;
-  }
-
-  &__inputs {
-    display: inline-block;
-    vertical-align: top;
-    line-height: 50px;
-  }
-
-  &__fields-list {
-    display: block;
-    text-align: left;
-    text-align-last: left;
-    line-height: 45px;
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  &__remember {
-    display: block;
-  }
-
-  &__fieldset {
-    max-width: 390px;
-    padding: 20px;
-
-    text-align: center;
-  }
-}
 
 //////////////////////
 

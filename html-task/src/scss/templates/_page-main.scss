@@ -1,0 +1,33 @@
+.page-main {
+	@extend .flex;
+  flex-direction: column;
+  
+	flex: 1 0 auto;
+
+  &__content {
+    @extend .flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    align-items: center;
+  }
+
+  &_list-view {
+    width: 100%; 
+    text-align: left;
+    text-align-last: left;
+  }
+
+  &_grid-view {
+    @extend .flex;
+    flex-wrap: wrap;
+    width: 100%;
+    //flex-direction: row;
+    align-content: flex-start; /* vertical */
+  }
+
+  &__block-image {
+    height: 50px;
+  }
+}

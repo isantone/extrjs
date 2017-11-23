@@ -1,0 +1,22 @@
+.index-page {
+  @extend .flex;
+  flex-wrap: wrap;
+  flex: 1 0 auto;
+  
+  width: auto;
+  max-width: 210px; // ?
+
+	align-content: center; /* vertical */
+  align-self: center;
+  align-items: center;
+	/* justify-content: center; */
+	/* justify-content: space-around; */
+
+  &__grid {
+    margin: 25px 30px;
+  }
+
+  &__caption {
+    margin-top: 5px;
+  }
+}

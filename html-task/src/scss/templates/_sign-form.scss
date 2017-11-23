@@ -1,0 +1,31 @@
+@import 'two-cols-line';
+
+.sign-form {
+	text-align: center;
+	background-color: white;
+
+  &__header {
+    height: 70px;
+
+    margin: 0px;  // RESET
+
+    background-color: #464547;
+    color: white;
+
+    font: $button-font;
+    line-height: 70px; // Vertical centering
+  }
+
+  &__remember {
+    display: block;
+  }
+  
+  &__input {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  &__form {
+    padding: 50px;
+  }
+}

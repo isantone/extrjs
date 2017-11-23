@@ -1,0 +1,32 @@
+.gray {
+  @include bg-color(gray);
+}
+
+.turquoise {
+  @include bg-color($turquoise);
+}
+
+.small-bottom-margin {
+  margin-bottom: 20px;
+}
+
+.small-top-margin {
+  margin-top: 20px;
+}
+
+.big-bottom-margin {
+  margin-bottom: 35px;
+}
+
+.input-size {
+  //display: block;
+
+  width: 100%;
+  max-width: 500px;
+	height: $input-height;
+  padding: $input-padding;
+
+  box-sizing: border-box;
+
+  //display: inline-block;
+}

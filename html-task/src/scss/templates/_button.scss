@@ -1,21 +1,7 @@
 .button {
-  width: $input-width;
-	height: $input-height;
-	padding: 5px;
-	//margin: 10px;
-
+  display: inline-block;
   font: $button-font;
-
 	color: $button-font-color;
-  //background-color: gray;
   
   border: none;
-}
-
-.gray {
-  @include bg-color(gray);
-}
-
-.turquoise {
-  @include bg-color($turquoise);
 }

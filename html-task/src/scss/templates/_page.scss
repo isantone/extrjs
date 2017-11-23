@@ -1,9 +1,15 @@
+.flex {
+  display: flex;
+}
+
 .page {
-  @include display-flex(column, nowrap);
+  @extend .flex;
+  //@include flex-dir(column);
+  flex-direction: column;
   align-content: flex-start;
 
 	min-width: $min-width; 
-	min-height: $min-height;
+  min-height: $min-height;
   
 	font: $font;
 }
