@@ -1,12 +1,13 @@
 .list-viewer {
   /*padding: 10px;*/
   border: 1px solid gray;
-  
+
   &__item-image {
     /*display: inline-block;*/
     // width: 100px;
     // height: 100px;
     flex-shrink: 0;
+    margin-right: 15px;
     /*float: left;*/
     // background-color: pink;
   }
@@ -35,17 +36,5 @@
   &__first-col {
     flex-grow: 2;
     text-align: justify;
-  }
-  
-  &__item-price, &__total-text, &__second-col {
-    text-align: right;
-  }
-
-  &__item-quantity {
-    text-align: center;
-  }
-
-  &__total {
-    text-align: right;
   }
 }

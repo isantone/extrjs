@@ -23,77 +23,68 @@
 		<script>
 			var link = document.querySelector('link[rel="import"]');
 			var content = link.import;
-	
+
 			// Grab DOM from warning.html's document.
 			var el = content.querySelector('.header');
 			document.body.appendChild(el.cloneNode(true));
 
 			var navB = document.getElementById("navButton");
 			navB.outerHTML = "";
-			delete navB;	
+			delete navB;
 		</script>
 
-		<!-- <main class="cart-page">
-			<form>
-				<table class="cart-item">
-					<tr>
-						<td rowspan="2"><img class="product" src="images/no-image.png"></img></td>
-						<td><p class="product"><a href=#>K2 iKonic 84ti</a></p></td>
-						<td><label>Quantity: <input class="quantity" type="number" min="0" max="1000"></td></label>
-						<td><p class="price">Price: $ 999</p></td>
-					</tr>
-					<tr>
-						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
-					</tr>
-				</table>
-				<table class="cart-item">
-					<tr>
-						<td rowspan="2"><img class="product" src="images/no-image.png"></img></td>
-						<td><p class="product"><a href=#>K2 iKonic 84ti</a></p></td>
-						<td><label>Quantity: <input class="quantity" type="number" min="0" max="1000"></td></label>
-						<td><p class="price">Price: $ 999</p></td>
-					</tr>
-					<tr>
-						<td class="remove-button" colspan="3"><a href=#>Remove</a></td>
-					</tr>
-				</table>
-				<div class="total"><span>Total: 1998 $</span> <button class="default-size bold-text">Proceed to Checkout</button> <button class="default-size bold-text">Continue Shopping</button></div>
-			</form>		
-		</main> -->
 		<main class="cart-page">
 			<form class="list-viewer cart-page__list-viewer">
 				<div class="list-viewer__list-item small-bottom-margin">
-					<div class="list-viewer__item-image small-right-margin"><img class="list-viewer__item-img" src="images/no-image.png"></div>
+					<div class="list-viewer__item-image">
+						<img class="list-viewer__item-img" src="images/no-image.png">
+					</div>
 					<div class="list-viewer__first-col small-right-margin">
-						<p class="list-viewer__item-name tiny-bottom-margin"><a href=#>K2 iKonic 84ti</a></p>
+						<p class="list-viewer__item-name tiny-bottom-margin">
+							<a href="#">K2 iKonic 84ti</a>
+						</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat molestie dolor facilisis suscipit. Praesent sagittis ornare vulputate.</p>
 					</div>
-					<div class="list-viewer__second-col">
-						<a class="list-viewer__item-remove" href=#>Remove</a>
-						<p class="list-viewer__item-quantity tiny-top-margin"><label>Quantity: <input type="number" min="0" max="1000"></label></p>
-						<p class="list-viewer__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
+					<div class="list-viewer__second-col cart-page__second-col">
+						<a class="cart-page__item-remove" href="#">Remove</a>
+						<p class="cart-page__item-quantity tiny-top-margin">
+							<label>Quantity:
+								<input  class="cart-page__quantity" type="number" min="0" max="1000">
+							</label>
+						</p>
+						<p class="cart-page__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
 					</div>
 				</div>
-				
+
 				<div class="list-viewer__list-item small-bottom-margin">
-					<div class="list-viewer__item-image small-right-margin"><img class="list-viewer__item-img" src="images/no-image.png"></div>
+					<div class="list-viewer__item-image">
+						<img class="list-viewer__item-img" src="images/no-image.png">
+					</div>
 					<div class="list-viewer__first-col small-right-margin">
-						<p class="list-viewer__item-name tiny-bottom-margin"><a href=#>K2 iKonic 84ti</a></p>
+						<p class="list-viewer__item-name tiny-bottom-margin">
+							<a href="#">K2 iKonic 84ti</a>
+						</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat molestie dolor facilisis suscipit. Praesent sagittis ornare vulputate.</p>
 					</div>
-					<div class="list-viewer__second-col">
-						<a class="list-viewer__item-remove" href=#>Remove</a>
-						<p class="list-viewer__item-quantity tiny-top-margin"><label>Quantity: <input type="number" min="0" max="1000"></label></p>
-						<p class="list-viewer__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
+					<div class="list-viewer__second-col cart-page__second-col">
+						<a class="cart-page__item-remove" href="#">Remove</a>
+						<p class="cart-page__item-quantity tiny-top-margin">
+							<label>Quantity:
+								<input class="cart-page__quantity" type="number" min="0" max="1000">
+							</label>
+						</p>
+						<p class="cart-page__item-price tiny-top-margin">Price: <br> <strong>999</strong> $</p>
 					</div>
 				</div>
-				
-				<div class="list-viewer__total">
-					<button class="button cart-page__button input-size gray">Proceed to Checkout</button>
-					<button class="button cart-page__button input-size gray tiny-left-margin">Continue Shopping</button>
-					<span class="list-viewer__total-text tiny-left-margin">Total: <strong>1998</strong> $</span>
+
+				<div class="cart-page__total">
+						<p class="cart-page__total-text tiny-left-margin">Total: <strong>1998</strong> $</p>
+					<div class="cart-page__controls">
+						<button class="button cart-page__button input-size gray">Proceed to Checkout</button>
+						<button class="button cart-page__button input-size gray">Continue Shopping</button>
+					</div>
 				</div>
-			</form>		
+			</form>
 		</main>
 
 		<!-- <footer class="footer">

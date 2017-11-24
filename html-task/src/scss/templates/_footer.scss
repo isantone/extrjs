@@ -1,0 +1,60 @@
+.footer {
+	flex-shrink: 0;
+	width: 100%;
+	height: 70px;
+	text-align: center;
+	color: white;
+	background-color: #464547;
+  vertical-align: middle;
+}
+
+.svg-logo {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.svg-l {
+	transform: translateX(3px);
+	animation: move-left 5s linear infinite;
+}
+
+.svg-r {
+	transform: translateX(-3px);
+	animation: move-right 5s linear infinite;
+}
+
+@keyframes move-left {
+	 5% {
+		transform: translateX(0px);
+	}
+	 10% {
+		transform: translateX(3px);
+	}
+	15% {
+		transform: translate(0px);
+	}
+	70% {
+		transform: translate(0px);
+	}
+	75% {
+		transform: translate(3px);
+	}
+}
+
+@keyframes move-right {
+	5% {
+	 transform: translateX(0px);
+ }
+	10% {
+	 transform: translateX(-3px);
+ }
+ 15% {
+	 transform: translate(0px);
+ }
+ 70% {
+	 transform: translate(0px);
+ }
+ 75% {
+	 transform: translate(-3px);
+ }
+}

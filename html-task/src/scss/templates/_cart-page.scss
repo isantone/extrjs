@@ -1,25 +1,5 @@
 @import 'list-viewer';
 
-.tiny-top-margin {
-  margin-top: 8px;
-}
-
-.tiny-bottom-margin {
-  margin-bottom: 8px;
-}
-
-.tiny-left-margin {
-  margin-left: 8px;
-}
-
-.small-right-margin {
-  margin-right: 15px;
-}
-
-.small-bottom-margin {
-  margin-bottom: 15px;
-}
-
 .cart-page {
   display: flex;
   flex: 1 0 auto;
@@ -34,7 +14,16 @@
     padding: 15px;
   }
 
+  &__total, &__item-price, &__second-col {
+    text-align: right;
+  }
+
+  &__controls, &__item-quantity {
+    text-align: center;
+  }
+
   &__button {
     width: auto;
+    margin: 5px;
   }
 }

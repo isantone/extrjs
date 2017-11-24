@@ -3,12 +3,13 @@
   <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Product categories</title>
-			<!-- <link rel="stylesheet" href="css/styles.css">	 -->
-			<link rel="stylesheet" href="css/main.css">	
-			<link rel="import" href="templates/all.html">
 
-			<script type="text/javascript" src="js/menu.js"></script>
+		<title>Product categories</title>
+
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="import" href="templates/all.html">
+
+		<script type="text/javascript" src="js/menu.js"></script>
 			<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
   </head>
   <body class="page">
@@ -25,25 +26,73 @@
 		<script>
 			var link = document.querySelector('link[rel="import"]');
 			var content = link.import;
-	
+
 			// Grab DOM from warning.html's document.
 			var el = content.querySelector('.header');
 			document.body.appendChild(el.cloneNode(true));
 
 			var navB = document.getElementById("navButton");
 			navB.outerHTML = "";
-			delete navB;	
+			delete navB;
 		</script>
 
 		<main class="index-page">
-			<!--<span id="noimage">&#9746;</span>-->
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Snowboards</a> (77)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href="grid.html">Skis</a> (55)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Apparel</a> (33)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Boots</a> (22)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Protection</a> (7)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Tools</a> (44)</p></div>
-			<div class="grid index-page__grid"><img class="block-image" src="images/no-image.png"></img><p class="index-page__caption"><a href=#>Accessories</a> (88)</p></div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Snowboards</a> (77)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="grid.html">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="grid.html">Skis</a> (55)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Apparel</a> (33)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Boots</a> (22)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Protection</a> (7)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Tools</a> (44)
+				</p>
+			</div>
+			<div class="grid index-page__grid">
+				<a href="#">
+					<img class="grid__image" src="images/no-image.png">
+				</a>
+				<p class="grid__caption">
+					<a href="#">Accessories</a> (88)
+				</p>
+			</div>
 		</main>
 		<!-- <footer class="footer">
 			<div class="svg-logo">

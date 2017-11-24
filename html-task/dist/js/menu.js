@@ -7,7 +7,7 @@ function toggleNav() {
 //var searchClicked = false;
 function toggleSearch() {
   searchButton.classList.toggle('header__animation');
-  
+
   // if (searchClicked) {
     searchForm.classList.toggle('header__search-form_visible');
   //   searchClicked = false;

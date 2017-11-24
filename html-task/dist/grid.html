@@ -3,9 +3,10 @@
   <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Product grid view</title>
 		<!-- <link rel="stylesheet" href="css/styles.css"> -->
-		<link rel="stylesheet" href="css/main.css">	
+		<link rel="stylesheet" href="css/main.css">
 		<link rel="import" href="templates/all.html">
 
 		<script type="text/javascript" src="js/menu.js"></script>
@@ -24,43 +25,102 @@
 		<script>
 			var link = document.querySelector('link[rel="import"]');
 			var content = link.import;
-	
+
 			// Grab DOM from warning.html's document.
 			var el = content.querySelector('.header');
 			document.body.appendChild(el.cloneNode(true));
 		</script>
 
 		 <div id="pageMain" class="page-main">
-			<!--<nav id="navigationMenu" class="navigation"><ul class="navigation__list">
-				<li class="navigation__item"><a href=#>Snowboards</a></li>
-				<li class="navigation__item"><a href=#>Skis</a></li>
-				<li class="navigation__item"><a href=#>Apparel</a></li>
-				<li class="navigation__item"><a href=#>Boots</a></li>
-				<li class="navigation__item"><a href=#>Protection</a></li>
-				<li class="navigation__item"><a href=#>Tools</a></li>
-				<li class="navigation__item"><a href=#>Accessories</a></li>
-			</ul></nav> -->
-			<script>
-				var link = document.querySelector('link[rel="import"]');
-				var content = link.import;
-
-				var el = content.querySelector('.navigation');
-				pageMain.appendChild(el.cloneNode(true));
-			</script>
+			<nav id="navigationMenu" class="navigation">
+				<ul class="navigation__list">
+					<li class="navigation__item">
+						<a href="#">Snowboards</a>
+					</li>
+					<li class="navigation__item navigation__item-active">
+						<a href="#">Skis</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#">Apparel</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#">Boots</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#">Protection</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#">Tools</a>
+					</li>
+					<li class="navigation__item">
+						<a href="#">Accessories</a>
+					</li>
+				</ul>
+			</nav>
 
 			<div class="page-main__content">
 				<p><a href="list.html">List view</a></p>
 				<main class="page-main_grid-view">
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>K2 iKonic 80ti</a><br> $ 999</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>K2 iKonic 84ti</a><br> $ 899</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>K2 iKonic 80</a><br> $ 819</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Line CHRONIC</a><br> $ 749</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Line CHRONIC</a><br> $ 639</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Line CHRONIC</a><br> $ 499</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Line CHRONIC</a><br> $ 449</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Line CHRONIC</a><br> $ 349</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a><br> $ 599</p></div>
-					<div class="grid-item"><img class="block-image page-main__block-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a><br> $ 699</p></div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">K2 iKonic 80ti</a><br> $ 999
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">K2 iKonic 84ti</a><br> $ 899
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">K2 iKonic 80</a><br> $ 819
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">Line CHRONIC</a><br> $ 749
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">Line CHRONIC</a><br> $ 639
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="grid__image" src="images/no-image.png">
+						<p>
+							<a href="#">Line CHRONIC</a><br> $ 499
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="block-image" src="images/no-image.png">
+						<p>
+							<a href="#">Line CHRONIC</a><br> $ 449
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="block-image" src="images/no-image.png">
+						<p>
+							<a href="#">Line CHRONIC</a><br> $ 349
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="block-image" src="images/no-image.png">
+						<p>
+							<a href="#">Nordica ENFORCER 100</a><br> $ 599
+						</p>
+					</div>
+					<div class="grid-item">
+						<img class="block-image" src="images/no-image.png">
+						<p>
+							<a href="#">Nordica ENFORCER 100</a><br> $ 699
+						</p>
+					</div>
 				</main>
 			</div>
 		</div>

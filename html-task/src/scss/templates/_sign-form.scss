@@ -17,15 +17,19 @@
   }
 
   &__remember {
-    display: block;
+    display: inline-block;
   }
-  
+
   &__input {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   &__form {
     padding: 50px;
+  }
+
+  a.button { /// -> class ///
+    line-height: 30px;
   }
 }

@@ -3,12 +3,14 @@
   <head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Product list view</title>
-		<!-- <link rel="stylesheet" href="css/styles.css"> -->
+
 		<link rel="stylesheet" href="css/main.css">
+
 		<link rel="import" href="templates/all.html">
 
-		<script type="text/javascript" src="js/menu.js"></script>	
+		<script type="text/javascript" src="js/menu.js"></script>
   </head>
   <body class="page">
 		<!-- <header class="header"><div class="header__container">
@@ -24,7 +26,7 @@
 		<script>
 			var link = document.querySelector('link[rel="import"]');
 			var content = link.import;
-	
+
 			// Grab DOM from warning.html's document.
 			var el = content.querySelector('.header');
 			document.body.appendChild(el.cloneNode(true));
@@ -51,16 +53,45 @@
 			<div class="page-main__content">
 				<p><a href="grid.html">Grid view</a></p>
 				<main class="page-main_list-view">
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 999</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 899</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 819</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 749</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 639</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 499</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 449</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 349</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 599</p><p>Description</p><p><button>Add to card</button></p></div>
-					<div class="list-item"><img class="list-image" src="images/no-image.png"></img><p><a href=#>Nordica ENFORCER 100</a></p><p class="price">Price: $ 699</p><p>Description</p><p><button>Add to card</button></p></div>
+					<div class="list-item">
+						<img class="list-item__image" src="images/no-image.png">
+						<p class="list-item__title"><a href="#">Nordica ENFORCER 100</a></p>
+						<p class="list-item__price">Price: $ 999</p>
+						<p class="list-item__description">Description</p>
+						<button>Add to card</button>
+					</div>
+
+					<div class="list-item">
+						<img class="list-item__image" src="images/no-image.png">
+						<p class="list-item__title"><a href="#">Nordica ENFORCER 100</a></p>
+						<p class="list-item__price">Price: $ 999</p>
+						<p class="list-item__description">Description</p>
+						<button>Add to card</button>
+					</div>
+
+					<div class="list-item">
+						<img class="list-item__image" src="images/no-image.png">
+						<p class="list-item__title"><a href="#">Nordica ENFORCER 100</a></p>
+						<p class="list-item__price">Price: $ 999</p>
+						<p class="list-item__description">Description</p>
+						<button>Add to card</button>
+					</div>
+
+					<div class="list-item">
+						<img class="list-item__image" src="images/no-image.png">
+						<p class="list-item__title"><a href="#">Nordica ENFORCER 100</a></p>
+						<p class="list-item__price">Price: $ 999</p>
+						<p class="list-item__description">Description</p>
+						<button>Add to card</button>
+					</div>
+
+					<div class="list-item">
+						<img class="list-item__image" src="images/no-image.png">
+						<p class="list-item__title"><a href="#">Nordica ENFORCER 100</a></p>
+						<p class="list-item__price">Price: $ 999</p>
+						<p class="list-item__description">Description</p>
+						<button>Add to card</button>
+					</div>
 				</main>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
       <title>Address</title>
-      <!-- <link rel="stylesheet" href="css/styles.css"> -->
+
       <link rel="stylesheet" href="css/main.css">
       <link rel="import" href="templates/all.html">
 
@@ -37,54 +37,81 @@
       <form class="address-form">
         <div class="address-form__fieldset">
           <p class="address-form__fieldset-name small-bottom-margin">Shipping address</p>
-          <div class="address-form__inputs"><ul class="address-form__fields-list">
-            <li>Country:</li>
-            <li>City:</li>
-            <li>Address:</li>
-            <li>ZIP:</li>
-          </ul></div>
-          <div class="address-form__inputs"><ul class="address-form__fields-list">
+          <div class="address-form__inputs">
+            <ul class="address-form__fields-list">
+              <li>Country:</li>
+              <li>City:</li>
+              <li>Address:</li>
+              <li>ZIP:</li>
+            </ul>
+          </div>
+          <div class="address-form__inputs">
+            <ul class="address-form__fields-list">
             <li><select class="input-size">
-							<option disabled>Select your country</option>
-							<option>Brazil</option>
-							<option>France</option>
-							<option>Russia</option>
-							<option>Spain</option>
-							<option>USA</option>
-						</select></li>
-            <li><input class="input-size" type="text"></li>
-            <li><input class="input-size" type="text"></li>
-            <li><input class="input-size" type="number"></li>
-          </ul></div>
+                <option disabled>Select your country</option>
+                <option>Brazil</option>
+                <option>France</option>
+                <option>Russia</option>
+                <option>Spain</option>
+                <option>USA</option>
+              </select></li>
+              <li><input class="input-size" type="text"></li>
+              <li><input class="input-size" type="text"></li>
+              <li><input class="input-size" type="number"></li>
+            </ul>
+          </div>
         </div>
+
         <div class="address-form__fieldset">
           <p class="address-form__fieldset-name small-bottom-margin">Billing address</p>
-          <div class="address-form__inputs"><ul class="address-form__fields-list">
-            <li>Country:</li>
-            <li>City:</li>
-            <li>Address:</li>
-            <li>ZIP:</li>
-          </ul></div>
-          <div class="address-form__inputs"><ul class="address-form__fields-list">
-            <li><select class="input-size">
-							<option disabled>Select your country</option>
-							<option>Brazil</option>
-							<option>France</option>
-							<option>Russia</option>
-							<option>Spain</option>
-							<option>USA</option>
-						</select></li>
-            <li><input class="input-size" type="text"></li>
-            <li><input class="input-size" type="text"></li>
-            <li><input class="input-size" type="number"></li>
-          </ul></div>
-          <label class="address-form__remember small-top-margin"><input type="checkbox"> My billing address is the same</label>
+          <div class="address-form__inputs">
+            <ul class="address-form__fields-list">
+              <li>Country:</li>
+              <li>City:</li>
+              <li>Address:</li>
+              <li>ZIP:</li>
+            </ul>
+          </div>
+          <div class="address-form__inputs">
+            <ul class="address-form__fields-list">
+              <li>
+                <select class="input-size">
+                  <option disabled>Select your country</option>
+                  <option>Brazil</option>
+                  <option>France</option>
+                  <option>Russia</option>
+                  <option>Spain</option>
+                  <option>USA</option>
+                </select>
+              </li>
+              <li>
+                <input class="input-size" type="text">
+              </li>
+              <li>
+                <input class="input-size" type="text">
+              </li>
+              <li>
+                <input class="input-size" type="number">
+              </li>
+            </ul>
+          </div>
+          <label class="address-form__remember small-top-margin">
+            <input type="checkbox"> My billing address is the same
+          </label>
 				</div>
         <br><input class="button input-size turquoise small-bottom-margin" type="submit" value="Continue">
       </form>
 		</main>
 		<footer class="footer">
-			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>--> <span> &copy; </span>
+      <!--<img class="epam-logo" src="images/epam_logo.svg"></img>--> 
+      <!-- <span> &copy; </span> -->
+      <script>
+        var link = document.querySelector('link[rel="import"]');
+        var content = link.import;
+
+        var el = content.querySelector('.footer');
+        document.body.appendChild(el.cloneNode(true));
+      </script>
 		</footer>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 .page-main {
 	@extend .flex;
   flex-direction: column;
-  
+
 	flex: 1 0 auto;
 
   &__content {
@@ -14,7 +14,11 @@
   }
 
   &_list-view {
-    width: 100%; 
+    box-sizing: border-box;
+    width: 100%;
+
+    padding: 20px;
+
     text-align: left;
     text-align-last: left;
   }
@@ -25,9 +29,5 @@
     width: 100%;
     //flex-direction: row;
     align-content: flex-start; /* vertical */
-  }
-
-  &__block-image {
-    height: 50px;
   }
 }
