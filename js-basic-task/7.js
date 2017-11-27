@@ -25,7 +25,7 @@ function range(arrayStart, arrayEnd, arrayStep = 1) {
       let position = 0;
 
       for (let i = 0; i <= (arrayStart - arrayEnd) / -arrayStep; i++) {
-        array[i]= arrayStart - position;
+        array[i] = arrayStart - position;
         position-=arrayStep;
       }
     }
