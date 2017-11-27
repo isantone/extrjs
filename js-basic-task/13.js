@@ -3,12 +3,13 @@ function average (array) {
   return array.reduce(plus) / array.length;
 }
 
+let centuries = [];
+
 function loadUsers() {
   "use strict";
 
   let ancestry = [];
   let ageDifferences = [];
-  let byName = {};
 
 	let xhr = new XMLHttpRequest();
   xhr.open('GET', 'db.json', true);
@@ -22,20 +23,22 @@ function loadUsers() {
     else {
       try {
         ancestry = JSON.parse(xhr.responseText);
-        //console.log(ancestry);
 
         ancestry.forEach(function(person) {
-          byName[person.name] = person;
+          if (centuries[Math.ceil(person.died / 100)]) {
+            centuries[Math.ceil(person.died / 100)].push(person.died-person.born);
+          }
+          else {
+            centuries[Math.ceil(person.died / 100)] = [];
+            centuries[Math.ceil(person.died / 100)].push(person.died-person.born);
+          }
         });
 
-        ancestry.forEach(function(child) {
-          let mother = byName[child.mother];
-          if (mother) {
-            ageDifferences.push(child.born - mother.born)
+        for (let i = 0; i < centuries.length; i++) {
+          if (centuries[i]) {
+            console.log(i + " century average lifetime: " + average(centuries[i]).toFixed(1));
           }
-        })
-
-        console.log("Task 12 > Average age in a date of birth of child: " + average(ageDifferences).toFixed(1));
+        }
       }
       catch (e) {
         alert("Некорректный ответ: " + e.message);
@@ -45,3 +48,6 @@ function loadUsers() {
 }
 
 loadUsers();
+
+
+
