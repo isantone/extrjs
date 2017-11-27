@@ -32,7 +32,7 @@ function loadUsers() {
         //mothers = ancestry.forEach(function(person) { person.mother.byName; });
         //var byName = {};
 
-        ancdestry.foreach( function(person) {
+        ancestry.foreach( function(person) {
           //person.mother = ;
         } );
 

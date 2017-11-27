@@ -15,13 +15,15 @@ function deepEqualTask () {
     if (first && second) {
       if (typeof(first) == "object" && typeof(second) == "object") {
         // first[propOfFirst]
+        let result = [];
         for (var propOfFirst in first) {
           for (var propOfSecond in second) {
             if (deepEqual(propOfFirst, propOfSecond)) {
+              result.push(true);
               continue;
             }
             else {
-              return false;
+              result.push(false);
             }
           }
         }
