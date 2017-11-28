@@ -11,17 +11,17 @@ function sum(array) {
 
 function range(arrayStart, arrayEnd, arrayStep = 1) {
   if (arrayStart < arrayEnd && arrayStep > 0) {
-    var array = new Array();
+    var array = [];
     let position = 0;
 
     for (let i = 0; i <= (arrayEnd - arrayStart) / arrayStep; i++) {
-      array[i]= arrayStart + position;
+      array[i] = arrayStart + position;
       position+=arrayStep;
     }
   }
   else {
     if (arrayStart > arrayEnd && arrayStep < 0) {
-      var array = new Array();
+      var array = [];
       let position = 0;
 
       for (let i = 0; i <= (arrayStart - arrayEnd) / -arrayStep; i++) {
