@@ -28,17 +28,20 @@ Plant.prototype.act = function(view) {
 // };
 
 function SmartPlantEater() {
-  this.energy = 20;
+  this.energy = 40;
+  this.reproduceEnergy = 90;
   this.direction = randomElement(directionNames);
+  this.food = "*";
+  this.legs = 4;
 }
 SmartPlantEater.prototype.act = function(view) {
   //var space = view.find(" ");
   var space = this.chooseDirection(view);
-  if (this.energy > 70 && space)
+  if (this.energy > this.reproduceEnergy && space)
     return {type: "reproduce", direction: space};
-  var plant = view.find("*");
-  if (plant)
-    return {type: "eat", direction: plant};
+  var food = view.find(this.food);
+  if (food)
+    return {type: "eat", direction: food};
   if (space)
     return {type: "move", direction: space};
 };
@@ -51,18 +54,24 @@ SmartPlantEater.prototype.chooseDirection = function(view) {
 };
 
 function Predator() {
-  this.energy = 40;
+  this.energy = 30;
+  this.reproduceEnergy = 160;
+  this.direction = randomElement(directionNames);
+  this.food = "O";
 }
-Predator.prototype.act = function(view) {
-  var space = view.find(" ");
-  if (this.energy > 100 && space)
-    return {type: "reproduce", direction: space};
-  var victim = view.find("O");
-  if (victim)
-    return {type: "eat", direction: victim};
-  if (space)
-    return {type: "move", direction: space};
-};
+Predator.prototype = Object.create(SmartPlantEater.prototype);
+Predator.prototype.constructor = Predator;
+
+// Predator.prototype.act = function(view) {
+//   var space = view.find(" ");
+//   if (this.energy > 100 && space)
+//     return {type: "reproduce", direction: space};
+//   var victim = view.find("O");
+//   if (victim)
+//     return {type: "eat", direction: victim};
+//   if (space)
+//     return {type: "move", direction: space};
+// };
 
 function Rabbit() {
   this.energy = 240;
