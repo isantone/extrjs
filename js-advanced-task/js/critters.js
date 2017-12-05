@@ -1,7 +1,7 @@
 function Wall() {}
 
 function Plant() {
-  this.energy = 3 + Math.random() * 4;
+  this.energy = 7 + Math.random() * 4;
 }
 Plant.prototype.act = function(view) {
   if (this.energy > 15) {
@@ -28,8 +28,8 @@ Plant.prototype.act = function(view) {
 // };
 
 function SmartPlantEater() {
-  this.energy = 40;
-  this.reproduceEnergy = 90;
+  this.energy = 20;
+  this.reproduceEnergy = 190;
   this.direction = randomElement(directionNames);
   this.food = "*";
   this.legs = 4;
@@ -54,8 +54,8 @@ SmartPlantEater.prototype.chooseDirection = function(view) {
 };
 
 function Predator() {
-  this.energy = 30;
-  this.reproduceEnergy = 160;
+  this.energy = 20;
+  this.reproduceEnergy = 240;
   this.direction = randomElement(directionNames);
   this.food = "O";
 }
