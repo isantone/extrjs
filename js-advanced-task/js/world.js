@@ -10,7 +10,7 @@ function elementFromChar(legend, ch) {
   var element = new legend[ch]();
 
   element.originChar = ch;
-  
+
   return element;
 }
 
@@ -76,8 +76,9 @@ World.prototype.checkDestination = function(action, vector) {
   if (directions.hasOwnProperty(action.direction)) {
     var dest = vector.plus(directions[action.direction]);
 
-    if (this.grid.isInside(dest))
+    if (this.grid.isInside(dest)) {
       return dest;
+    }
   }
 };
 
@@ -90,10 +91,10 @@ var actionTypes = Object.create(null);
 
 LifelikeWorld.prototype.letAct = function(critter, vector) {
   var action = critter.act(new View(this, vector));
-  var handled = action &&
-    action.type in actionTypes &&
-    actionTypes[action.type].call(this, critter,
-                                  vector, action);
+  var handled = action
+    && action.type in actionTypes
+    && actionTypes[action.type].call(this, critter, vector, action);
+
   if (!handled) {
     critter.energy -= 0.2;
 
@@ -104,22 +105,26 @@ LifelikeWorld.prototype.letAct = function(critter, vector) {
 };
 
 var valley = new LifelikeWorld(
-  ["############################",
-   "#####   ***        ***######",
-   "##  O****    >        ****##",
-   "#  **##**        ***  O  *##",
-   "#  *****    @     ##**    *#",
-   "#      @          ##***    #",
-   "#           @     ##**     #",
-   "# O         #**         >  #",
-   "#**    >    #***          *#",
-   "#***    >   ##**  O O    **#",
-   "##****O  **###****     **###",
-   "############################"],
-  {"#": Wall,
-   "*": Plant,
-   "O": SmartPlantEater,
-   "@": Predator,
-   ">": Rabbit}
-   //" ", null: free space
+  [
+    "############################",
+    "#####   ***        ***######",
+    "##  O****    >        ****##",
+    "#  **##**        ***  O  *##",
+    "#  *****    @     ##**    *#",
+    "#      @          ##***    #",
+    "#           @     ##**     #",
+    "# O         #**         >  #",
+    "#**    >    #***          *#",
+    "#***    >   ##**  O O    **#",
+    "##****O  **###****     **###",
+    "############################",
+  ],
+  {
+    "#": Wall,
+    "*": Plant,
+    "O": SmartPlantEater,
+    "@": Predator,
+    ">": Rabbit,
+    //" ", null: free space
+  }
 );

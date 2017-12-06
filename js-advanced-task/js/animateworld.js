@@ -62,7 +62,7 @@
     this.button.style.color = "red";
   };
 
-  window.animateWorld = function(world) { 
-    new Animated(world); 
+  window.animateWorld = function(world) {
+    new Animated(world);
   };
 })();

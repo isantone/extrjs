@@ -8,16 +8,17 @@ View.prototype.look = function(dir) {
   if (this.world.grid.isInside(target)) {
     return charFromElement(this.world.grid.get(target));
   }
-  
+
   return "#";
 };
 View.prototype.findAll = function(ch) {
   var found = [];
 
-  for (var dir in directions)
+  for (var dir in directions) {
     if (this.look(dir) == ch) {
       found.push(dir);
     }
+  }
 
   return found;
 };
