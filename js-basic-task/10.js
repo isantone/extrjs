@@ -1,5 +1,3 @@
-/// UNFINISHED
-
 function deepEqualTask () {
   "use strict";
 
