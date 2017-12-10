@@ -1,5 +1,3 @@
-'use strict';
-
 const       WALL_SYMBOL = "#";
 const      PLANT_SYMBOL = "*";
 const PLANTEATER_SYMBOL = "O";

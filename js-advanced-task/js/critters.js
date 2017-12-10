@@ -1,109 +1,149 @@
-"use strict";
-
-//import { PLANT_SYMBOL } from './world.js';
-
 const         PLANT_HP =  7 + Math.random() * 4; // Points to be alive
-const         PLANT_RP = 15;                     // Points to reproduce
-const         PLANT_GP = 20;                     // Points to grow
+const         PLANT_RP = 10;                     // Points to reproduce
+const         PLANT_GP = 15;                     // Points to grow
 
 const    PLANTEATER_HP =  20;
 const    PLANTEATER_RP = 190;
-const  PLANTEATER_FOOD = "*"/*PLANT_SYMBOL*/;
+const  PLANTEATER_FOOD = "*";
+//const  PLANTEATER_FOOD = PLANT_SYMBOL;
 
 const      PREDATOR_HP =  20;
 const      PREDATOR_RP = 240;
-const    PREDATOR_FOOD = "O"/*PLANTEATER_SYMBOL*/;
+const    PREDATOR_FOOD = "O";
+//const    PREDATOR_FOOD = PLANTEATER_SYMBOL;
 
+class Wall {}
 
-function Wall() {}
+class Rabbit {
+  constructor() {
+    this.energy = 240;
+  }
 
-function Plant() {
-  this.energy = PLANT_HP;
+  act(view) {
+    let space = view.find(EMPTYSPACE_SYMBOL);
+    let hunter = view.find(PREDATOR_SYMBOL);
+
+    if (hunter) {
+      return {
+        type: "move",
+        direction: space
+      };
+    }
+  }
 }
-Plant.prototype.act = function(view) {
-  if (this.energy > PLANT_RP) {
-    var space = view.find(EMPTYSPACE_SYMBOL);
 
-    if (space) {
+class Plant {
+  constructor() {
+    this.energy = PLANT_HP;
+  }
+
+  act(view) {
+    if (this.energy > PLANT_RP) {
+      let space = view.find(EMPTYSPACE_SYMBOL);
+
+      if (space) {
+        return {
+          type: "reproduce",
+          direction: space
+        };
+      }
+    }
+
+    if (this.energy < PLANT_GP) {
+      return {
+        type: "grow"
+      };
+    }
+  }
+}
+
+// function tryToReproduce(view, space) {
+//   //var space = this.chooseDirection(view);
+
+//   if (this.energy > this.reproduceEnergy && space) {
+//     return {
+//       type: "reproduce",
+//       direction: space,
+//     };
+//   }
+// }
+
+// function tryToEat(view) {
+//   var food = view.find(this.food);
+  
+//   if (food) {
+//     return {
+//       type: "eat",
+//       direction: food,
+//     };
+//   }
+// }
+
+// function tryToMove(view, space) {
+//   if (space) {
+//     return {
+//       type: "move",
+//       direction: space,
+//     };
+//   }
+// }
+
+class Eater {
+  constructor(hp, rp, food) {
+    this.energy = hp;
+    this.reproduceEnergy = rp;
+    this.food = food;
+    this.direction = "n"; /*randomElement(directionNames);*/
+  }
+
+  act(view) {
+    var space = this.chooseDirection(view);
+
+    if (this.energy > this.reproduceEnergy && space) {
       return {
         type: "reproduce",
         direction: space,
       };
     }
+
+    var food = view.find(this.food);
+
+    if (food) {
+      return {
+        type: "eat",
+        direction: food,
+      };
+    }
+
+    if (space) {
+      return {
+        type: "move",
+        direction: space,
+      };
+    }
   }
 
-  if (this.energy < PLANT_GP) {
-    return {
-      type: "grow"
-    };
-  }
-};
+  chooseDirection(view) {
+    if (view.look(this.direction) != EMPTYSPACE_SYMBOL ) {
+      var newSpace = view.find(EMPTYSPACE_SYMBOL);
 
-function Rabbit() {
-  this.energy = 240;
+      this.direction = newSpace || this.direction;
+    }
+
+    return this.direction;
+  }
 }
-Rabbit.prototype.act = function(view) {
-  var space = view.find(EMPTYSPACE_SYMBOL);
-  var hunter = view.find(PREDATOR_SYMBOL);
 
-  if (hunter) {
-    return {
-      type: "move",
-      direction: space,
-    };
+class SmartPlantEater extends Eater {
+  constructor() {
+    super(PLANTEATER_HP, PLANTEATER_RP, PLANTEATER_FOOD);
   }
-};
-
-function SmartPlantEater() {
-  Eater.call(this, PLANTEATER_HP, PLANTEATER_RP, PLANTEATER_FOOD);
 }
-SmartPlantEater.prototype = Object.create(Eater.prototype);
-SmartPlantEater.prototype.constructor = SmartPlantEater;
+new SmartPlantEater();
 
-function Predator() {
-  Eater.call(this, PREDATOR_HP, PREDATOR_RP, PREDATOR_FOOD);
+class Predator extends Eater {
+  constructor() {
+    super(PREDATOR_HP, PREDATOR_RP, PREDATOR_FOOD);
+  }
 }
-Predator.prototype = Object.create(Eater.prototype);
-Predator.prototype.constructor = Predator;
-
-function Eater(hp, rp, food) {
-  this.energy = hp;
-  this.reproduceEnergy = rp;
-  this.food = food;
-  this.direction = randomElement(directionNames);
-}
-Eater.prototype.act = function(view) {
-  var space = this.chooseDirection(view);
-
-  if (this.energy > this.reproduceEnergy && space) {
-    return {
-      type: "reproduce",
-      direction: space,
-    };
-  }
-
-  var food = view.find(this.food);
-
-  if (food) {
-    return {
-      type: "eat",
-      direction: food,
-    };
-  }
-
-  if (space) {
-    return {
-      type: "move",
-      direction: space,
-    };
-  }
-};
-Eater.prototype.chooseDirection = function(view) {
-  if (view.look(this.direction) != EMPTYSPACE_SYMBOL ) {
-    var newSpace = view.find(EMPTYSPACE_SYMBOL);
-
-    this.direction = newSpace || this.direction;
-  }
-
-  return this.direction;
-};
+new Predator();
