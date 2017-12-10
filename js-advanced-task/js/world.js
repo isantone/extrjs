@@ -1,13 +1,24 @@
+'use strict';
+
+const       WALL_SYMBOL = "#";
+const      PLANT_SYMBOL = "*";
+const PLANTEATER_SYMBOL = "O";
+const   PREDATOR_SYMBOL = "@";
+const     RABBIT_SYMBOL = ">";
+const EMPTYSPACE_SYMBOL = " "; // <=> null
+
+const COST_OF_ACTION = 0.2;
+
 function randomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
 function elementFromChar(legend, ch) {
-  if (ch == " ") {
+  if (ch == EMPTYSPACE_SYMBOL) {
     return null;
   }
 
-  var element = new legend[ch]();
+  let element = new legend[ch]();
 
   element.originChar = ch;
 
@@ -16,7 +27,7 @@ function elementFromChar(legend, ch) {
 
 function charFromElement(element) {
   if (element == null) {
-    return " ";
+    return EMPTYSPACE_SYMBOL;
   }
 
   return element.originChar;
@@ -96,7 +107,7 @@ LifelikeWorld.prototype.letAct = function(critter, vector) {
     && actionTypes[action.type].call(this, critter, vector, action);
 
   if (!handled) {
-    critter.energy -= 0.2;
+    critter.energy -= COST_OF_ACTION;
 
     if (critter.energy <= 0) {
       this.grid.set(vector, null);
@@ -125,6 +136,5 @@ var valley = new LifelikeWorld(
     "O": SmartPlantEater,
     "@": Predator,
     ">": Rabbit,
-    //" ", null: free space
   }
 );
