@@ -1,14 +1,14 @@
-const         PLANT_HP =  7 + Math.random() * 4; // Points to be alive
-const         PLANT_RP = 10;                     // Points to reproduce
-const         PLANT_GP = 15;                     // Points to grow
+const         PLANT_HP =  3 + Math.random() * 4; // Points to be alive
+const         PLANT_RP = 15;                     // Points to reproduce
+const         PLANT_GP = 20;                     // Points to grow
 
 const    PLANTEATER_HP =  20;
-const    PLANTEATER_RP = 190;
+const    PLANTEATER_RP = 170;
 const  PLANTEATER_FOOD = "*";
 //const  PLANTEATER_FOOD = PLANT_SYMBOL;
 
 const      PREDATOR_HP =  20;
-const      PREDATOR_RP = 240;
+const      PREDATOR_RP = 350;
 const    PREDATOR_FOOD = "O";
 //const    PREDATOR_FOOD = PLANTEATER_SYMBOL;
 
@@ -56,37 +56,6 @@ class Plant {
     }
   }
 }
-
-// function tryToReproduce(view, space) {
-//   //var space = this.chooseDirection(view);
-
-//   if (this.energy > this.reproduceEnergy && space) {
-//     return {
-//       type: "reproduce",
-//       direction: space,
-//     };
-//   }
-// }
-
-// function tryToEat(view) {
-//   var food = view.find(this.food);
-  
-//   if (food) {
-//     return {
-//       type: "eat",
-//       direction: food,
-//     };
-//   }
-// }
-
-// function tryToMove(view, space) {
-//   if (space) {
-//     return {
-//       type: "move",
-//       direction: space,
-//     };
-//   }
-// }
 
 class Eater {
   constructor(hp, rp, food) {

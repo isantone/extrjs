@@ -1,3 +1,5 @@
+let actionTypes = Object.create(null);
+
 actionTypes.grow = function(critter) {
   critter.energy += 1;
 
@@ -5,7 +7,7 @@ actionTypes.grow = function(critter) {
 };
 
 actionTypes.move = function(critter, vector, action) {
-  var dest = this.checkDestination(action, vector);
+  let dest = this.checkDestination(action, vector);
 
   if (
     dest == null
@@ -24,8 +26,8 @@ actionTypes.move = function(critter, vector, action) {
 };
 
 actionTypes.eat = function(critter, vector, action) {
-  var dest = this.checkDestination(action, vector);
-  var atDest = dest != null && this.grid.get(dest);
+  let dest = this.checkDestination(action, vector);
+  let atDest = dest != null && this.grid.get(dest);
 
   if (!atDest || atDest.energy == null) {
     return false;
