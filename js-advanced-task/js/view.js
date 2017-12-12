@@ -2,6 +2,7 @@ function View(world, vector) {
   this.world = world;
   this.vector = vector;
 }
+
 View.prototype.look = function(dir) {
   var target = this.vector.plus(directions[dir]);
 
@@ -11,6 +12,7 @@ View.prototype.look = function(dir) {
 
   return "#";
 };
+
 View.prototype.findAll = function(ch) {
   var found = [];
 
@@ -22,6 +24,7 @@ View.prototype.findAll = function(ch) {
 
   return found;
 };
+
 View.prototype.find = function(ch) {
   var found = this.findAll(ch);
 
