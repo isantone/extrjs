@@ -1,15 +1,8 @@
-function average (array) {
-  function plus (a, b) { return a + b; }
-  return array.reduce(plus) / array.length;
-}
-
-let centuries = [];
-
 function loadUsers() {
   "use strict";
 
+  let centuries = [];
   let ancestry = [];
-  let ageDifferences = [];
 
 	let xhr = new XMLHttpRequest();
   xhr.open('GET', 'db.json', true);
@@ -25,12 +18,15 @@ function loadUsers() {
         ancestry = JSON.parse(xhr.responseText);
 
         ancestry.forEach(function(person) {
-          if (centuries[Math.ceil(person.died / 100)]) {
-            centuries[Math.ceil(person.died / 100)].push(person.died-person.born);
+          let centuryOfPerson = calculateCenturyOfPerson(person);
+          let lifetimeOfPerson = calculateLifetimeOfPerson(person);
+
+          if (centuries[centuryOfPerson]) {
+            centuries[centuryOfPerson].push(lifetimeOfPerson);
           }
           else {
-            centuries[Math.ceil(person.died / 100)] = [];
-            centuries[Math.ceil(person.died / 100)].push(person.died-person.born);
+            centuries[centuryOfPerson] = [];
+            centuries[centuryOfPerson].push(lifetimeOfPerson);
           }
         });
 
@@ -44,6 +40,20 @@ function loadUsers() {
         alert("Некорректный ответ: " + e.message);
       }
     }
+  };
+
+  function average(array) {
+    function plus(a, b) {
+      return a + b; }
+    return array.reduce(plus) / array.length;
+  }
+
+  function calculateCenturyOfPerson(person) {
+    return Math.ceil(person.died / 100);
+  }
+
+  function calculateLifetimeOfPerson(person) {
+    return person.died - person.born;
   }
 }
 

@@ -1,6 +1,4 @@
-/// UNFINISHED
-
-function deepEqualTask () {
+function deepEqualTask() {
   "use strict";
 
   const obj = {here: {is: "an" }, object: 2 };
@@ -24,40 +22,37 @@ function deepEqualTask () {
     other: "Value",
   };
 
-  function deepEqual (first, second) {
-    if (first && second) {
-      if (typeof(first) == "object" && typeof(second) == "object") {
-        let result = [];
-        let propFirstCounter = 0;
-        let propSecondCounter = 0;
-        for (var propOfFirst in first) {
-          propFirstCounter++;
-          for (var propOfSecond in second) {
-            propSecondCounter++;
-            if (deepEqual(propOfFirst, propOfSecond) && deepEqual(first[propOfFirst], second[propOfSecond])) {
-              result.push(true);
-            }
-          }
-        }
-        if ((propFirstCounter === propSecondCounter / propFirstCounter) && propFirstCounter === result.length) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-      else {
-        if (first === second) {
-          return true;
-        }
-        else {
-          return false;
-        }
+  function deepEqual(first, second) {
+    if (first === second) {
+      return true;
+    }
+
+    if (
+      first === null || second === null
+      || typeof(first) != "object" || typeof(second) != "object"
+    ) {
+      return false;
+    }
+
+    let propOfFirstCounter = 0;
+    let propOfSecondCounter = 0;
+
+    for (let prop in first) {
+      propOfFirstCounter++;
+    }
+
+    for (let prop in second) {
+      propOfSecondCounter++;
+      if (!(prop in first) || !(deepEqual(first[prop], second[prop]))) {
+        return false;
       }
     }
-    else {
-      return "incorrect";
+
+    if (propOfFirstCounter === propOfFirstCounter) {
+      return true;
     }
+
+    return "Incorrect";
   }
 
   console.log(deepEqual("abcabc", "abcabc")); //true
@@ -71,6 +66,3 @@ function deepEqualTask () {
 }
 
 deepEqualTask ();
-
-
-

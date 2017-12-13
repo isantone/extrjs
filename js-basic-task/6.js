@@ -5,7 +5,7 @@ let str = "Lorem ipsum dolor sit amet";
 function countChar(str, ch) {
   let amount = 0;
   for (var i = 0; i < str.length; i++) {
-    if (str.charAt(i).toLowerCase() == ch.toLowerCase()) {
+    if (str.charAt(i).toLowerCase() === ch.toLowerCase()) {
       amount++;
     }
   }
