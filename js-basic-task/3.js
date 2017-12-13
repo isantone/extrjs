@@ -6,7 +6,7 @@ const cellCount = 8;
 
 for (let row = 0; row < rowCount; row++) {
   for (let cell = 0; cell < cellCount; cell++) {
-    if (row % 2 == cell % 2) {
+    if (row % 2 === cell % 2) {
       board += "#";
     }
     else {

@@ -6,5 +6,5 @@ let rowNumber;
 
 for (rowNumber = 0; rowNumber < height; rowNumber++) {
   console.log(triangle);
-  triangle+=" #";
+  triangle += " #";
 }
