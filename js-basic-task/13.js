@@ -1,63 +1,74 @@
-function loadUsers() {
+httpGet('db.json')
+.then(
+  response => {
+    for (let i = 0; i < response.length; i++) {
+      if (response[i]) {
+        console.log(i + " century average lifetime: " + average(response[i]).toFixed(1));
+      }
+    }
+  },
+  error => console.log(`Task 12 > Rejected: ${error}`)
+);
+
+function httpGet(url) {
   "use strict";
 
-  let centuries = [];
-  let ancestry = [];
+  return new Promise(function(resolve, reject) {
+    let ancestry = [];
+    let centuries = [];
 
-	let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'db.json', true);
-	xhr.send();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState != 4) return;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
 
-    if (xhr.status != 200) {
-      alert(xhr.status + ': ' + xhr.statusText);
-    }
-    else {
-      try {
-        ancestry = JSON.parse(xhr.responseText);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState != 4) {
+        return;
+      }
+  
+      if (xhr.status != 200) {
+        let error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
 
-        ancestry.forEach(function(person) {
-          let centuryOfPerson = calculateCenturyOfPerson(person);
-          let lifetimeOfPerson = calculateLifetimeOfPerson(person);
+      ancestry = JSON.parse(xhr.responseText);
+      
+      ancestry.forEach(function(person) {
+        let centuryOfPerson = calculateCenturyOfPerson(person);
+        let lifetimeOfPerson = calculateLifetimeOfPerson(person);
 
-          if (centuries[centuryOfPerson]) {
-            centuries[centuryOfPerson].push(lifetimeOfPerson);
-          }
-          else {
-            centuries[centuryOfPerson] = [];
-            centuries[centuryOfPerson].push(lifetimeOfPerson);
-          }
-        });
-
-        for (let i = 0; i < centuries.length; i++) {
-          if (centuries[i]) {
-            console.log(i + " century average lifetime: " + average(centuries[i]).toFixed(1));
-          }
+        if (centuries[centuryOfPerson]) {
+          centuries[centuryOfPerson].push(lifetimeOfPerson);
+        } else {
+          centuries[centuryOfPerson] = [];
+          centuries[centuryOfPerson].push(lifetimeOfPerson);
         }
-      }
-      catch (e) {
-        alert("Некорректный ответ: " + e.message);
-      }
-    }
-  };
+      });
 
-  function average(array) {
-    function plus(a, b) {
-      return a + b; }
-    return array.reduce(plus) / array.length;
-  }
+      resolve(centuries);
+    };
 
-  function calculateCenturyOfPerson(person) {
-    return Math.ceil(person.died / 100);
-  }
+    xhr.onerror = function() {
+      reject(new Error("Task 12 > Network Error"));
+    };
 
-  function calculateLifetimeOfPerson(person) {
-    return person.died - person.born;
-  }
+    xhr.send();
+  });
 }
 
-loadUsers();
+function average(array) {
+  function plus(a, b) {
+    return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+function calculateCenturyOfPerson(person) {
+  return Math.ceil(person.died / 100);
+}
+
+function calculateLifetimeOfPerson(person) {
+  return person.died - person.born;
+}
 
 
 

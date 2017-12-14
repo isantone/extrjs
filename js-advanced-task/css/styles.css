@@ -1,0 +1,14 @@
+.page {
+  text-align: center; 
+  padding: 20px;
+}
+
+.world-output {
+  font: 14pt 'Courier New';
+}
+
+.world-iteration-text {
+  margin-top: 15px; 
+  color: gray;
+}
+

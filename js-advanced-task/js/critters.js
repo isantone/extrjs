@@ -93,7 +93,11 @@ class Eater {
   }
 
   chooseDirection(view) {
-    if (view.look(this.direction) != EMPTYSPACE_SYMBOL ) {
+    let dir = view.look(this.direction);
+    if (dir === this.food) {
+      return this.direction;
+    }
+    if (dir != EMPTYSPACE_SYMBOL ) {
       var newSpace = view.find(EMPTYSPACE_SYMBOL);
 
       this.direction = newSpace || this.direction;
