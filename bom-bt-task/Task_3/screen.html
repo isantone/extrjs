@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="navigation">
+    History length: <span id="navLength"></span>
+    <button onclick="goBack();">Back</button>
+    <button onclick="goForward();">Forward</button>
+  </div>
+
   <ul class="list-column">
     <li>availHeight</li>
     <li>availWidth</li>
@@ -35,5 +41,6 @@
     <li>total width of the screen</li>
   </ul>
   <script src="js/screen.js"></script>
+  <script src="js/navigation.js"></script>
 </body>
 </html>

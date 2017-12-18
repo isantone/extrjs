@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="window-page">
+  <div id="navigation">
+    History length: <span id="navLength"></span>
+    <button onclick="goBack();">Back</button>
+    <button onclick="goForward();">Forward</button>
+  </div>
+
   Enter parameters of new window:
+  <br>
   <ul class="list-column">
     <li>
       Width:
@@ -19,7 +26,7 @@
       Height:
     </li>
   </ul>
-  <ul class="list-column">
+  <ul class="list-column no-bullets">
     <li>
       <input id="width" onchange="enableButton(openNewWindowButton);" type="number" name="width" min="1" max="1920">
     </li>
@@ -27,7 +34,7 @@
       <input id="height" onchange="enableButton(openNewWindowButton);" type="number" name="height" min="1" max="1080">
     </li>
   </ul>
-  <ul class="list-column">
+  <ul class="list-column no-bullets">
     <li>
       px
     </li>
@@ -35,8 +42,10 @@
       px
     </li>
   </ul>
+  <br>
   <button id="openNewWindowButton" onclick="openNewWindow(width.value, height.value);" disabled>Open new window</button>
 
   <script src="js/window.js"></script>
+  <script src="js/navigation.js"></script>
 </body>
 </html>

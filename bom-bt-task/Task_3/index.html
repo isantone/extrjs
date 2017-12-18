@@ -10,13 +10,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="navigation">
+    History length: <span id="navLength"></span>
+    <br>
+    <button onclick="goBack();">Back</button>
+    <button onclick="goForward();">Forward</button>
+  </div>
+
+  <br><br>
   <a href="window.html"><button>Window</button></a>
-  <h2>BOM</h2>
-  <a href="navigator.html"><button>Navigator</button></a>
-  <a href="screen.html"><button>Screen</button></a>
-  <a href="location.html"><button>Location</button></a>
-  <button disabled>Frames</button>
-  <button disabled>History</button>
-  <button disabled>XMLHttpRequest</button>
+  <p>BOM:</p>
+  <ul>
+    <li><a href="navigator.html"><button>Navigator</button></a></li>
+    <li><a href="screen.html"><button>Screen</button></a></li>
+    <li><a href="location.html"><button>Location</button></a></li>
+    <li><button disabled>Frames</button></li>
+    <li><button disabled>History</button></li>
+    <li><button disabled>XMLHttpRequest</button></li>
+  </ul>
+
+  <script src="js/navigation.js"></script>
 </body>
 </html>

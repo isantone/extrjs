@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Location</title>
+  <title>Navigator</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,21 +17,23 @@
   </div>
 
   <ul class="list-column">
-    <li>hash</li>
-    <li>search</li>
-    <li>hostname</li>
-    <li>href</li>
-    <li>pathname</li>
+    <li>User-agent header:</li>
+    <li>Browser Version:</li>
+    <li>Browser Name:</li>
+    <li>Cookies Enabled:</li>
+    <li>Platform:</li>
+    <li>Geolocation:</li>
   </ul>
   <ul class="list-column no-bullets">
-    <li id="hashValue"></li>
-    <li id="searchValue"></li>
-    <li id ="hostnameValue"></li>
-    <li id="hrefValue"></li>
-    <li id="pathnameValue"></li>
+    <li id="userAgentValue">&nbsp;</li>
+    <li id="appVersionValue">&nbsp;</li>
+    <li id ="appNameValue">&nbsp;</li>
+    <li id="cookieEnabledValue">&nbsp;</li>
+    <li id="platformValue">&nbsp;</li>
+    <li id="geolocationValue">&nbsp;</li>
   </ul>
-
-  <script src="js/location.js"></script>
+  
+  <script src="js/navigator.js"></script>
   <script src="js/navigation.js"></script>
 </body>
 </html>
