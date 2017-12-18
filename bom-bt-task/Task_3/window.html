@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Window</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="window-page">
+  Enter parameters of new window:
+  <ul class="list-column">
+    <li>
+      Width:
+    </li>
+    <li>
+      Height:
+    </li>
+  </ul>
+  <ul class="list-column">
+    <li>
+      <input id="width" onchange="enableButton(openNewWindowButton);" type="number" name="width" min="1" max="1920">
+    </li>
+    <li>
+      <input id="height" onchange="enableButton(openNewWindowButton);" type="number" name="height" min="1" max="1080">
+    </li>
+  </ul>
+  <ul class="list-column">
+    <li>
+      px
+    </li>
+    <li>
+      px
+    </li>
+  </ul>
+  <button id="openNewWindowButton" onclick="openNewWindow(width.value, height.value);" disabled>Open new window</button>
+
+  <script src="js/window.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.window-page {
+  line-height: 2;
+}
+
+.list-column {
+  display: inline-block;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
