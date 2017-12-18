@@ -71,7 +71,7 @@ var app = app || {};
 				this.$footer.hide();
 			}
 
-            log('Completed: ' + completed, 'Remaining: ' + remaining)
+            log('Completed: ' + completed, 'Remaining: ' + remaining);
 
 			this.allCheckbox.checked = !remaining;
 		},

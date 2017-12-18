@@ -3693,6 +3693,9 @@
   <div id="coords"></div>
   <div id="scroll"></div>
   <script>
+    document.getElementById('coords').style.height = document.body.offsetHeight / 100 + 'px';       // .getElementById a bit faster than .querySelector
+    document.getElementById('scroll').style.height = document.body.offsetHeight / 100 + 'px';       // .getElementById a bit faster than .querySelector
+    
     window.onresize = function() {
       document.getElementById('coords').style.height = document.body.offsetHeight / 100 + 'px';       // .getElementById a bit faster than .querySelector
       document.getElementById('scroll').style.height = document.body.offsetHeight / 100 + 'px';       // .getElementById a bit faster than .querySelector
