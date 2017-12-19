@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>BOM Task</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="navigation">
+    History length: <span id="navLength"></span>
+    <br>
+    <button onclick="goBack();">Back</button>
+    <button onclick="goForward();">Forward</button>
+  </div>
+
+  <br><br>
+  <a href="window.html"><button>Window</button></a>
+  <p>BOM:</p>
+  <ul>
+    <li><a href="navigator.html"><button>Navigator</button></a></li>
+    <li><a href="screen.html"><button>Screen</button></a></li>
+    <li><a href="location.html"><button>Location</button></a></li>
+    <li><button disabled>Frames</button></li>
+    <li><button disabled>History</button></li>
+    <li><button disabled>XMLHttpRequest</button></li>
+  </ul>
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>
