@@ -1,0 +1,46 @@
+.slider {
+  max-width: 800px;
+  text-align: center;
+
+  &__preview-section {
+    text-align: center;
+  }
+
+  &__big-image {
+    border: 1px solid gray;
+    transition: top 1s ease-out 0.5s;
+  }
+
+  &__preview-image:hover {
+    border: 1px solid darkgray;
+    //opacity: 1;
+  }
+
+  &__preview-image {
+    border: 1px solid lightgray;
+    opacity: 0.9;
+    cursor: pointer;
+
+    &_active, &_active:hover {
+      border: 1px solid rgb(77, 77, 77);
+      opacity: 1;
+      cursor: default;
+    }
+  }
+
+  &__control {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+  }
+
+  &__control:hover {
+    cursor: pointer;
+  }
+
+}
+
+.opacity-off {
+  opacity: 0.6;
+}

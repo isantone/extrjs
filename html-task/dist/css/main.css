@@ -564,6 +564,35 @@ template {
     height: 100px;
     margin-right: 15px; }
 
+.slider {
+  max-width: 800px;
+  text-align: center; }
+  .slider__preview-section {
+    text-align: center; }
+  .slider__big-image {
+    border: 1px solid gray;
+    transition: top 1s ease-out 0.5s; }
+  .slider__preview-image:hover {
+    border: 1px solid darkgray; }
+  .slider__preview-image {
+    border: 1px solid lightgray;
+    opacity: 0.9;
+    cursor: pointer; }
+    .slider__preview-image_active, .slider__preview-image_active:hover {
+      border: 1px solid #4d4d4d;
+      opacity: 1;
+      cursor: default; }
+  .slider__control {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray; }
+  .slider__control:hover {
+    cursor: pointer; }
+
+.opacity-off {
+  opacity: 0.6; }
+
 .header {
   width: 100%;
   background-color: #18adc4; }
