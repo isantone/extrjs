@@ -2,8 +2,15 @@
   max-width: 800px;
   text-align: center;
 
+  &__view-section {
+    height: 710px;
+  }
+
   &__preview-section {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //text-align: center;
   }
 
   &__big-image {
@@ -30,9 +37,8 @@
 
   &__control {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    border: 1px solid gray;
+
+    margin: 0 10px;
   }
 
   &__control:hover {
@@ -42,4 +48,23 @@
 
 .opacity-off {
   opacity: 0.6;
+}
+
+.disp {
+  display: none;
+}
+
+.w3-animate-right {
+  position: relative;
+  animation: animateright 0.4s;
+}
+@keyframes animateright {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
 }

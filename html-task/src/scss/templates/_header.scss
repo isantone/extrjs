@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  
+
 	background-color: $header-color;
 
   &__container {
@@ -8,7 +8,7 @@
     flex-wrap: wrap; //@include flex-flow(row, wrap);
     //flex-direction: column;
 
-    min-height: $header-height; 
+    min-height: $header-height;
     max-width: $header-width;
 
     margin: 0 auto;
@@ -35,6 +35,10 @@
 
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__profile {
+    cursor: pointer;
   }
 
   &__animation {

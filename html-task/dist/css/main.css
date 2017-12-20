@@ -528,7 +528,11 @@ template {
   height: 40px;
   padding: 5px;
   line-height: 100%;
+  border: 1px solid gray;
   box-sizing: border-box; }
+
+button:hover, input[type="submit"]:hover {
+  cursor: pointer; }
 
 .button {
   display: inline-block;
@@ -537,38 +541,15 @@ template {
   color: #fff;
   border: none; }
 
-.grid, .grid-item {
-  width: 150px;
-  text-align: center;
-  color: gray; }
-  .grid__image {
-    display: block;
-    margin: 0 auto 5px auto; }
-  .grid__caption {
-    margin-top: 5px; }
-
-.grid-item {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid gray; }
-
-.list-item {
-  display: block;
-  margin-bottom: 20px; }
-  .list-item:after {
-    clear: both;
-    content: "";
-    display: table; }
-  .list-item__image {
-    float: left;
-    height: 100px;
-    margin-right: 15px; }
-
 .slider {
   max-width: 800px;
   text-align: center; }
+  .slider__view-section {
+    height: 710px; }
   .slider__preview-section {
-    text-align: center; }
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   .slider__big-image {
     border: 1px solid gray;
     transition: top 1s ease-out 0.5s; }
@@ -584,14 +565,27 @@ template {
       cursor: default; }
   .slider__control {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    border: 1px solid gray; }
+    margin: 0 10px; }
   .slider__control:hover {
     cursor: pointer; }
 
 .opacity-off {
   opacity: 0.6; }
+
+.disp {
+  display: none; }
+
+.w3-animate-right {
+  position: relative;
+  animation: animateright 0.4s; }
+
+@keyframes animateright {
+  from {
+    right: -300px;
+    opacity: 0; }
+  to {
+    right: 0;
+    opacity: 1; } }
 
 .product {
   display: flex;
@@ -643,6 +637,8 @@ template {
     margin-top: 15px;
     justify-content: space-between;
     align-items: center; }
+  .header__profile {
+    cursor: pointer; }
   .header__animation {
     transition: 0.5s ease-in-out;
     transform: rotate(-360deg); }
@@ -765,7 +761,22 @@ template {
   .two-cols-line__right {
     float: right; }
 
+.sign-form-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 98; }
+
+.hide {
+  display: none; }
+
 .sign-form {
+  position: fixed;
+  margin: auto 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   background-color: white; }
   .sign-form__header {

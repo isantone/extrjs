@@ -46,5 +46,11 @@
 
   line-height: 100%;
 
+  border: 1px solid gray;
+
   box-sizing: border-box;
+}
+
+button:hover, input[type="submit"]:hover {
+  cursor: pointer;
 }
