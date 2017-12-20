@@ -13,21 +13,28 @@
     align-items: center;
   }
 
-  &_list-view {
+  &__products {
     box-sizing: border-box;
     width: 100%;
 
     padding: 20px;
-
-    text-align: left;
-    text-align-last: left;
   }
 
-  &_grid-view {
-    @extend .flex;
-    flex-wrap: wrap;
-    width: 100%;
-    //flex-direction: row;
-    align-content: flex-start; /* vertical */
-  }
+  // &_list-view {
+  //   box-sizing: border-box;
+  //   width: 100%;
+
+  //   padding: 20px;
+
+  //   text-align: left;
+  //   text-align-last: left;
+  // }
+
+  // &_grid-view {
+  //   @extend .flex;
+  //   flex-wrap: wrap;
+  //   width: 100%;
+  //   //flex-direction: row;
+  //   align-content: flex-start; /* vertical */
+  // }
 }

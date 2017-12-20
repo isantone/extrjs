@@ -9,10 +9,9 @@ function setActive(slide) {
 function nextSlide() {
   let activeSlide = document.getElementsByClassName("slider__preview-image_active")[0];
 
-  let allSlidesCol = document.getElementsByClassName("slider__preview-image");
-  let allSlides = [].slice.call(allSlidesCol);
+  let allSlides = document.getElementsByClassName("slider__preview-image");
 
-  let indexOfActiveSlide = allSlides.indexOf(activeSlide);
+  let indexOfActiveSlide = [].indexOf.call(allSlides, activeSlide);
 
   if (++indexOfActiveSlide < allSlides.length) {
     setActive(allSlides[indexOfActiveSlide]);
@@ -25,10 +24,9 @@ function nextSlide() {
 function previousSlide() {
   let activeSlide = document.getElementsByClassName("slider__preview-image_active")[0];
 
-  let allSlidesCol = document.getElementsByClassName("slider__preview-image");
-  let allSlides = [].slice.call(allSlidesCol);
+  let allSlides = document.getElementsByClassName("slider__preview-image");
 
-  let indexOfActiveSlide = allSlides.indexOf(activeSlide);
+  let indexOfActiveSlide = [].indexOf.call(allSlides, activeSlide);
 
   if (indexOfActiveSlide > 0) {
     setActive(allSlides[indexOfActiveSlide - 1]);
@@ -37,3 +35,5 @@ function previousSlide() {
     setActive(allSlides[allSlides.length - 1]);
   }
 }
+
+//setInterval(nextSlide, 4000);
