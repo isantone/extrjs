@@ -766,7 +766,8 @@ button:hover, input[type="submit"]:hover {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 98; }
+  z-index: 98;
+  display: none; }
 
 .hide {
   display: none; }
@@ -778,8 +779,9 @@ button:hover, input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: white; }
+  background-color: rgba(255, 255, 255, 0); }
   .sign-form__header {
+    position: relative;
     height: 70px;
     margin: 0px;
     background-color: #464547;
@@ -792,7 +794,9 @@ button:hover, input[type="submit"]:hover {
     margin-left: auto;
     margin-right: auto; }
   .sign-form__form {
-    padding: 50px; }
+    position: relative;
+    padding: 50px;
+    background-color: white; }
   .sign-form a.button {
     line-height: 30px; }
 
@@ -958,8 +962,7 @@ button:hover, input[type="submit"]:hover {
   .sign-page__sign-form {
     width: 400px;
     height: auto;
-    /* border: 1px solid #464547; */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); } }
+    /* border: 1px solid #464547; */ } }
 
 @media screen and (min-width: 852px) {
   .index-page {

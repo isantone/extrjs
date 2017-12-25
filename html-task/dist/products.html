@@ -8,6 +8,8 @@
   <title>Product list</title>
 
   <link rel="stylesheet" href="css/main.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body class="page">
 
@@ -35,7 +37,7 @@
             <img src="images/sc.png">
           </a>
         </div>
-        <div onclick="showSignForm();" class="header__profile">
+        <div id="showSignFormButton" class="header__profile">
           <img src="images/pr.png">
         </div>
       </div>
@@ -181,15 +183,15 @@
         </label>
         <div class="two-cols-line big-bottom-margin">
           <a class="two-cols-line__left" href="#">Forgot password?</a>
-          <a class="two-cols-line__right" onclick="showRegForm();" href="#">Sign up</a>
+          <a id="showRegFormButton" class="two-cols-line__right" href="#">Sign up</a>
         </div>
         <input class="button input-size turquoise small-bottom-margin" type="submit" value="LOG IN">
-        <button class="button input-size gray" onclick="hideForm('signForm');">CANCEL</button>
+        <button id="closeSignForm" class="button input-size gray">CANCEL</button>
       </form>
     </div>
   </div>
 
-  <div id="regForm" class="sign-form-wrapper hide">
+  <div id="regForm" class="sign-form-wrapper">
     <div class="sign-form sign-page__sign-form">
       <p class="sign-form__header bold-text">REGISTER NEW ACCOUNT</p>
       <form class="sign-form__form">
@@ -197,15 +199,15 @@
         <input class="input-size big-bottom-margin" type="password" placeholder="Password" required>
         <div class="two-cols-line big-bottom-margin">
           <span class="two-cols-line__left" href="#">Have an account?</span>
-          <a class="two-cols-line__right" onclick="showSignForm();" href="#">Log In</a>
+          <a class="two-cols-line__right" href="#">Log In</a>
         </div>
         <input class="button input-size turquoise small-bottom-margin" type="submit" value="SIGN UP">
-        <button class="button input-size gray" onclick="hideForm('regForm');">CANCEL</button>
+        <button id="closeRegForm" class="button input-size gray">CANCEL</button>
       </form>
     </div>
   </div>
 
-  <script src="js/sign-form.js"></script>
+  <script src="js/sign-form-jquery.js"></script>
   <script src="js/product.js"></script>
 
 </body>

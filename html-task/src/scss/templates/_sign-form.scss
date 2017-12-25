@@ -6,6 +6,8 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 98;
+
+  display: none; // for jQuery animation
 }
 
 .hide {
@@ -22,9 +24,11 @@
   //z-index: 99;
 
 	text-align: center;
-	background-color: white;
+  
+  background-color: rgba(255, 255, 255, 0); // for jQuery animation
 
   &__header {
+    position: relative; // for jQuery animation
     height: 70px;
 
     margin: 0px;  // RESET
@@ -46,7 +50,9 @@
   }
 
   &__form {
+    position: relative; // for jQuery animation
     padding: 50px;
+    background-color: white;
   }
 
   a.button { /// -> class ///
