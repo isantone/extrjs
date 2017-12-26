@@ -18,11 +18,15 @@ function hideForms() {
 }
 
 function closeForm() {
-  $(".sign-form__header").animate({ left: "+=2000px" }, 200, function() {
-    $(".sign-form__form").animate({ left: "-=2000px" }, 200, function() {
-      $(".sign-form-wrapper").fadeOut(200, function() {
-        $(".sign-form__header").animate({ left: "0" });
-        $(".sign-form__form").animate({ left: "0" });
+  $signFormHeader   = $(".sign-form__header");
+  $signFormForm     = $(".sign-form__form");
+  $signFormWrapper  = $(".sign-form-wrapper");
+
+  $signFormHeader.animate({ left: "+=2000px" }, 200, function() {
+    $signFormForm .animate({ left: "-=2000px" }, 200, function() {
+      $signFormWrapper.fadeOut(200, function() {
+        $signFormHeader.animate({ left: "0" });
+        $signFormForm .animate({ left: "0" });
       });
     });
   });
