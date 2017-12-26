@@ -8,6 +8,9 @@
   <title>Product list</title>
 
   <link rel="stylesheet" href="css/main.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
 </head>
 <body class="page">
 
@@ -35,7 +38,7 @@
             <img src="images/sc.png">
           </a>
         </div>
-        <div onclick="showSignForm();" class="header__profile">
+        <div id="signButton" class="header__profile">
           <img src="images/pr.png">
         </div>
       </div>
@@ -174,38 +177,46 @@
     <div class="sign-form sign-page__sign-form">
       <p class="sign-form__header bold-text">PLEASE LOG IN</p>
       <form class="sign-form__form">
-        <input class="input-size small-bottom-margin sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
-        <input class="input-size big-bottom-margin" type="password" placeholder="Password" required>
-        <label class="sign-form__remember small-bottom-margin">
+        <label>
+          <input id="emailInput" class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
+          <p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
+        </label>
+        <label>
+          <input  id="passwordInput" class="input-size small-top-margin" type="password" placeholder="Password" required>
+          <p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
+        </label>
+        <label class="sign-form__remember big-top-margin small-bottom-margin">
           <input type="checkbox"> Remember me
         </label>
         <div class="two-cols-line big-bottom-margin">
           <a class="two-cols-line__left" href="#">Forgot password?</a>
-          <a class="two-cols-line__right" onclick="showRegForm();" href="#">Sign up</a>
+          <a id="regButton" class="two-cols-line__right" href="#">Sign up</a>
         </div>
         <input class="button input-size turquoise small-bottom-margin" type="submit" value="LOG IN">
-        <button class="button input-size gray" onclick="hideForm('signForm');">CANCEL</button>
+        <button id="logCancelButton" class="button input-size gray">CANCEL</button>
       </form>
     </div>
   </div>
 
-  <div id="regForm" class="sign-form-wrapper hide">
+  <div id="regForm" class="sign-form-wrapper">
     <div class="sign-form sign-page__sign-form">
       <p class="sign-form__header bold-text">REGISTER NEW ACCOUNT</p>
       <form class="sign-form__form">
-        <input class="input-size small-bottom-margin sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
-        <input class="input-size big-bottom-margin" type="password" placeholder="Password" required>
-        <div class="two-cols-line big-bottom-margin">
+        <input class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
+        <p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
+        <input class="input-size small-top-margin" type="password" placeholder="Password" required>
+        <p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
+        <div class="two-cols-line big-top-margin big-bottom-margin">
           <span class="two-cols-line__left" href="#">Have an account?</span>
-          <a class="two-cols-line__right" onclick="showSignForm();" href="#">Log In</a>
+          <a id="logButton" class="two-cols-line__right" href="#">Log In</a>
         </div>
         <input class="button input-size turquoise small-bottom-margin" type="submit" value="SIGN UP">
-        <button class="button input-size gray" onclick="hideForm('regForm');">CANCEL</button>
+        <button id="regCancelButton" class="button input-size gray">CANCEL</button>
       </form>
     </div>
   </div>
 
-  <script src="js/sign-form.js"></script>
+  <script src="js/sign-form-jquery.js"></script>
   <script src="js/product.js"></script>
 
 </body>
