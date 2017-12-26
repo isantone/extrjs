@@ -55,6 +55,11 @@
     background-color: white;
   }
 
+  &__validation-message {
+    font-size: 10pt;
+    color: darkred;
+  }
+
   a.button { /// -> class ///
     line-height: 30px;
   }

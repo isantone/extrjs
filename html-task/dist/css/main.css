@@ -504,6 +504,9 @@ template {
 .big-bottom-margin {
   margin-bottom: 35px; }
 
+.big-top-margin {
+  margin-top: 35px; }
+
 .small-top-margin {
   margin-top: 20px; }
 
@@ -797,6 +800,9 @@ button:hover, input[type="submit"]:hover {
     position: relative;
     padding: 50px;
     background-color: white; }
+  .sign-form__validation-message {
+    font-size: 10pt;
+    color: darkred; }
   .sign-form a.button {
     line-height: 30px; }
 
