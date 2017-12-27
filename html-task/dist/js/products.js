@@ -51,7 +51,6 @@ function products() {
   cart.splice(itemIndexInCartWithSavedPriceOrder, 0, skiId7); // Cart with 3 items with saved order by price
 
   let removeSoldItemsWithId7_8_10 = _.remove(products, function(item) { return item.id == 7 || item.id == 8 || item.id == 11; });
-  debugger;
 
   let restoreProducts = _.concat(products, removeSoldItemsWithId7_8_10);
 
@@ -60,11 +59,12 @@ function products() {
     products.splice(itemIndexInProductsWithSavedIdOrder, 0, item);
   });
 
-  debugger;
+  let array1 = [1,2,3,4,5];
+  let array2 = [3,4,5,6,7];
+
+  let diffArray = _.difference(array1, array2);
 
   let removeSoldItemsFromProducts = _.difference(products, cart);
-
-  debugger;
 
 }
 
