@@ -10,9 +10,9 @@ const paths = {
       main:   './src/scss/main.scss'
     },
 
-    js:   './src/js/*.js',
-    html: './src/*.html',
-    img:  './src/images/**/*'
+    js:   './src/js/**/*.js',
+    html: './src/**/*.html',
+    img:  './src/images/**'
   },
 
   dist: {
@@ -31,12 +31,15 @@ gulp.task('sass', function() {
     .pipe(sass(/*{
       outputStyle: 'compressed'
     }*/).on('error', sass.logError))
-    .pipe(gulp.dest(patsh.dist.scss));
+    .pipe(gulp.dest(paths.dist.scss));
 });
 
 gulp.task('watch', function() {
   gulp.watch(paths.src.scss.folder, ['sass']);
-  gulp.watch([paths.src.html, paths.src.img, paths.src.js], ['copy']);
+
+  gulp.watch(paths.src.html, ['copyHtml']);
+  gulp.watch(paths.src.img, ['copyImg']);
+  gulp.watch(paths.src.js, ['copyJs']);
 });
 
 // gulp.task('babel', () =>
@@ -49,11 +52,17 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['sass', 'watch'/*, 'babel'*/]);
 
-gulp.task('copy', function() {
+gulp.task('copyHtml', function() {
   gulp.src(paths.src.html)
       .pipe(gulp.dest(paths.dist.folder));
+});
+
+gulp.task('copyImg', function() {
   gulp.src(paths.src.img)
       .pipe(gulp.dest(paths.dist.img));
+});
+
+gulp.task('copyJs', function() {
   gulp.src(paths.src.js)
       .pipe(gulp.dest(paths.dist.js));
 });
