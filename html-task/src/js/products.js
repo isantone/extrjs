@@ -4,15 +4,14 @@ function products() {
   let products;
   let id = 0;
 
-  class product {
-    constructor(title, brand, sport, image, category, terrain, gender, size, year, price) {
+  class Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price) {
       this.id       = ++id;
       this.title    = title;
       this.brand    = brand;
       this.sport    = sport;
       this.image    = image;
       this.category = category;
-      this.terrain  = terrain;
       this.gender   = gender;
       this.size     = size;
       this.year     = year;
@@ -20,21 +19,55 @@ function products() {
     }
   }
 
-  let product1 = new product("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain",      "M", 150, 2017, 750);
-  let product2 = new product("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain",      "M", 154, 2017, 750);
-  let product3 = new product("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain",      "M", 158, 2017, 750);
+  class Snowboard extends Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price, terrain) {
+      super(title, brand, sport, image, category, gender, size, year, price);
+      this.terrain  = terrain;
+    }
+  }
 
-  let product4 = new product("K2 Raygun",                     "K2", "Snowboard", "", "Snowboard", "All Mountain",      "M", 150, 2017, 399);
-  let product5 = new product("K2 Raygun",                     "K2", "Snowboard", "", "Snowboard", "All Mountain",      "M", 153, 2017, 399);
-  let product6 = new product("K2 Raygun",                     "K2", "Snowboard", "", "Snowboard", "All Mountain",      "M", 156, 2017, 399);
+  class Ski extends Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price, terrain) {
+      super(title, brand, sport, image, category, gender, size, year, price);
+      this.terrain  = terrain;
+    }
+  }
 
-  let product7 = new product("Nordica ENFORCER 100",      "Nordica", "Ski",       "",       "Ski", "All-Mountain Back", "M", 177, 2017, 799);
-  let product8 = new product("Nordica ENFORCER 100",      "Nordica", "Ski",       "",       "Ski", "All-Mountain Back", "M", 185, 2017, 799);
-  let product9 = new product("Nordica ENFORCER 100",      "Nordica", "Ski",       "",       "Ski", "All-Mountain Back", "M", 193, 2017, 799);
+  class Apparell extends Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price) {
+      super(title, brand, sport, image, category, gender, size, year, price);
+    }
+  }
 
-  let product10 = new product("Nordica ENFORCER 110",      "Nordica", "Ski",       "",       "Ski", "Big Mountain",      "M", 177, 2018, 849);
-  let product11 = new product("Nordica ENFORCER 110",      "Nordica", "Ski",       "",       "Ski", "Big Mountain",      "M", 185, 2018, 849);
-  let product12 = new product("Nordica ENFORCER 110",      "Nordica", "Ski",       "",       "Ski", "Big Mountain",      "M", 191, 2018, 849);
+  class Boots extends Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price) {
+      super(title, brand, sport, image, category, gender, size, year, price);
+    }
+  }
+
+  class Protection extends Product {
+    constructor(title, brand, sport, image, category, gender, size, year, price) {
+      super(title, brand, sport, image, category, gender, size, year, price);
+    }
+  }
+
+
+
+  let product1 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain"     , "M", 150, 2017, 750);
+  let product2 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain"     , "M", 154, 2017, 750);
+  let product3 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "All Mountain"     , "M", 158, 2017, 750);
+
+  let product4 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "All Mountain"     , "M", 150, 2017, 399);
+  let product5 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "All Mountain"     , "M", 153, 2017, 399);
+  let product6 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "All Mountain"     , "M", 156, 2017, 399);
+
+  let product7 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "All-Mountain Back", "M", 177, 2017, 799);
+  let product8 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "All-Mountain Back", "M", 185, 2017, 799);
+  let product9 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "All-Mountain Back", "M", 193, 2017, 799);
+
+  let product10 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "Big Mountain"     , "M", 177, 2018, 849);
+  let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "Big Mountain"     , "M", 185, 2018, 849);
+  let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "Big Mountain"     , "M", 191, 2018, 849);
 
   products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12];
 

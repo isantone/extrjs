@@ -77,10 +77,10 @@ gulp.task('copyImg', function() {
       .pipe(gulp.dest(paths.dist.img));
 });
 
-// gulp.task('copyJs', function() {
-//   gulp.src(paths.src.js)
-//       .pipe(gulp.dest(paths.dist.js));
-// });
+gulp.task('copyJs', function() {
+  gulp.src(paths.src.js)
+      .pipe(gulp.dest(paths.dist.js.folder));
+});
  
 gulp.task('webserver', function() {
   gulp.src('./')
