@@ -1,17 +1,20 @@
-function products() {
+function productsPage() {
   'use strict';
 
   let products;
   let id = 0;
+  const descr = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...`;
 
   class Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price) {
+    constructor(title, brand, sport, image, category, description, gender, size, year, price) {
       this.id       = ++id;
       this.title    = title;
       this.brand    = brand;
       this.sport    = sport;
       this.image    = image;
       this.category = category;
+      this.description = description;
       this.gender   = gender;
       this.size     = size;
       this.year     = year;
@@ -20,54 +23,54 @@ function products() {
   }
 
   class Snowboard extends Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price, terrain) {
-      super(title, brand, sport, image, category, gender, size, year, price);
-      this.terrain  = terrain;
+    constructor(title, brand, sport, image, category, description, gender, size, year, price, terrain) {
+      super(title, brand, sport, image, category, description, gender, size, year, price);
+      this.terrain = terrain;
     }
   }
 
   class Ski extends Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price, terrain) {
-      super(title, brand, sport, image, category, gender, size, year, price);
-      this.terrain  = terrain;
+    constructor(title, brand, sport, image, category, description, gender, size, year, price, terrain) {
+      super(title, brand, sport, image, category, description, gender, size, year, price);
+      this.terrain = terrain;
     }
   }
 
   class Apparell extends Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price) {
-      super(title, brand, sport, image, category, gender, size, year, price);
+    constructor(title, brand, sport, image, category, description, gender, size, year, price) {
+      super(title, brand, sport, image, category, description, gender, size, year, price);
     }
   }
 
   class Boots extends Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price) {
-      super(title, brand, sport, image, category, gender, size, year, price);
+    constructor(title, brand, sport, image, category, description, gender, size, year, price) {
+      super(title, brand, sport, image, category, description, gender, size, year, price);
     }
   }
 
   class Protection extends Product {
-    constructor(title, brand, sport, image, category, gender, size, year, price) {
-      super(title, brand, sport, image, category, gender, size, year, price);
+    constructor(title, brand, sport, image, category, description, gender, size, year, price) {
+      super(title, brand, sport, image, category, description, gender, size, year, price);
     }
   }
 
 
 
-  let product1 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "M", 150, 2017, 750, "All Mountain");
-  let product2 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "M", 154, 2017, 750, "All Mountain");
-  let product3 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "", "Snowboard", "M", 158, 2017, 750, "All Mountain");
+  let product1 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 150, 2017, 750, "All Mountain");
+  let product2 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 154, 2017, 750, "All Mountain");
+  let product3 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 158, 2017, 750, "All Mountain");
 
-  let product4 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "M", 150, 2017, 399, "All Mountain");
-  let product5 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "M", 153, 2017, 399, "All Mountain");
-  let product6 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "", "Snowboard", "M", 156, 2017, 399, "All Mountain");
+  let product4 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 150, 2017, 399, "All Mountain");
+  let product5 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 153, 2017, 399, "All Mountain");
+  let product6 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "images/products/skis/enforcer_100_2_S.jpg", "Snowboard", descr, "M", 156, 2017, 399, "All Mountain");
 
-  let product7 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 177, 2017, 799, "All-Mountain Back");
-  let product8 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 185, 2017, 799, "All-Mountain Back");
-  let product9 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 193, 2017, 799, "All-Mountain Back");
+  let product7 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 177, 2017, 799, "All-Mountain Back");
+  let product8 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 185, 2017, 799, "All-Mountain Back");
+  let product9 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 193, 2017, 799, "All-Mountain Back");
 
-  let product10 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 177, 2018, 849, "Big Mountain");
-  let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 185, 2018, 849, "Big Mountain");
-  let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "", "Ski"      , "M", 191, 2018, 849, "Big Mountain");
+  let product10 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 177, 2018, 849, "Big Mountain");
+  let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 185, 2018, 849, "Big Mountain");
+  let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/skis/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 191, 2018, 849, "Big Mountain");
 
   products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12];
 
@@ -99,6 +102,45 @@ function products() {
 
   let removeSoldItemsFromProducts = _.difference(products, cart);
 
+  const productsTemplate = 
+    `{{#each this}}
+      {{> product}}
+    {{/each}}`;
+  const compiledProductsTemplate = Handlebars.compile(productsTemplate);
+
+  const productTemplate = 
+    `<div class="product">
+      <img class="product__image" src="{{ this.image }}">
+      <div class="product__wrapper">
+        <div class="product__left-part">
+          <p class="product__name">
+            <a href="#">{{trim this.title}}</a>
+          </p>
+          <p class="product__description">{{this.description}}
+          </p>
+        </div>
+        <div class="product__right-part">
+          <p class="product__price">Price: {{this.price}}</p>
+          <button class="add-to-card">Add to card</button>
+        </div>
+      </div>
+    </div>`;
+
+  $(document).ready(function() {
+
+    $("#productsMain").html(compiledProductsTemplate(products)); 
+
+  });
+
+  Handlebars.registerPartial('product', productTemplate);
+
+  Handlebars.registerHelper('trim', function(str) {
+    if (str.length > 20) {
+      return str.substr(0, 20) + "...";
+    }
+    return str;
+  });
+
 }
 
-products();
+productsPage();

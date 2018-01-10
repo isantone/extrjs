@@ -11,6 +11,8 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+
 </head>
 <body class="page">
 
@@ -78,97 +80,8 @@
     <div class="page-main__content">
       <button onclick="changeView();">GRID / LIST</button>
 
-      <main class="page-main__products">
-        <div class="product">
-          <img class="product__image" src="images/products/skis/enforcer_100_2_S.jpg">
-          <div class="product__wrapper">
-            <div class="product__left-part">
-              <p class="product__name">
-                <a href="product.html">Nordica ENFORCER 100</a>
-              </p>
-              <p class="product__description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...
-              </p>
-            </div>
-            <div class="product__right-part">
-              <p class="product__price">Price: $ 999</p>
-              <button class="add-to-card">Add to card</button>
-            </div>
-          </div>
-        </div>
+      <main id="productsMain" class="page-main__products">
 
-        <div class="product">
-          <img class="product__image" src="images/products/skis/enforcer_100_2_S.jpg">
-          <div class="product__wrapper">
-            <div class="product__left-part">
-              <p class="product__name">
-                <a href="product.html">Nordica ENFORCER 100</a>
-              </p>
-              <p class="product__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...
-              </p>
-            </div>
-            <div class="product__right-part">
-              <p class="product__price">Price: $ 999</p>
-              <button class="add-to-card">Add to card</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product">
-          <img class="product__image" src="images/products/skis/enforcer_100_2_S.jpg">
-          <div class="product__wrapper">
-            <div class="product__left-part">
-              <p class="product__name">
-                <a href="#">Nordica ENFORCER 100</a>
-              </p>
-              <p class="product__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...
-              </p>
-            </div>
-            <div class="product__right-part">
-              <p class="product__price">Price: $ 999</p>
-              <button class="add-to-card">Add to card</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product">
-          <img class="product__image" src="images/products/skis/enforcer_100_2_S.jpg">
-          <div class="product__wrapper">
-            <div class="product__left-part">
-              <p class="product__name">
-                <a href="#">Nordica ENFORCER 100</a>
-              </p>
-              <p class="product__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...
-              </p>
-            </div>
-            <div class="product__right-part">
-              <p class="product__price">Price: $ 999</p>
-              <button class="add-to-card">Add to card</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product">
-          <img class="product__image" src="images/products/skis/enforcer_100_2_S.jpg">
-          <div class="product__wrapper">
-            <div class="product__left-part">
-              <p class="product__name">
-                <a href="#">Nordica ENFORCER 100</a>
-              </p>
-              <p class="product__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent tristique, leo id dapibus finibus, lorem nibh blandit sapien...
-              </p>
-            </div>
-            <div class="product__right-part">
-              <p class="product__price">Price: $ 999</p>
-              <button class="add-to-card">Add to card</button>
-            </div>
-          </div>
-        </div>
       </main>
     </div>
   </div>
