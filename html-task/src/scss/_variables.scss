@@ -13,9 +13,11 @@ $footer-color: gray;
 //$main-color: #18adc4;
 
 /* Font */
-$font: 12pt Verdana, Tahoma, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$font: 12pt 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
 $font-size: 16px;
-$font-family: 'Verdana', sans-serif;
+$font-family: 'Open Sans', 'Verdana', sans-serif;
 $font-color: $green;
 
 $button-font: bold 14pt Arial, Verdana, Tahoma, sans-serif;

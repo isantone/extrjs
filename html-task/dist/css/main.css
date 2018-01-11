@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 a {
   text-decoration: none; }
 
@@ -493,7 +494,7 @@ template {
   align-content: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  font: 12pt Verdana, Tahoma, Arial, sans-serif; }
+  font: 12pt "Open Sans", Verdana, Tahoma, Arial, sans-serif; }
 
 .gray {
   background-color: gray; }

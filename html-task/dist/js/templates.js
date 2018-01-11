@@ -11,21 +11,21 @@
       <div class="header__buttons">
         <div id="navButton" class="header__menu" onclick="toggleNav();">
           <a href="#">
-            <img src="images/menu.png">
+            <img src="images/menu.svg">
           </a>
         </div>
         <div id="searchButton" class="header__search" onclick="toggleSearch();">
           <a href="#">
-            <img src="images/search.png">
+            <img src="images/search.svg">
           </a>
         </div>
         <div class="header__cart">
           <a href="cart.html">
-            <img src="images/sc.png">
+            <img src="images/cart.svg">
           </a>
         </div>
         <div id="signButton" class="header__profile">
-          <img src="images/pr.png">
+          <img src="images/profile.svg">
         </div>
       </div>
       <div id="searchForm" class="search-form header__search-form">

@@ -25,12 +25,10 @@
 			<script id="categoryTemplate" type="text/x-handlebars-template">
 				{{#each this}}
 					<div class="grid index-page__grid">
-						<a href="#">
+						<a href="products.html">
 							<img class="grid__image" src="{{ this.image }}">
+							<p class="grid__caption">{{capFirst this.title}}</p>
 						</a>
-						<p class="grid__caption">
-							<a href="products.html">{{capFirst this.title}}</a>
-						</p>
 					</div>
 				{{/each}}
 			</script>
