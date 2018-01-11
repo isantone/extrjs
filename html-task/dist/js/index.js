@@ -5,7 +5,7 @@ $(document).ready(function() {
       image: "images/products/snowboard/snowboard.png"
     },
     {
-      title: "ski",
+      title: "alpine ski",
       image: "images/products/ski/ski.png"
     }
   ];

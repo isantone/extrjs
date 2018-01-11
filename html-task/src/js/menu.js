@@ -1,7 +1,7 @@
 function toggleNav() {
   navButton.classList.toggle('header__animation');
     //navigationMenu.style.maxHeight = "500px"; //280px
-  navigationMenu.classList.toggle('navigation_visible');
+  document.getElementById("navigationMenu").classList.toggle('navigation_visible');
 }
 
 //var searchClicked = false;

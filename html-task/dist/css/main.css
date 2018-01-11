@@ -541,7 +541,7 @@ button:hover, input[type="submit"]:hover {
 .button {
   display: inline-block;
   padding: 5px 10px;
-  font: bold 14pt Arial, Verdana, Tahoma, sans-serif;
+  font: bold 14pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
   color: #fff;
   border: none; }
 
@@ -601,7 +601,8 @@ button:hover, input[type="submit"]:hover {
     margin-right: 10px;
     flex-grow: 0; }
   .product__description {
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 10px; }
     .product__description_grid {
       display: none; }
   .product__left-part {
@@ -609,7 +610,7 @@ button:hover, input[type="submit"]:hover {
     flex-shrink: 2; }
   .product__right-part {
     display: inline-block;
-    min-width: 100px; }
+    min-width: 150px; }
   .product_grid {
     display: inline-block;
     width: 200px;
@@ -790,7 +791,7 @@ button:hover, input[type="submit"]:hover {
     margin: 0px;
     background-color: #464547;
     color: white;
-    font: bold 14pt Arial, Verdana, Tahoma, sans-serif;
+    font: bold 14pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
     line-height: 70px; }
   .sign-form__remember {
     display: inline-block; }
@@ -827,7 +828,12 @@ button:hover, input[type="submit"]:hover {
   /* justify-content: center; */
   /* justify-content: space-around; */ }
   .index-page__grid {
-    margin: 25px 30px; }
+    margin: 25px 30px;
+    text-align: center; }
+  .index-page__caption {
+    font: bold 14pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
+    color: black;
+    text-transform: uppercase; }
 
 .page-main {
   flex-direction: column;

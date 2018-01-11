@@ -19,6 +19,7 @@ $max-height: 150px;
 
   &__description {
     display: inline-block;
+    margin-right: 10px;
 
     &_grid {
       display: none;
@@ -32,14 +33,13 @@ $max-height: 150px;
 
   &__right-part {
     display: inline-block;
-    min-width: 100px;
+    min-width: 150px;
   }
 
   &_grid {
     display: inline-block;
     width: $grid-width;
     text-align: center;
-
   }
 
   &__wrapper {
