@@ -4,10 +4,11 @@
 	}
 }
 
-@media screen and (min-width: 596px) {
+@media screen and (min-width: 565px) {
 	.header {
     justify-content: space-between;
     flex-wrap: nowrap;
+    padding: 0 20px;
 
     &__buttons {
       min-width: auto;
@@ -29,24 +30,22 @@
   }
 
 	.page-main {
-		flex-direction: row;
+    flex-direction: row;
+
+    #viewChanger {
+      display: inline-block;
+    }
 	}
 
-	.navigation {
-    //height: 315px;
-    max-height: 500px; /// ????
-    height: auto;
-		transition: none;
-	}
+  .product {
+    &_grid {
+      width: $grid-width;
+    }
+  }
+
 }
 
-@media screen and (min-width: 642px) {
-	.index-page {
-		max-width: 630px;
-	}
-}
-
-@media screen and (min-width: 795px) {
+@media screen and (min-width: 765px) {
   .header {
     flex-wrap: nowrap;
 
@@ -72,7 +71,14 @@
       min-width: 140px;
       margin: 0 20px;
     }
-	}
+  }
+
+  .navigation {
+    //height: 315px;
+    max-height: 500px; /// ????
+    height: auto;
+    transition: none;
+  }
 
 	.sign-page {
     //width: auto;

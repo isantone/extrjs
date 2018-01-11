@@ -4,7 +4,7 @@
     <div class="header__container">
       <div class="header__logo">
         <a class="non-text-link" href="index.html">
-          <img src="images/ex_shop_white.png">
+          <img src="images/ex_shop_310.png">
         </a>
       </div>
 

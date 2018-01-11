@@ -1,39 +1,38 @@
 (function() {
   const headerTemplate = 
     `<header class="header">
-      <div class="header__container">
-        <div class="header__logo">
-          <a class="non-text-link" href="index.html">
-            <img src="images/ex_shop_white.png">
+    <div class="header__container">
+      <div class="header__logo">
+        <a class="non-text-link" href="index.html">
+          <img src="images/ex_shop_white.png">
+        </a>
+      </div>
+
+      <div class="header__buttons">
+        <div id="navButton" class="header__menu" onclick="toggleNav();">
+          <a href="#">
+            <img src="images/menu.svg">
           </a>
         </div>
-        <div class="header__buttons">
-          <div id="navButton" class="header__menu" onclick="toggleNav();">
-            <a href="#">
-              <img src="images/menu.png">
-            </a>
-          </div>
-          <div id="searchButton" class="header__search" onclick="toggleSearch();">
-            <a href="#">
-              <img src="images/search.png">
-            </a>
-          </div>
-          <div class="header__cart">
-            <a href="cart.html">
-              <img src="images/sc.png">
-            </a>
-          </div>
-          <div class="header__profile">
-            <a href="login.html">
-              <img src="images/pr.png">
-            </a>
-          </div>
+        <div id="searchButton" class="header__search" onclick="toggleSearch();">
+          <a href="#">
+            <img src="images/search.svg">
+          </a>
         </div>
-        <div id="searchForm" class="search-form header__search-form">
-          <input class="header__search-input" placeholder="Search">
+        <div class="header__cart">
+          <a href="cart.html">
+            <img src="images/cart.svg">
+          </a>
+        </div>
+        <div id="signButton" class="header__profile">
+          <img src="images/profile.svg">
         </div>
       </div>
-    </header>`;
+      <div id="searchForm" class="search-form header__search-form">
+        <input class="header__search-input" placeholder="Search">
+      </div>
+    </div>
+  </header>`;
   const compiledHeaderTemplate = Handlebars.compile(headerTemplate);
 
   const navigationTemplate =
@@ -92,11 +91,64 @@
     </footer>`;
   const compiledFooterTemplate = Handlebars.compile(footerTemplate);
 
-  $(document).ready(function() {
+  const signFormTemplate =
+    `<div id="signForm" class="sign-form-wrapper hide">
+      <div class="sign-form sign-page__sign-form">
+        <p class="sign-form__header bold-text">PLEASE LOG IN</p>
+        <form class="sign-form__form">
+          <label>
+            <input id="emailInput" class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
+            <p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
+          </label>
+          <label>
+            <input  id="passwordInput" class="input-size small-top-margin" type="password" placeholder="Password" required>
+            <p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
+          </label>
+          <label class="sign-form__remember big-top-margin small-bottom-margin">
+            <input type="checkbox"> Remember me
+          </label>
+          <div class="two-cols-line big-bottom-margin">
+            <a class="two-cols-line__left" href="#">Forgot password?</a>
+            <a id="regButton" class="two-cols-line__right" href="#">Sign up</a>
+          </div>
+          <input class="button input-size turquoise small-bottom-margin" type="submit" value="LOG IN">
+          <button id="logCancelButton" class="button input-size gray">CANCEL</button>
+        </form>
+      </div>
+    </div>`;
+  const compiledSignFormTemplate = Handlebars.compile(signFormTemplate);
 
-    $(body).prepend(compiledNavigationTemplate); 
-    $(body).prepend(compiledHeaderTemplate); 
-    $(body).append(compiledFooterTemplate);
+  const regFormTemplate =
+    `<div id="regForm" class="sign-form-wrapper">
+      <div class="sign-form sign-page__sign-form">
+        <p class="sign-form__header bold-text">REGISTER NEW ACCOUNT</p>
+        <form class="sign-form__form">
+          <input class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
+          <p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
+          <input class="input-size small-top-margin" type="password" placeholder="Password" required>
+          <p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
+          <div class="two-cols-line big-top-margin big-bottom-margin">
+            <span class="two-cols-line__left" href="#">Have an account?</span>
+            <a id="logButton" class="two-cols-line__right" href="#">Log In</a>
+          </div>
+          <input class="button input-size turquoise small-bottom-margin" type="submit" value="SIGN UP">
+          <button id="regCancelButton" class="button input-size gray">CANCEL</button>
+        </form>
+      </div>
+    </div>`;
+  const compiledRegFormTemplate = Handlebars.compile(regFormTemplate);
+
+  $(document).ready(function() {
+    const pageMain = $(".page-main");
+    if (pageMain.length) {
+      pageMain.prepend(compiledNavigationTemplate); 
+    }
+    
+    $("body").prepend(compiledHeaderTemplate); 
+    $("body").append(compiledFooterTemplate);
+
+    $("body").append(signFormTemplate);
+    $("body").append(regFormTemplate);
 
   });
 })(); 

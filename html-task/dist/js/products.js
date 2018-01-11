@@ -109,19 +109,19 @@ function productsPage() {
   const compiledProductsTemplate = Handlebars.compile(productsTemplate);
 
   const productTemplate = 
-    `<div class="product">
+    `<div class="product product_grid">
       <img class="product__image" src="{{ this.image }}">
-      <div class="product__wrapper">
+      <div class="product__wrapper product__wrapper_grid">
         <div class="product__left-part">
           <p class="product__name">
             <a href="#">{{trim this.title}}</a>
           </p>
-          <p class="product__description">{{this.description}}
+          <p class="product__description product__description_grid">{{this.description}}
           </p>
         </div>
         <div class="product__right-part">
           <p class="product__price">Price: \$ {{this.price}}</p>
-          <button class="button input-size turquoise small-bottom-margin add-to-card">Add to card</button>
+          <button class="button input-size turquoise add-to-card">Add to card</button>
         </div>
       </div>
     </div>`;

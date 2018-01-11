@@ -2,14 +2,15 @@ const gulp  = require('gulp');
 const sass  = require('gulp-sass');
 //const babel = require('gulp-babel');
 const gulpCopy = require('gulp-copy');
-const webserver = require('gulp-webserver');
+//const webserver = require('gulp-webserver');
 //const browserSync = require('browser-sync').create();
 
-const imagemin = require('gulp-imagemin');
+//const imagemin = require('gulp-imagemin');
 
-const browserify = require('browserify');
-const watchify = require('watchify');
-const source = require('vinyl-source-stream');
+//const browserify = require('browserify');
+//const watchify = require('watchify');
+//const source = require('vinyl-source-stream');
+
 //const sourceJsFile = './js/main.js';
 //const destFolder = paths.dist.js;
 //const destFile = 'findem.js';
@@ -81,7 +82,7 @@ gulp.task('copyJs', function() {
   gulp.src(paths.src.js)
       .pipe(gulp.dest(paths.dist.js.folder));
 });
- 
+
 gulp.task('webserver', function() {
   gulp.src('./')
     .pipe(webserver({
@@ -98,7 +99,7 @@ gulp.task('browser-sync', function() {
       }
   });
 });
- 
+
 gulp.task('browserify', function() {
   return browserify(paths.src.js)
   .bundle()

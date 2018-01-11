@@ -6,10 +6,10 @@ $max-height: 150px;
   //min-width: 320px;
   display: flex;
 
-  margin-bottom: 10px;
-  padding: 10px;
+  //margin-bottom: 10px;
+  padding: 10px 0;
 
-  border: 1px solid gray;
+  border-bottom: 1px solid $border-color;
 
   &__image {
     display: inline-block;
@@ -38,8 +38,15 @@ $max-height: 150px;
 
   &_grid {
     display: inline-block;
-    width: $grid-width;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
+    margin: 5px 0;
+
     text-align: center;
+
+    border: 1px solid $border-color;
   }
 
   &__wrapper {

@@ -593,9 +593,8 @@ button:hover, input[type="submit"]:hover {
 
 .product {
   display: flex;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid gray; }
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd; }
   .product__image {
     display: inline-block;
     margin-right: 10px;
@@ -613,8 +612,12 @@ button:hover, input[type="submit"]:hover {
     min-width: 150px; }
   .product_grid {
     display: inline-block;
-    width: 200px;
-    text-align: center; }
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 5px 0;
+    text-align: center;
+    border: 1px solid #ddd; }
   .product__wrapper {
     display: flex;
     flex-grow: 2; }
@@ -623,13 +626,12 @@ button:hover, input[type="submit"]:hover {
 
 .header {
   width: 100%;
-  background-color: #18adc4; }
+  box-sizing: border-box; }
   .header__container {
     flex-wrap: wrap;
     min-height: 90px;
     max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 10px auto;
     justify-content: center;
     align-items: center; }
   .header__logo {
@@ -638,7 +640,7 @@ button:hover, input[type="submit"]:hover {
   .header__buttons {
     flex-grow: 0;
     order: 3;
-    min-width: 361px;
+    min-width: 300px;
     margin-top: 15px;
     justify-content: space-between;
     align-items: center; }
@@ -649,13 +651,15 @@ button:hover, input[type="submit"]:hover {
     transform: rotate(-360deg); }
   .header__search-form {
     height: 0;
-    min-width: 330px;
+    min-width: 310px;
+    padding: 0 15px;
     margin-top: 0;
     align-self: center;
     flex-grow: 2;
     order: 4;
     transition: 0.3s ease-in-out;
-    overflow: hidden; }
+    overflow: hidden;
+    box-sizing: border-box; }
     .header__search-form_visible {
       height: 40px;
       margin-top: 20px; }
@@ -820,32 +824,36 @@ button:hover, input[type="submit"]:hover {
   flex-wrap: wrap;
   flex: 1 0 auto;
   width: auto;
-  max-width: 210px;
   align-content: center;
   /* vertical */
   align-self: center;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   /* justify-content: space-around; */ }
+  .index-page__image {
+    width: 310px; }
   .index-page__grid {
-    margin: 25px 30px;
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 20px; }
   .index-page__caption {
     font: bold 14pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
-    color: black;
-    text-transform: uppercase; }
+    color: black; }
 
 .page-main {
   flex-direction: column;
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  box-sizing: border-box; }
   .page-main__content {
     flex-direction: column;
     width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     align-items: center; }
   .page-main__products {
     box-sizing: border-box;
-    width: 100%;
-    padding: 20px; }
+    width: 100%; }
+  .page-main #viewChanger {
+    display: none; }
 
 .list-viewer {
   /*padding: 10px;*/
@@ -923,10 +931,11 @@ button:hover, input[type="submit"]:hover {
   .index-page {
     max-width: 420px; } }
 
-@media screen and (min-width: 596px) {
+@media screen and (min-width: 565px) {
   .header {
     justify-content: space-between;
-    flex-wrap: nowrap; }
+    flex-wrap: nowrap;
+    padding: 0 20px; }
     .header__buttons {
       min-width: auto;
       margin-left: 20px;
@@ -940,16 +949,12 @@ button:hover, input[type="submit"]:hover {
       transition: none; }
   .page-main {
     flex-direction: row; }
-  .navigation {
-    max-height: 500px;
-    height: auto;
-    transition: none; } }
+    .page-main #viewChanger {
+      display: inline-block; }
+  .product_grid {
+    width: 200px; } }
 
-@media screen and (min-width: 642px) {
-  .index-page {
-    max-width: 630px; } }
-
-@media screen and (min-width: 795px) {
+@media screen and (min-width: 765px) {
   .header {
     flex-wrap: nowrap;
     /*.logo {
@@ -968,6 +973,10 @@ button:hover, input[type="submit"]:hover {
       order: 2;
       min-width: 140px;
       margin: 0 20px; }
+  .navigation {
+    max-height: 500px;
+    height: auto;
+    transition: none; }
   .sign-page {
     align-items: center;
     align-self: center;
