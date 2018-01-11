@@ -13,7 +13,7 @@ $(document).ready(function() {
   const categoryTemplate = $("#categoryTemplate").html();
   const compiledCategoryTemplate = Handlebars.compile(categoryTemplate);
 
-  $("#indexMain").html(compiledCategoryTemplate(categories)); 
+  $("#indexMain").html(compiledCategoryTemplate(categories));
 });
 
 (function () {
