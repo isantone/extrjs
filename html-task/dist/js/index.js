@@ -2,11 +2,13 @@ $(document).ready(function() {
   const categories = [
     {
       title: "snowboard",
-      image: "images/products/snowboard/snowboard.png"
+      image: "images/products/snowboard/snowboard.png",
+      products: []
     },
     {
       title: "alpine ski",
-      image: "images/products/ski/ski.png"
+      image: "images/products/ski/ski.png",
+      products: []
     }
   ];
 

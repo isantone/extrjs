@@ -1,8 +1,11 @@
-var _ = require('underscore');
-var $ = require('jquery');
+//import forEach from 'lodash/forEach';
+//import $ from "jquery";
 
-window.$ = window.jQuery = $;
-window._ = window.underscore = _;
+//var _ = require('underscore');
+//var $ = require('jquery');
+
+//window.$ = window.jQuery = $;
+//window._ = window.underscore = _;
 
 //var $ = require('jquery');
 //global.jQuery = require("jquery");
