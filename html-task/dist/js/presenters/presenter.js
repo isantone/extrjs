@@ -1,9 +1,10 @@
 function Presenter() {
-  this.element = document.getElementById('pageBody');
+  //this.body = document.getElementById('pageBody');
+  this.footer = document.getElementById('pageFooter');
 }
 
 Presenter.prototype.render = function(compiledTemplate) {
-  this.element.innerHTML = compiledTemplate;
+  $( compiledTemplate ).insertBefore( this.footer );
 };
 
 export default Presenter;

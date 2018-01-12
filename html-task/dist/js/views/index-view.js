@@ -1,12 +1,12 @@
 function IndexView() {}
 
 IndexView.prototype.getTemplate = function(data) {
-  Handlebars.registerHelper('capFirst', function(str) {
+  Handlebars.registerHelper('capitalizer', function(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   });
 
   Handlebars.registerHelper('underscorer', function(str) {
-    return str.replace(" ","_");
+    return str.replace(" ", "_");
   });
 
   const categoryTemplate = `
@@ -15,7 +15,7 @@ IndexView.prototype.getTemplate = function(data) {
         <div class="grid index-page__grid">
           <a href="products.html">
             <img class="grid__image index-page__image" src="/images/products/{{underscorer this}}/category.png">
-            <p class="grid__caption index-page__caption tiny-top-margin">{{capFirst this}}</p>
+            <p class="grid__caption index-page__caption tiny-top-margin">{{capitalizer this}}</p>
           </a>
         </div>
       {{/each}}
