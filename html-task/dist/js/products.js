@@ -54,8 +54,6 @@ function productsPage() {
     }
   }
 
-
-
   let product1 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 150, 2017, 750, "All Mountain");
   let product2 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 154, 2017, 750, "All Mountain");
   let product3 = new Snowboard("Burton Custom X Flying V", "Bataleon", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 158, 2017, 750, "All Mountain");
@@ -72,6 +70,11 @@ function productsPage() {
   let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Ski"      , descr, "M", 185, 2018, 849, "Big Mountain");
   let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Ski"      , descr, "M", 191, 2018, 849, "Big Mountain");
 
+  const database = {
+    "snowboard":  [ product1, product2, product3, product4, product5, product6 ],
+    "alpine ski": [ product7, product8, product9, product10, product11, product12 ]
+  };
+  
   products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12];
 
   let snowboardChipItem         = _.find(products, function(item) { return item.price < 400; });

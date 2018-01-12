@@ -1,12 +1,8 @@
-//import forEach from 'lodash/forEach';
-//import $ from "jquery";
+import App from './app';
 
-//var _ = require('underscore');
-//var $ = require('jquery');
+var app = new App();
+app.renderPage(location.hash);
 
-//window.$ = window.jQuery = $;
-//window._ = window.underscore = _;
-
-//var $ = require('jquery');
-//global.jQuery = require("jquery");
-//import $ from "jquery";
+window.addEventListener('hashchange', function() {
+    app.renderPage(location.hash);
+}, false);

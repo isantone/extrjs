@@ -1,5 +1,5 @@
 function Presenter() {
-  this.element = document.getElementById('application');
+  this.element = document.getElementById('pageBody');
 }
 
 Presenter.prototype.render = function(compiledTemplate) {

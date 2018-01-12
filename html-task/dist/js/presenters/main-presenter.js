@@ -1,11 +1,14 @@
 import Presenter from './presenter';
+import IndexPresenter from './index-page';
 import MainModel from '../models/main-model';
 import MainView from '../views/main-view';
 
-var data = {
-    name: 'name',
-    surname: 'surname'
-};
+import Database from '../database';
+
+// var data = {
+//     name: 'name',
+//     surname: 'surname'
+// };
 
 function MainPresenter() {
     Presenter.apply(this, arguments);
@@ -17,7 +20,7 @@ MainPresenter.prototype = Object.create(Presenter.prototype);
 MainPresenter.prototype.constructor = MainPresenter;
 
 MainPresenter.prototype.init = function() {
-    this.render(this.view.getTemplate(this.model.getData(data)));
+    this.render(this.view.getTemplate(this.model.getData(database)));
     //this.getButtons();
     this.bindEvents();
 };
