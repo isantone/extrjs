@@ -500,7 +500,7 @@ template {
   background-color: gray; }
 
 .turquoise {
-  background-color: #39C2D7; }
+  background-color: #00aad0; }
 
 .big-bottom-margin {
   margin-bottom: 35px; }
@@ -809,6 +809,8 @@ button:hover, input[type="submit"]:hover {
   .sign-form__validation-message {
     font-size: 10pt;
     color: darkred; }
+  .sign-form__two-cols-line {
+    margin-top: 62px; }
   .sign-form a.button {
     line-height: 30px; }
 

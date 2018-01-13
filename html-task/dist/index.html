@@ -55,21 +55,7 @@
 			</div>
 		</header>
 
-		<!-- <main id="indexMain" class="index-page">
-
-			<script id="categoryTemplate" type="text/x-handlebars-template">
-				{{#each this}}
-					<div class="grid index-page__grid">
-						<a href="products.html">
-							<img class="grid__image index-page__image" src="{{ this.image }}">
-							<p class="grid__caption index-page__caption tiny-top-margin">{{capFirst this.title}}</p>
-						</a>
-					</div>
-				{{/each}}
-			</script>
-			<script src="js/sign-form-jquery.js"></script>
-
-		</main> -->
+		<!-- <main id="indexMain" class="index-page"></main> -->
 
 		<footer id="pageFooter" class="footer">
 			<!--<img class="epam-logo" src="images/epam_logo.svg"></img>-->
@@ -109,28 +95,32 @@
 						<input  id="passwordInput" class="input-size small-top-margin" type="password" placeholder="Password" required>
 						<p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
 					</label>
-					<label class="sign-form__remember big-top-margin small-bottom-margin">
+					<label class="sign-form__remember small-top-margin">
 						<input type="checkbox"> Remember me
 					</label>
-					<div class="two-cols-line big-bottom-margin">
+					<div class="two-cols-line small-top-margin big-bottom-margin">
 						<a class="two-cols-line__left" href="#">Forgot password?</a>
-						<a id="regButton" class="two-cols-line__right" href="#">Sign up</a>
+						<a id="regButton" class="two-cols-line__right" href="#">Sign Up</a>
 					</div>
 					<input class="button input-size turquoise small-bottom-margin" type="submit" value="LOG IN">
 					<button id="logCancelButton" class="button input-size gray">CANCEL</button>
 				</form>
 			</div>
 		</div>
-	
+
 		<div id="regForm" class="sign-form-wrapper">
 			<div class="sign-form sign-page__sign-form">
 				<p class="sign-form__header bold-text">REGISTER NEW ACCOUNT</p>
 				<form class="sign-form__form">
-					<input class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
-					<p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
-					<input class="input-size small-top-margin" type="password" placeholder="Password" required>
-					<p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
-					<div class="two-cols-line big-top-margin big-bottom-margin">
+					<label>
+						<input class="input-size sign-form__input" type="email" placeholder="E-mail@example.com" required autofocus>
+						<p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p>
+					</label>
+					<label>
+						<input class="input-size small-top-margin" type="password" placeholder="Password" required>
+						<p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p>
+					</label>
+					<div class="two-cols-line big-bottom-margin sign-form__two-cols-line">
 						<span class="two-cols-line__left" href="#">Have an account?</span>
 						<a id="logButton" class="two-cols-line__right" href="#">Log In</a>
 					</div>
@@ -141,5 +131,6 @@
 		</div>
 
 		<script src="bundle.js"></script>
+		<script src="js/sign-form-jquery.js"></script>
 	</body>
 </html>

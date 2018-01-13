@@ -38,7 +38,7 @@ function closeFormEventHandler(event) {
 }
 
 function inputBlurHandler(event) {
-  showAlertMessage(event);
+  //showAlertMessage(event);
 }
 
 function showAlertMessage(event) {
@@ -62,11 +62,16 @@ function getJqueryElements() {
 }
 
 function showLogFormAndHideRegForm() {
-  $("#regForm").fadeOut();
-  $("#signForm").fadeIn();
+  // $("#regForm").fadeOut();
+  // $("#signForm").fadeIn();
+  $("#regForm").hide();
+  $("#signForm").show();
+
 }
 
 function showRegFormAndHideLogForm() {
-  $("#signForm").fadeOut();
-  $("#regForm").fadeIn();
+  // $("#signForm").fadeOut();
+  // $("#regForm").fadeIn();
+  $("#signForm").hide();
+  $("#regForm").show();
 }

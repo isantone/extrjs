@@ -7,7 +7,13 @@ function App() {
 }
 
 App.prototype.renderPage = function(hash) {
+    this.oldBlocks = this.blocks || null;
     this.blocks = this.router.dispatch(hash);
+    if (this.oldBlocks) {
+        forEach(this.oldBlocks, function(block) {
+            block.remove();
+        });
+    }
     if (this.blocks) {
         forEach(this.blocks, function(block) {
             block.init();
