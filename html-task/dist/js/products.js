@@ -86,6 +86,19 @@ function productsPage() {
   let cart = _.filter(products, function(item) { return item.id == 3 || item.id == 11; }); // Cart with 2 items
 
   let skiId7 = _.find(products, ['id', 7]);
+  let productId2;
+
+  //_.forEach(database, (category) => {
+    _.forEach(database, (product) => {
+		//_.forOwn(database, function(product) {
+      productId2 = _.find(product, ["id", 2]);
+      if (productId2) {
+        return false;
+      }
+		});
+		//product = find(category, ['id', this.idOfProduct]);
+  //});
+
   let itemIndexInCartWithSavedPriceOrder = _.sortedIndexBy(cart, skiId7, 'price');
   cart.splice(itemIndexInCartWithSavedPriceOrder, 0, skiId7); // Cart with 3 items with saved order by price
 

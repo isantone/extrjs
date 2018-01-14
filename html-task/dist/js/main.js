@@ -4,5 +4,5 @@ var app = new App();
 app.renderPage(location.hash);
 
 window.addEventListener('hashchange', function() {
-    app.renderPage(location.hash);
+	app.renderPage(location.hash);
 }, false);

@@ -62,16 +62,16 @@ function Database() {
   let product5 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "images/products/snowboard/k2_raygun_1_s.jpg", "Snowboard", descr, "M", 153, 2017, 399, "All Mountain");
   let product6 = new Snowboard("K2 Raygun"               , "K2"      , "Snowboard", "images/products/snowboard/k2_raygun_1_s.jpg", "Snowboard", descr, "M", 156, 2017, 399, "All Mountain");
 
-  let product7 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 177, 2017, 799, "All-Mountain Back");
-  let product8 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 185, 2017, 799, "All-Mountain Back");
-  let product9 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Ski"      , descr, "M", 193, 2017, 799, "All-Mountain Back");
+  let product7 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Alpine Ski", descr, "M", 177, 2017, 799, "All-Mountain Back");
+  let product8 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Alpine Ski", descr, "M", 185, 2017, 799, "All-Mountain Back");
+  let product9 = new Ski      ("Nordica ENFORCER 100"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_2_S.jpg", "Alpine Ski", descr, "M", 193, 2017, 799, "All-Mountain Back");
 
-  let product10 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Ski"      , descr, "M", 177, 2018, 849, "Big Mountain");
-  let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Ski"      , descr, "M", 185, 2018, 849, "Big Mountain");
-  let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Ski"      , descr, "M", 191, 2018, 849, "Big Mountain");
+  let product10 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Alpine Ski", descr, "M", 177, 2018, 849, "Big Mountain");
+  let product11 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Alpine Ski", descr, "M", 185, 2018, 849, "Big Mountain");
+  let product12 = new Ski     ("Nordica ENFORCER 110"    , "Nordica" , "Alpine Ski"      , "images/products/ski/enforcer_100_3_S.jpg", "Alpine Ski", descr, "M", 191, 2018, 849, "Big Mountain");
 
   const database = {
-    "snowboard":  [ product1, product2, product3, product4, product5, product6 ],
+    "snowboard":  [ product1,/* product2, product3,*/ product4/*, product5, product6 */],
     "alpine ski": [ product7, product8, product9, product10, product11, product12 ]
   };
 

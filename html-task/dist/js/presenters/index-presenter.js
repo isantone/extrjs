@@ -6,47 +6,54 @@ import IndexView from '../views/index-view';
 import Database from '../database';
 
 function IndexPresenter() {
-    //Presenter.apply(this, arguments);
-    this.view = new IndexView();
-    this.model = new IndexModel();
+	//Presenter.apply(this, arguments);
+	this.view = new IndexView();
+	this.model = new IndexModel();
 }
 
 //IndexPresenter.prototype = Object.create(Presenter.prototype);
 //IndexPresenter.prototype.constructor = IndexPresenter;
 
 IndexPresenter.prototype.init = function() {
-    this.render(this.view.getTemplate(this.model.getData(Database())));
-    //this.getButtons();
-    //this.bindEvents();
-};
-
-IndexPresenter.prototype.remove = function() {
-    this.delete();
-    //this.getButtons();
-    //this.bindEvents();
+	this.render(this.view.getTemplate(this.model.getData(Database())));
+	this.getButtons();
+	this.bindEvents();
 };
 
 IndexPresenter.prototype.render = function(compiledTemplate) {
-    $( compiledTemplate ).insertBefore( document.getElementById('pageFooter') );
-    this.main = document.getElementById('indexMain');
-  };
+	$( compiledTemplate ).insertBefore( document.getElementById('pageFooter') );
+	this.contentContainer = document.getElementById('pageContent');
+	document.title = "EXTREME SHOP";
+};
+
+IndexPresenter.prototype.remove = function() {
+	this.delete();
+	//this.getButtons();
+	//this.bindEvents();
+};
 
 IndexPresenter.prototype.delete = function() {
-    this.main.remove();
-  };
+	//this.unbindEvents();
+	this.contentContainer.remove();
+};
 
-// MainPresenter.prototype.getButtons = function() {
-//     this.button1 = document.getElementById('button1');
-//     this.button2 = document.getElementById('button2');
-// };
+IndexPresenter.prototype.getButtons = function() {
+	this.body = document.body;
+};
+
+IndexPresenter.prototype.preventDefaultForURLs = function(event) {
+  if ((event.target.tagName === "A") || (event.target.tagName === "IMG")) {
+    event.preventDefault();
+  }
+};
 
 IndexPresenter.prototype.bindEvents = function() {
-    this.button1.addEventListener('click', this.handleButtonClick, false);
-    this.button2.addEventListener('click', this.handleButtonClick, false);
+	//this.body.addEventListener('click', this.preventDefaultForURLs);
+	//this.button1.addEventListener('click', this.handleButtonClick, false);
 };
 
-IndexPresenter.prototype.handleButtonClick = function(event) {
-    console.log(`Click to button #${event.target.dataset.id}`);
-};
+// IndexPresenter.prototype.handleButtonClick = function(event) {
+// 	console.log(`Click to button #${event.target.dataset.id}`);
+// };
 
 export default IndexPresenter;

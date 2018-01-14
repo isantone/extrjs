@@ -10,10 +10,10 @@ IndexView.prototype.getTemplate = function(data) {
   });
 
   const categoryTemplate = `
-    <main id="indexMain" class="index-page">
+    <main id="pageContent" class="index-page">
       {{#each this}}
         <div class="grid index-page__grid">
-          <a href="products.html">
+          <a href="#catalog">
             <img class="grid__image index-page__image" src="/images/products/{{underscorer this}}/category.png">
             <p class="grid__caption index-page__caption tiny-top-margin">{{capitalizer this}}</p>
           </a>

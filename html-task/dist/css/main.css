@@ -774,9 +774,10 @@ button:hover, input[type="submit"]:hover {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 98;
-  display: none; }
+  display: none;
+  cursor: pointer; }
 
 .hide {
   display: none; }
@@ -788,8 +789,10 @@ button:hover, input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: rgba(255, 255, 255, 0); }
+  background-color: rgba(255, 255, 255, 0);
+  cursor: default; }
   .sign-form__header {
+    left: 1500px;
     position: relative;
     height: 70px;
     margin: 0px;
@@ -803,6 +806,7 @@ button:hover, input[type="submit"]:hover {
     margin-left: auto;
     margin-right: auto; }
   .sign-form__form {
+    left: -1500px;
     position: relative;
     padding: 50px;
     background-color: white; }

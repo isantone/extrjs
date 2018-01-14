@@ -25,3 +25,5 @@ function changeView() {
     domElement.classList.toggle("product__description_grid");
   });
 }
+
+export default changeView;

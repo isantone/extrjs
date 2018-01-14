@@ -4,10 +4,12 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 98;
 
   display: none; // for jQuery animation
+
+  cursor: pointer;
 }
 
 .hide {
@@ -24,10 +26,13 @@
   //z-index: 99;
 
 	text-align: center;
-  
+
   background-color: rgba(255, 255, 255, 0); // for jQuery animation
 
+  cursor: default;
+
   &__header {
+    left: 1500px; // for jQuery animation
     position: relative; // for jQuery animation
     height: 70px;
 
@@ -50,6 +55,7 @@
   }
 
   &__form {
+    left: -1500px;  // for jQuery animation
     position: relative; // for jQuery animation
     padding: 50px;
     background-color: white;
