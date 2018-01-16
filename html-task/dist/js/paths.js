@@ -2,7 +2,8 @@ const paths = {
   pages: {
     index:   "",
     catalog: "#catalog",
-    product: "#product?id="
+    product: "#product?id=",
+    cart: "#cart?id="
   }
 };
 

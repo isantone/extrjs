@@ -927,6 +927,9 @@ button:hover, input[type="submit"]:hover {
   display: flex;
   flex: 1 0 auto;
   align-items: flex-start; }
+  .cart-page__buy-button {
+    margin-left: auto;
+    margin-right: 0; }
   .cart-page__list-viewer {
     max-width: 1000px;
     margin: 20px auto;

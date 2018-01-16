@@ -1,6 +1,7 @@
 import IndexPresenter from './presenters/index-presenter';
 import CatalogPresenter from './presenters/catalog-presenter';
 import ProductPresenter from './presenters/product-presenter';
+import CartPresenter from './presenters/cart-presenter';
 
 import paths from './paths';
 
@@ -17,6 +18,10 @@ Router.prototype.dispatch = function(hash) {
       if (hash.indexOf(paths.pages.product) !== -1) { // ES6 includes
         const idOfProduct = Number(hash.split("=")[1]);
         return [new ProductPresenter(idOfProduct)];
+      } 
+      if (hash.indexOf(paths.pages.cart) !== -1) { // ES6 includes
+        const idOfProduct = Number(hash.split("=")[1]);
+        return [new CartPresenter(idOfProduct)];
       } 
       return []; // 404
   }
