@@ -1,3 +1,5 @@
+import paths from '../paths';
+
 function ProductView() {}
 
 ProductView.prototype.getTemplate = function(data) {
@@ -20,17 +22,18 @@ ProductView.prototype.getTemplate = function(data) {
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
+      <span><a href=${paths.pages.catalog}>{{this.category}}</a> / {{this.title}}</span>
       <main id="productsMain" class="page-main__products">
       <div class="slider">
         <div class="slider__view-section">
           <img id="activeImage" class="w3-animate-right slider__big-image" src="images/products/{{unreadabler this.category}}/{{this.id}}_1.jpg" alt="Product image">
         </div>
         <div class="slider__preview-section">
-          <div id="left-control" class="slider__control" onclick="previousSlide();"><img src="images/left-arrow.png" alt="Left"></div>
-          <img class="slider__preview-image slider__preview-image_active" onclick="setActive(this);" src="images/products/{{unreadabler this.category}}/{{this.id}}_1_s.jpg" alt="Product preview">
-          <img class="slider__preview-image" onclick="setActive(this);" src="images/products/{{unreadabler this.category}}/{{this.id}}_2_s.jpg" alt="Product preview">
-          <img class="slider__preview-image" onclick="setActive(this);" src="images/products/{{unreadabler this.category}}/{{this.id}}_3_s.jpg" alt="Product preview">
-          <div id="right-control" class="slider__control" onclick="nextSlide();"><img src="images/right-arrow.png" alt="Right"></div>
+          <div id="leftControl" class="slider__control"><img src="images/left-arrow.png" alt="Left"></div>
+          <img class="slider__preview-image slider__preview-image_active" src="images/products/{{unreadabler this.category}}/{{this.id}}_1_s.jpg" alt="Product preview">
+          <img class="slider__preview-image" src="images/products/{{unreadabler this.category}}/{{this.id}}_2_s.jpg" alt="Product preview">
+          <img class="slider__preview-image" src="images/products/{{unreadabler this.category}}/{{this.id}}_3_s.jpg" alt="Product preview">
+          <div id="rightControl" class="slider__control"><img src="images/right-arrow.png" alt="Right"></div>
         </div>
       </div>
 
@@ -44,7 +47,7 @@ const productTemplate =
     <div class="product__wrapper">
       <div class="product__left-part">
         <p class="product__name">
-          <a href="#product?id={{this.id}}">{{this.title}}</a>
+          <span>{{this.title}}</span>
         </p>
         <p class="product__description">{{this.description}}
         </p>

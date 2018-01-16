@@ -15,7 +15,7 @@
 
   &__big-image {
     border: 1px solid gray;
-    transition: top 1s ease-out 0.5s;
+    //transition: top 1s ease-out 0.5s;
   }
 
   &__preview-image:hover {
@@ -56,7 +56,7 @@
 
 .w3-animate-right {
   position: relative;
-  animation: animateright 0.4s;
+  //animation: animateright 0.4s;
 }
 @keyframes animateright {
   from {

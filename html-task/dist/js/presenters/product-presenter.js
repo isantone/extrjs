@@ -5,7 +5,10 @@ import ProductView from '../views/product-view';
 
 import Database from '../database';
 
-import changeView from '../view-changer';
+//import changeView from '../view-changer';
+import {setActive, nextSlide, previousSlide} from '../slider';
+
+import forEach from 'lodash/forEach';
 
 function ProductPresenter(idOfProduct) {
 	//Presenter.apply(this, arguments);
@@ -19,7 +22,7 @@ function ProductPresenter(idOfProduct) {
 ProductPresenter.prototype.init = function() {
 	this.render(this.view.getTemplate(this.model.getData(Database())));
 	this.getEventTargets();
-	//this.bindEvents();
+	this.bindEvents();
 };
 
 ProductPresenter.prototype.render = function(compiledTemplate) {
@@ -28,7 +31,7 @@ ProductPresenter.prototype.render = function(compiledTemplate) {
 };
 
 ProductPresenter.prototype.remove = function() {
-  //this.unbindEvents();
+  this.unbindEvents();
   this.delete();
 };
 
@@ -37,20 +40,29 @@ ProductPresenter.prototype.delete = function() {
 };
 
 ProductPresenter.prototype.getEventTargets = function() {
-  this.viewChangeButton = document.getElementById('viewChanger');
+  //this.viewChangeButton = document.getElementById('viewChanger');
   this.logo = document.getElementById('logo');
-  this.body = document.body;
+	this.body = document.body;
+	
+	this.sliderLeftControl = document.getElementById('leftControl');
+	this.sliderRightControl = document.getElementById('rightControl');
+	this.sliderPreviews = document.getElementsByClassName('slider__preview-image');
 };
 
 ProductPresenter.prototype.bindEvents = function() {
-  this.viewChangeButton.addEventListener('click', changeView, false);
-  //this.logo.addEventListener('click', this.goToIndex, false);
-  //this.body.addEventListener('click', this.preventDefaultForURLs);
+	this.sliderLeftControl.addEventListener('click', previousSlide, false);
+	this.sliderRightControl.addEventListener('click', nextSlide, false);
+	// forEach(this.sliderPreviews, function(preview) {
+	// 	preview.addEventListener('click', setActive(preview), false);
+	// });
+	//this.sliderPreviews.addEventListener('click', setActive, false);
+	//$(".sliderPreviews").click(setActive);
 };
 
 ProductPresenter.prototype.unbindEvents = function() {
-	this.viewChangeButton.removeEventListener('click', changeView, false);
-	//this.button2.addEventListener('click', this.handleButtonClick, false);
+	this.sliderLeftControl.removeEventListener('click', previousSlide, false);
+	this.sliderRightControl.removeEventListener('click', nextSlide, false);
+	//this.sliderPreviews.removeEventListener('click', setActive, false);
 };
 
 ProductPresenter.prototype.goToIndex = function(event) {

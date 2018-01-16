@@ -74,7 +74,7 @@ const productTemplate =
     }
     return str;
   });
-  
+
   return compiledCatalogTemplate(data);
 
 

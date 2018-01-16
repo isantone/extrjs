@@ -2,10 +2,12 @@ import IndexPresenter from './presenters/index-presenter';
 import CatalogPresenter from './presenters/catalog-presenter';
 import ProductPresenter from './presenters/product-presenter';
 
+import paths from './paths';
+
 function Router() {}
 var prevPres = [];
-Router.prototype.dispatch = function(hash) {
-    if (hash === '' || hash === '#index') {
+Router.prototype.dispatch = function(hash) { 
+    if (hash === paths.pages.index || hash === '#index') { //switch
       // prevPres = [new IndexPresenter()];
       // return prevPres;
       return [new IndexPresenter()];
@@ -13,10 +15,10 @@ Router.prototype.dispatch = function(hash) {
     if (hash === '#remove') {
       return [];
     }
-    if (hash === '#catalog') {
+    if (hash === paths.pages.catalog) {
       return [new CatalogPresenter()];
     }
-    if (hash.indexOf("#product?id=") !== -1) {
+    if (hash.indexOf(paths.pages.product) !== -1) {
       const idOfProduct = Number(hash.split("=")[1]);
       return [new ProductPresenter(idOfProduct)];
     }

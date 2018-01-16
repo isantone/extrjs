@@ -555,8 +555,7 @@ button:hover, input[type="submit"]:hover {
     justify-content: center;
     align-items: center; }
   .slider__big-image {
-    border: 1px solid gray;
-    transition: top 1s ease-out 0.5s; }
+    border: 1px solid gray; }
   .slider__preview-image:hover {
     border: 1px solid darkgray; }
   .slider__preview-image {
@@ -580,8 +579,7 @@ button:hover, input[type="submit"]:hover {
   display: none; }
 
 .w3-animate-right {
-  position: relative;
-  animation: animateright 0.4s; }
+  position: relative; }
 
 @keyframes animateright {
   from {
