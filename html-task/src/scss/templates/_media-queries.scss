@@ -1,7 +1,7 @@
 @media screen and (min-width: 432px) {
-	.index-page {
-		max-width: 420px;
-	}
+	// .index-page {
+	// 	max-width: 420px;
+	// }
 }
 
 @media screen and (min-width: 565px) {
@@ -39,7 +39,7 @@
 
   .product {
     &_grid {
-      width: $grid-width;
+      //width: $grid-width;
     }
   }
 
@@ -96,35 +96,5 @@
 		//box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 		//-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 		//-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-	}
-}
-
-@media screen and (min-width: 852px) {
-	.index-page {
-		max-width: 840px;
-	}
-}
-
-@media screen and (min-width: 1062px) {
-	.index-page {
-		max-width: 1050px;
-	}
-}
-
-@media screen and (min-width: 1272px) {
-	.index-page {
-		max-width: 1260px;
-	}
-}
-
-@media screen and (min-width: 1582px) {
-	.index-page {
-		max-width: 1470px;
-	}
-}
-
-@media screen and (min-width: 1792px) {
-	.index-page {
-		max-width: 1690px;
 	}
 }

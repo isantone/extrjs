@@ -6,36 +6,31 @@ import paths from './paths';
 
 function Router() {}
 var prevPres = [];
+
 Router.prototype.dispatch = function(hash) { 
-    if (hash === paths.pages.index || hash === '#index') { //switch
-      // prevPres = [new IndexPresenter()];
-      // return prevPres;
+  switch (hash) {
+    case paths.pages.index:
       return [new IndexPresenter()];
-    }
-    if (hash === '#remove') {
-      return [];
-    }
-    if (hash === paths.pages.catalog) {
-      return [new CatalogPresenter()];
-    }
-    if (hash.indexOf(paths.pages.product) !== -1) {
-      const idOfProduct = Number(hash.split("=")[1]);
-      return [new ProductPresenter(idOfProduct)];
-    }
-    // const idFor = getQueryVariable("id");
-    // console.log(idFor);
-    return []; // 404
+    case paths.pages.catalog:
+      return [new CatalogPresenter()]; 
+    default:
+      if (hash.indexOf(paths.pages.product) !== -1) { // ES6 includes
+        const idOfProduct = Number(hash.split("=")[1]);
+        return [new ProductPresenter(idOfProduct)];
+      } 
+      return []; // 404
+  }
 };
 
 function getQueryVariable(variable)
 {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if(pair[0] == variable){return pair[1];}
+  }
+  return(false);
 }
 
 export default Router;

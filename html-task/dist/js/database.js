@@ -54,8 +54,8 @@ function Database() {
     }
   }
 
-  let product1 = new Snowboard("Burton Custom X Flying V", "Burton", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 150, 2017, 599, "All Mountain");
-  let product2 = new Snowboard("Burton Custom X Flying V", "Burton", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 154, 2017, 599, "All Mountain");
+  let product1 = new Snowboard("Burton Custom X Flying V", "Burton", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 150, 2017, 749, "All Mountain");
+  let product2 = new Snowboard("Burton Custom X Flying V", "Burton", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 154, 2017, 749, "All Mountain");
 
   let product3 = new Snowboard("Burton Ripcord"          , "Burton", "Snowboard", "images/products/snowboard/k2_enjoyer_1_s.png", "Snowboard", descr, "M", 158, 2017, 379, "All Mountain");
 
