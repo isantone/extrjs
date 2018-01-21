@@ -1,6 +1,7 @@
 import App from './app';
 
-var app = new App();
+window.app = new App();
+
 app.renderPage(location.hash);
 
 window.addEventListener('hashchange', function() {

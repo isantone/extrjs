@@ -1,6 +1,8 @@
-function CatalogView() {}
+import paths from '../paths';
 
-CatalogView.prototype.getTemplate = function(data) {
+function CartView() {}
+
+CartView.prototype.getTemplate = function(data) {
 
   // const catalogTemplate = `
   //   <main id="indexMain" class="index-page">
@@ -15,38 +17,44 @@ CatalogView.prototype.getTemplate = function(data) {
   //   </main>
   // `;
 
+  // !!! APPLY PARTIAL TEMPLATES FOR SLIDERS
   const catalogTemplate = 
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
-      <button id="viewChanger" class="button input-size gray tiny-bottom-margin">GRID / LIST</button>
       <main id="productsMain" class="page-main__products">
-        {{#each this}}
-          {{#each this}}
-            {{> product}}
-          {{/each}}
-        {{/each}}
+        {{> product}}
       </main>
     </div>
   </div>`;
 
-const productTemplate =
-  `<div class="product product_grid">
+// const productTemplate =
+//   `<div class="full-product page-main__full-product">
+//     <h2>{{this.title}}</h2>
+//     <p class="full-product__price small-bottom-margin">Price: \$ {{this.price}}</p>
+//     <p class="full-product__description">{{this.description}}</p>
+//     <button class="button input-size turquoise add-to-card small-top-margin">Add to cart</button>
+//   </div>`;
+
+  const productTemplate =
+  `<div class="product">
     <img class="product__image" src="images/products/{{unreadabler this.category}}/{{this.id}}_1_s.jpg">
-    <div class="product__wrapper product__wrapper_grid">
+    <div class="product__wrapper product__wrapper">
       <div class="product__left-part">
         <p class="product__name">
           <a href="#product?id={{this.id}}">{{trim this.title}}</a>
         </p>
-        <p class="product__description product__description_grid">{{this.description}}
+        <p class="product__description product__description">{{this.description}}
         </p>
       </div>
       <div class="product__right-part">
         <p class="product__price">Price: \$ {{this.price}}</p>
-        <button class="button input-size turquoise add-to-card">Add to cart</button>
       </div>
     </div>
-  </div>`;
+  </div>
+  <button class="button input-size turquoise add-to-card cart-page__buy-button">BUY</button>
+  `;
+
 
   const compiledCatalogTemplate = Handlebars.compile(catalogTemplate);
 
@@ -64,8 +72,8 @@ const productTemplate =
     return "";
   });
 
-  Handlebars.registerHelper('underscorer', function(str) {
-    return str.replace(" ", "_");
+  Handlebars.registerHelper('spacer', function(str) {
+    return str.replace("_", " ");
   });
 
   Handlebars.registerHelper('trim', function(str) {
@@ -75,9 +83,8 @@ const productTemplate =
     return str;
   });
 
+  document.title = "EXTREME SHOP - Cart";
   return compiledCatalogTemplate(data);
-
-
 };
 
-export default CatalogView;
+export default CartView;

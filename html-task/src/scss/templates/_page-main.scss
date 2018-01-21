@@ -5,6 +5,8 @@
   flex: 1 0 auto;
 
   box-sizing: border-box;
+  max-width: 1600px;
+  margin: 0 auto;
 
   &__content {
     @extend .flex;
@@ -23,7 +25,14 @@
     box-sizing: border-box;
     width: 100%;
 
+    display: flex;
+    flex-flow: row wrap;
+
     //padding: 20px;
+  }
+  &__full-product {
+    margin: 0 auto;
+    width: 100%;
   }
 
   #viewChanger {

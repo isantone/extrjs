@@ -18,12 +18,12 @@ $border-color: #ddd;
 /* Font */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-$font: 12pt 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
-$font-size: 16px;
+$font-size: 12pt;
+$font: $font-size 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
 $font-family: 'Open Sans', 'Verdana', sans-serif;
 $font-color: $green;
 
-$button-font: bold 14pt 'Open Sans', Arial, Verdana, Tahoma, sans-serif;
+$button-font: 12pt 'Open Sans', Arial, Verdana, Tahoma, sans-serif;
 $button-font-color: $white;
 
 /* Page */
