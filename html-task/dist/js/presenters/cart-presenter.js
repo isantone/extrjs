@@ -10,10 +10,10 @@ import Database from '../database';
 
 import forEach from 'lodash/forEach';
 
-function CartPresenter(idOfProduct) {
+function CartPresenter() {
 	//Presenter.apply(this, arguments);
 	this.view = new CartView();
-	this.model = new CartModel(idOfProduct);
+	this.model = new CartModel();
 }
 
 //IndexPresenter.prototype = Object.create(Presenter.prototype);
@@ -43,7 +43,7 @@ CartPresenter.prototype.getEventTargets = function() {
   //this.viewChangeButton = document.getElementById('viewChanger');
   this.logo = document.getElementById('logo');
 	this.body = document.body;
-	
+
 	this.sliderLeftControl = document.getElementById('leftControl');
 	this.sliderRightControl = document.getElementById('rightControl');
 	this.sliderPreviews = document.getElementsByClassName('slider__preview-image');

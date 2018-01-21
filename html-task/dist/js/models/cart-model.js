@@ -1,24 +1,34 @@
 import forEach from 'lodash/forEach';
 import find from 'lodash/find';
-import forOwn from 'lodash/forOwn';
+import intersectionBy from 'lodash/intersectionBy';
+import flattenDeep from 'lodash/flattenDeep';
 
-function CartModel(idOfProduct) {
-	this.idOfProduct = idOfProduct;
-}
+//import forOwn from 'lodash/forOwn';
+
+function CartModel() {}
 
 CartModel.prototype.getData = function(database) {
-	let currentProduct;
-	let idOfCurrentProduct = this.idOfProduct; // OR USE (...) => IN forEach
+  let cartJSON = localStorage.getItem("cart");
+	let cart;
 
+	if (cartJSON) {
+		cart = JSON.parse(cartJSON);
+	} else {
+		cart = [];
+	}
+
+	let cartCol = [];
 	forEach(database, function(category) {
-	//_.forOwn(database, function(product) {
-		currentProduct = find(category, ["id", idOfCurrentProduct]);
-		if (currentProduct) {
-			return false;
-		}
+		cartCol.push(intersectionBy(category, cart, "id"));
 	});
+	cartCol = flattenDeep(cartCol);
 
-	return currentProduct;
+	for (let i = 0; i < cartCol.length; i++) {
+		cartCol[i].quantity = cart[i].quantity; //ORDER BY SOMETHING BOTH COLLECTIONS
+	}
+
+	//localStorage.setItem("cart", JSON.stringify(cart));
+	return cartCol;
 };
 
 export default CartModel;

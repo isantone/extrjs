@@ -1,5 +1,6 @@
 import IndexPresenter from './presenters/index-presenter';
 import CatalogPresenter from './presenters/catalog-presenter';
+import CategoryPresenter from './presenters/category-presenter';
 import ProductPresenter from './presenters/product-presenter';
 import CartPresenter from './presenters/cart-presenter';
 
@@ -13,16 +14,20 @@ Router.prototype.dispatch = function(hash) {
     case paths.pages.index:
       return [new IndexPresenter()];
     case paths.pages.catalog:
-      return [new CatalogPresenter()]; 
+      return [new CatalogPresenter()];
+    case paths.pages.cart:
+      return [new CartPresenter()];
     default:
       if (hash.indexOf(paths.pages.product) !== -1) { // ES6 includes
         const idOfProduct = Number(hash.split("=")[1]);
         return [new ProductPresenter(idOfProduct)];
-      } 
-      if (hash.indexOf(paths.pages.cart) !== -1) { // ES6 includes
-        const idOfProduct = Number(hash.split("=")[1]);
-        return [new CartPresenter(idOfProduct)];
-      } 
+      }
+
+      if (hash.includes(paths.pages.category)) {
+        const nameOfCategory = hash.split("=")[1];
+        return [new CategoryPresenter(nameOfCategory)];
+      }
+
       return []; // 404
   }
 };

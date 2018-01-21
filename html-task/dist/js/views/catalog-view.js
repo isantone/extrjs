@@ -19,7 +19,7 @@ CatalogView.prototype.getTemplate = function(data) {
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
-      <button id="viewChanger" class="button input-size gray tiny-bottom-margin">GRID / LIST</button>
+      <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
       <main id="productsMain" class="page-main__products">
         {{#each this}}
           {{#each this}}
@@ -43,7 +43,7 @@ const productTemplate =
       </div>
       <div class="product__right-part">
         <p class="product__price">Price: \$ {{this.price}}</p>
-        <button class="button input-size turquoise add-to-card">Add to cart</button>
+        <button class="button input-size turquoise add-to-cart">Add to cart</button>
       </div>
     </div>
   </div>`;

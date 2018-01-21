@@ -121,7 +121,7 @@ function productsPage() {
         </div>
         <div class="product__right-part">
           <p class="product__price">Price: \$ {{this.price}}</p>
-          <button class="button input-size turquoise small-bottom-margin add-to-card">Add to card</button>
+          <button class="button input-size turquoise small-bottom-margin add-to-cart">Add to card</button>
         </div>
       </div>
     </div>`;

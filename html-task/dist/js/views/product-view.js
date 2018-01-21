@@ -57,7 +57,7 @@ const productTemplate =
     <h2>{{this.title}}</h2>
     <p class="full-product__price small-bottom-margin">Price: \$ {{this.price}}</p>
     <p class="full-product__description">{{this.description}}</p>
-    <button class="button input-size turquoise add-to-card small-top-margin">Add to cart</button>
+    <button class="button input-size turquoise add-to-cart small-top-margin">Add to cart</button>
   </div>`;
 
   const compiledCatalogTemplate = Handlebars.compile(catalogTemplate);
@@ -71,7 +71,7 @@ const productTemplate =
   Handlebars.registerHelper('unreadabler', function(str) {
     if (str) {
       str = str.toLowerCase();
-      return str.replace(/ /g, '_');
+      return str.replace(/ /g, '-');
     }
     return "";
   });

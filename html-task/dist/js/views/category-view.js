@@ -1,10 +1,8 @@
-import paths from '../paths';
+function CategoryView() {}
 
-function CartView() {}
+CategoryView.prototype.getTemplate = function(data) {
 
-CartView.prototype.getTemplate = function(data) {
-
-  // const catalogTemplate = `
+  // const CategoryTemplate = `
   //   <main id="indexMain" class="index-page">
   //     {{#each this}}
   //       <div class="grid index-page__grid">
@@ -17,51 +15,38 @@ CartView.prototype.getTemplate = function(data) {
   //   </main>
   // `;
 
-  // !!! APPLY PARTIAL TEMPLATES FOR SLIDERS
-  const catalogTemplate =
+  const CategoryTemplate = 
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
+      <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
       <main id="productsMain" class="page-main__products">
         {{#each this}}
           {{> product}}
         {{/each}}
-        <br><br><br>
-        <button onclick="localStorage.clear();" class="button input-size turquoise add-to-cart cart-page__buy-button">CLEAN</button>
       </main>
     </div>
   </div>`;
 
-// const productTemplate =
-//   `<div class="full-product page-main__full-product">
-//     <h2>{{this.title}}</h2>
-//     <p class="full-product__price small-bottom-margin">Price: \$ {{this.price}}</p>
-//     <p class="full-product__description">{{this.description}}</p>
-//     <button class="button input-size turquoise add-to-cart small-top-margin">Add to cart</button>
-//   </div>`;
-
-  const productTemplate =
-  `<div class="product">
+const productTemplate =
+  `<div class="product product_grid">
     <img class="product__image" src="images/products/{{unreadabler this.category}}/{{this.id}}_1_s.jpg">
-    <div class="product__wrapper product__wrapper">
+    <div class="product__wrapper product__wrapper_grid">
       <div class="product__left-part">
         <p class="product__name">
           <a href="#product?id={{this.id}}">{{trim this.title}}</a>
         </p>
-        <p class="product__description product__description">{{this.description}}
+        <p class="product__description product__description_grid">{{this.description}}
         </p>
       </div>
       <div class="product__right-part">
         <p class="product__price">Price: \$ {{this.price}}</p>
-        <p >Quantity: {{this.quantity}}</p>
+        <button data-id="{{this.id}}" class="button input-size turquoise add-to-cart">Add to cart</button>
       </div>
     </div>
-  </div>
-  <button class="button input-size turquoise add-to-cart cart-page__buy-button">BUY</button>
-  `;
+  </div>`;
 
-
-  const compiledCatalogTemplate = Handlebars.compile(catalogTemplate);
+  const compiledCategoryTemplate = Handlebars.compile(CategoryTemplate);
 
   Handlebars.registerPartial('product', productTemplate);
 
@@ -77,8 +62,8 @@ CartView.prototype.getTemplate = function(data) {
     return "";
   });
 
-  Handlebars.registerHelper('spacer', function(str) {
-    return str.replace("_", " ");
+  Handlebars.registerHelper('underscorer', function(str) {
+    return str.replace(" ", "_");
   });
 
   Handlebars.registerHelper('trim', function(str) {
@@ -88,8 +73,9 @@ CartView.prototype.getTemplate = function(data) {
     return str;
   });
 
-  document.title = "EXTREME SHOP - Cart";
-  return compiledCatalogTemplate(data);
+  return compiledCategoryTemplate(data);
+
+
 };
 
-export default CartView;
+export default CategoryView;

@@ -73,7 +73,7 @@ function Database() {
 
   const database = {
     "snowboard":  [ product1,/* product2,*/ product3, product4/*, product5, product6 */],
-    "alpine ski": [ product7, product8, product9, product10, product11, product12 ]
+    "alpine-ski": [ product7, product8, product9, product10, product11, product12 ]
   };
 
   return database;

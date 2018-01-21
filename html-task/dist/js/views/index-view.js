@@ -9,13 +9,17 @@ IndexView.prototype.getTemplate = function(data) {
     return str.replace(" ", "_");
   });
 
+  Handlebars.registerHelper('unhyphenizer', function(str) {
+    return str.replace("-", " ");
+  });
+
   const categoryTemplate = `
     <main id="pageContent" class="index-page">
       {{#each this}}
         <div class="grid index-page__grid">
-          <a href="#catalog">
+          <a href="#category?name={{this}}">
             <img class="grid__image index-page__image" src="/images/products/{{underscorer this}}/category.png">
-            <p class="grid__caption index-page__caption tiny-top-margin">{{capitalizer this}}</p>
+            <p class="grid__caption index-page__caption tiny-top-margin">{{unhyphenizer this}}</p>
           </a>
         </div>
       {{/each}}

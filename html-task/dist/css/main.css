@@ -542,9 +542,12 @@ button:hover, input[type="submit"]:hover {
   display: inline-block;
   padding: 5px 10px;
   font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
-  color: #fff;
-  border: none;
-  text-transform: uppercase; }
+  color: #4e4e4e;
+  border: 1px solid #e5e5e5;
+  background: #f5f5f5;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  outline: 0; }
 
 .slider {
   max-width: 700px;
@@ -874,12 +877,14 @@ button:hover, input[type="submit"]:hover {
     margin-bottom: 20px; }
   .index-page__caption {
     font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
-    color: black; }
+    color: black;
+    text-transform: capitalize; }
 
 .page-main {
   flex-direction: column;
   flex: 1 0 auto;
   box-sizing: border-box;
+  width: 100%;
   max-width: 1600px;
   margin: 0 auto; }
   .page-main__content {
