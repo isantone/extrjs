@@ -1,0 +1,34 @@
+[
+  {
+    "login": "example",
+    "email": "example@domain.com",
+    "password": "example",
+    "token": "exampleToken",
+    "cart": [
+      {
+        "id": 2,
+        "quantity": 3
+      },
+      {
+        "id": 3,
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "login": "myuser",
+    "email": "user@domain.com",
+    "password": "myuser",
+    "token": "myuserToken",
+    "cart": [
+      {
+        "id": 4,
+        "quantity": 3
+      },
+      {
+        "id": 1,
+        "quantity": 1
+      }
+    ]
+  }
+]

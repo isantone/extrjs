@@ -7,13 +7,8 @@ const path = require('path');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  //res.send('Here is your home page');
-  //console.log(path.resolve(__dirname));
-  //res.send(path.resolve(__dirname));
-  res.sendFile(path.join(__dirname+'/index.html'));
-  //res.sendFile(path.join(__dirname+'/index.html'));
-  
-})
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 app.use('/api', require('./routes/api'));
 
@@ -27,4 +22,4 @@ app.use(function(req, res, next) {
 
 app.listen(3000, () => {
   console.log('The server is listening on http://localhost:3000');
-})
+});
