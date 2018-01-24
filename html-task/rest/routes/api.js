@@ -7,82 +7,112 @@ const router = express.Router();
 const cart = require('../data/cart');
 const catalog = require('../data/catalog');
 const products = require('../data/products');
-const users = require('../data/users');
+const users = require('../data/users.json');
 
 const paths = require('./paths');
 const path = require('path');
+
+const fs = require('fs');
+const usersDir = path.join(__dirname + '/../data/users.json');
+//const usersJsonObject = require(usersJsonFile);
 
 function getCategoryByName(name) {
   const result = catalog.categories.filter(item => {
     return item.title.replace(/ /g, '-').toLowerCase() === name;
   });
-  return result;
+
+  return result[0];
 }
 
 function getProductsFromSpecificCategory(categoryName) {
   const result = products.filter(item => {
     return item.category.replace(/ /g, '-').toLowerCase() === categoryName;
   });
+
   return result;
 }
 
-function getItemById(categoryName, itemId) {
+function getItemById(itemId) {
   const result = products.filter(item => {
-    return item.category.replace(/ /g, '-').toLowerCase() === categoryName && item.id === itemId;
+    return item.id === itemId;
   });
-  return result;
+  return result[0];
 }
 
 function getUserByLogin(userLogin) {
   const result = users.filter(user => {
     return user.login === userLogin;
   });
-  return result;
-}
 
-function getUserByLoginFromJsonObject(userLogin, JsonObj) {
-  const result = JsonObj.filter(user => {
-    return user.login === userLogin;
-  });
   return result[0];
 }
 
-function getCartOfUserByLogin(userLogin) {
-  const result = getUserByLogin(userLogin);
-  return result;
+function getUserByCredentials(userCredentialsBase64) {
+  const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
+  const userCredentialsArray = userCredentials.split(':');
+  const userLogin = userCredentialsArray[0];
+  const userPassword = userCredentialsArray[1];
+
+  const resultUser = users.filter(user => {
+    return user.login === userLogin && user.password === userPassword;
+  });
+
+  return resultUser[0];
 }
 
-router.get(paths.cart.url, (req, res) => {
-  res.send(cart);
-});
+function getUserByToken(userToken) {
+  const result = users.filter(user => {
+    return "Bearer " + user.token === userToken;
+  });
+
+  return result[0];
+}
+
+function generateRandomToken() {
+  //window.crypto.getRandomValues(array);
+  let randomNumber = Math.round(Math.random() * 100000000000);
+
+  if (!randomNumber || randomNumber === 1) {
+    randomNumber = Math.round(Math.random() * 100000000000);
+  }
+
+  return randomNumber;
+}
+
+// router.get(paths.cart.url, (req, res) => {
+//   res.send(cart);
+// });
 
 router.get(paths.categories.url, (req, res) => {
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
   res.send(catalog);
 });
 
 router.get(paths.category.url, (req, res) => {
   const name = req.params.categoryName;
   const category = getCategoryByName(name);
+
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
   res.send(category);
 });
 
 router.get(paths.categories.products.url, (req, res) => {
   const categoryName = req.params.categoryName;
   const products = getProductsFromSpecificCategory(categoryName);
+
   res.send(products);
 });
 
 router.get(paths.categories.products.product.url, (req, res, next) => {
   const categoryName = req.params.categoryName;
-  const itemId = req.params.itemId;
-  if (itemId === "3") {
-    const err = new Error('Product is unavailable');
-    err.status = 404;
-    next(err);
-  } else {
-    const item = getItemById(categoryName, itemId);
-    res.send(item);
-  }
+  const itemId = Number(req.params.itemId);
+  const item = getItemById(itemId);
+
+  res.send(item);
 });
 
 router.get(paths.users.url, (req, res) => {
@@ -96,68 +126,91 @@ router.get(paths.users.user.url, (req, res) => {
   res.send(user);
 });
 
-router.get("/users/:userLogin/cart", (req, res) => {
-  const userLogin = req.params.userLogin;
-  const user = getCartOfUserByLogin(userLogin);
+router.get(paths.cart.url, (req, res) => {
+  const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+  const user = getUserByToken(userToken); // || unauthorized cart -> session storage 
 
-  res.send(user[0].cart);
+  res.send(user.cart);
 });
 
-router.post("/users/:userLogin/cart/add/:productId", (req, res) => {
-  const fs = require('fs');
-  const fileName = path.join(__dirname + '/../data/users.json');
-  const file = require(fileName);
+router.post(paths.cart.add.url, (req, res, next) => {
+  const productId = Number(req.body.id) || res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+  const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+  const item = getItemById(productId);
 
-  const productId = Number(req.params.productId);
-  const userLogin = req.params.userLogin;
+  if (item && item.availability) {
+    const user = getUserByToken(userToken);
+    const productInCart = user.cart.filter(item => {
+      return item.id === productId;
+    });
 
-  const user = getUserByLoginFromJsonObject(userLogin, file);
-
-  const productInCart = user.cart.filter(item => {
-    return item.id === productId;
-  });
-
-  if (productInCart[0]) {
-    productInCart[0].quantity++;
-  } else {
-    user.cart.push({id: productId, quantity: 1});
-  }
-
-  //user.cart.pop(); // delete request
-  
-  fs.writeFile(fileName, JSON.stringify(file, null, 2));
-
-  res.send(file);
-});
-
-router.get("/users/login/:userLogin", (req, res, next) => {
-  const fs = require('fs');
-  const fileName = path.join(__dirname + '/../data/users.json');
-  const file = require(fileName);
-
-  const userLogin = req.params.userLogin;
-
-  const token = req.headers.authorization;
-
-
-  const user = getUserByLoginFromJsonObject(userLogin, file);
-  console.log(token);
-  console.log("Bearer " + user.token);
-
-  if (token) {
-    if ("Bearer " + user.token === token) {
-      res.send(user);
+    if (productInCart[0]) {
+      productInCart[0].quantity++;
     } else {
-      const err = new Error('Invalid token!');
-      err.status = 403;
-      next(err);
-      //res.send('Invalid token');
+      user.cart.push({id: productId, quantity: 1});
     }
-  }
 
-  // const err = new Error('No token provided!');
-  // err.status = 404;
-  // next(err);
+    //user.cart.pop(); // delete request
+    
+    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+
+    res.send(user.cart);
+  } else {
+    res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
+  }
+});
+
+router.post(paths.login.url, (req, res, next) => {
+  const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
+  const user = getUserByCredentials(userCredentialsBase64); 
+
+  if (user) {
+    user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
+
+    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+
+    res.setHeader("Cache-Control", "public, max-age=2592");
+    res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  
+    res.send(user);
+  } else {
+    res.status(401).send({ success: false, message: 'Invalid login or password.'});
+  }
+});
+
+router.post(paths.register.url, (req, res, next) => {
+  const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
+  const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
+  const userCredentialsArray = userCredentials.split(':');
+  const userLogin = userCredentialsArray[0];
+  const userPassword = userCredentialsArray[1];
+
+  let user = getUserByLogin(userLogin); 
+
+  if (user) {
+    res.status(403).send({ success: false, message: 'This email is already used.'});
+  } else {
+    //CreateUser//
+    const newUser = {
+      "login": userLogin,
+      "email": userLogin + "@domain.com",
+      "password": userPassword,
+      "token": generateRandomToken(),
+      "cart": []
+    };
+    users.push(newUser);
+
+    //user.token  // -> to session storage // = unAuthorizedToken || userToken
+    ///
+
+    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+
+    res.setHeader("Cache-Control", "public, max-age=2592");
+    res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
+    //user = getUserByLogin(userLogin);
+    res.send(newUser);
+  }
 });
 
 module.exports = router;

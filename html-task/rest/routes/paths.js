@@ -6,7 +6,10 @@ module.exports = {
     }
   },
   cart: {
-    url: "/cart"
+    url: "/cart",
+    add: {
+      url: "/cart/add"
+    }
   },
   category: {
     url: "/categories/:categoryName"
@@ -24,9 +27,12 @@ module.exports = {
     url: "/users",
     user: {
       url: "/users/:userLogin",
-      cart: {
-        url: "/users/:userLogin/cart"
-      }
     }
+  },
+  login: {
+    url: "/login"
+  },
+  register: {
+    url: "/register"
   }
 };

@@ -3,15 +3,19 @@
     "login": "example",
     "email": "example@domain.com",
     "password": "example",
-    "token": "exampleToken",
+    "token": 43185441431,
     "cart": [
       {
         "id": 2,
-        "quantity": 3
+        "quantity": 14
       },
       {
         "id": 3,
         "quantity": 2
+      },
+      {
+        "id": 1,
+        "quantity": 5
       }
     ]
   },
@@ -19,7 +23,7 @@
     "login": "myuser",
     "email": "user@domain.com",
     "password": "myuser",
-    "token": "myuserToken",
+    "token": 53509588110,
     "cart": [
       {
         "id": 4,
@@ -27,6 +31,33 @@
       },
       {
         "id": 1,
+        "quantity": 1
+      },
+      {
+        "id": 2,
+        "quantity": 17
+      },
+      {
+        "id": 5,
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "login": "new",
+    "email": "new@domain.com",
+    "password": "new",
+    "token": 6533703287,
+    "cart": []
+  },
+  {
+    "login": "newUser",
+    "email": "newUser@domain.com",
+    "password": "newUser",
+    "token": 27608990867,
+    "cart": [
+      {
+        "id": 2,
         "quantity": 1
       }
     ]
