@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 const cart = require('../data/cart');
-const catalog = require('../data/catalog');
+//const catalog = require('../data/catalog');
 const products = require('../data/products');
 const users = require('../data/users.json');
 
@@ -13,8 +13,106 @@ const paths = require('./paths');
 const path = require('path');
 
 const fs = require('fs');
-const usersDir = path.join(__dirname + '/../data/users.json');
+//const usersDir = path.join(__dirname + '/../data/users.json');
+const usersDir = './data/users.json';
+
 //const usersJsonObject = require(usersJsonFile);
+
+class Json {
+  constructor(filePath) {
+    this.file = filePath;
+    this.obj = require(filePath);
+  }
+
+  writeInFile(uglify) {
+    if (uglify) {
+      fs.writeFile(this.file, JSON.stringify(this.obj));
+    }
+
+    fs.writeFile(this.file, JSON.stringify(this.obj, null, 2));
+  }
+
+  getElementsByPropertyValue(property, value) {
+    const resultArray = this.obj.filter(element => {
+      return element[property] === value;
+    });
+
+    return resultArray;
+  }
+
+  getElementsByPropertyUrlValue(property, urlValue) {
+    const resultArray = this.obj.filter(element => {
+      return element[property].replace(/ /g, '-').toLowerCase() === urlValue;
+    });
+
+    return resultArray;
+  }
+
+  getElementByPropertyValue(property, value) {
+    //return this.getElementsByPropertyValue(property, value)[0];
+    const result = this.obj.find(element => {
+      return element[property] === value;
+    });
+
+    return result;
+  }
+} 
+
+class UsersJson extends Json {
+  constructor() {
+    this.getUserByLogin = this.getElementByPropertyValue(this, "login");
+  }
+
+  // getUserByLogin(userLogin) {
+  //   //this.getElementByPropertyValue.bind(null, "login");
+  //   return this.getElementByPropertyValue("login", userLogin);
+  // }
+
+  getUserByToken(userToken) {
+    const tokenArray = userToken.split(' '); //OR store "BEARER *TOKEN*" in database
+    const tokenType = tokenArray[0];
+    const token = tokenArray[1];
+    if (tokenType === "Bearer") {
+      return this.getElementByPropertyValue("token", userToken);
+    }
+  }
+
+  getUserByCredentials(userCredentialsBase64) {
+    const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
+    const userCredentialsArray = userCredentials.split(':');
+    const userLogin = userCredentialsArray[0];
+    const userPassword = userCredentialsArray[1];
+  
+    const resultUser = users.find(user => {
+      return user.email === userLogin && user.password === userPassword;
+    });
+  
+    return resultUser;
+  }
+}
+
+class ProductsJson extends Json {
+  getProductsFromCategory(categoryUrlName) {
+    return this.getElementsByPropertyUrlValue("category", categoryUrlName);
+  }
+
+  getItemById(itemId) {
+    return this.getElementByPropertyValue("id", itemId);
+  }
+}
+const productss = new ProductsJson('../data/products.json');
+
+class CatalogJson extends Json {
+  constructor(filePath) {
+    super(filePath);
+    this.getCategoryByName = this.getElementByPropertyValue.bind(this, "name");
+  }
+  // getCategoryByName(name) {
+  //   return this.getElementByPropertyValue("name", name);
+  //   //item.title.replace(/ /g, '-').toLowerCase() === name;
+  // }
+}
+const catalog = new CatalogJson('../data/catalog.json');
 
 function getCategoryByName(name) {
   const result = catalog.categories.filter(item => {
@@ -61,11 +159,11 @@ function getUserByCredentials(userCredentialsBase64) {
 }
 
 function getUserByToken(userToken) {
-  const result = users.filter(user => {
+  const result = users.find(user => {
     return "Bearer " + user.token === userToken;
   });
 
-  return result[0];
+  return result;
 }
 
 function generateRandomToken() {
@@ -87,12 +185,13 @@ router.get(paths.categories.url, (req, res) => {
   res.setHeader("Cache-Control", "public, max-age=2592");
   res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
 
-  res.send(catalog);
+  // res.send(catalog);
+  res.send(catalog.obj);
 });
 
 router.get(paths.category.url, (req, res) => {
   const name = req.params.categoryName;
-  const category = getCategoryByName(name);
+  const category = catalog.getCategoryByName(name);
 
   res.setHeader("Cache-Control", "public, max-age=2592");
   res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
@@ -100,14 +199,14 @@ router.get(paths.category.url, (req, res) => {
   res.send(category);
 });
 
-router.get(paths.categories.products.url, (req, res) => {
-  const categoryName = req.params.categoryName;
-  const products = getProductsFromSpecificCategory(categoryName);
+router.get(paths.category.products.url, (req, res) => {
+  const categoryUrlName = req.params.categoryName;
+  const products = productss.getProductsFromCategory(categoryUrlName);
 
   res.send(products);
 });
 
-router.get(paths.categories.products.product.url, (req, res, next) => {
+router.get(paths.category.products.product.url, (req, res, next) => {
   const categoryName = req.params.categoryName;
   const itemId = Number(req.params.itemId);
   const item = getItemById(itemId);

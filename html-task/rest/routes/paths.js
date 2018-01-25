@@ -12,16 +12,16 @@ module.exports = {
     }
   },
   category: {
-    url: "/categories/:categoryName"
-  },
-  categories: {
-    url: "/categories",
+    url: "/categories/:categoryName",
     products: {
       url: "/categories/:categoryName/products",
       product: {
         url: "/categories/:categoryName/products/:itemId"
       }
     }
+  },
+  categories: {
+    url: "/categories"
   },
   users: {
     url: "/users",
