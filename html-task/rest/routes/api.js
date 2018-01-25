@@ -2,21 +2,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = express.Router();
-
-const cart = require('../data/cart');
-//const catalog = require('../data/catalog');
-const products = require('../data/products');
-const users = require('../data/users.json');
+const path = require('path');
+const fs = require('fs');
 
 const paths = require('./paths');
-const path = require('path');
 
-const fs = require('fs');
-//const usersDir = path.join(__dirname + '/../data/users.json');
-const usersDir = './data/users.json';
-
-//const usersJsonObject = require(usersJsonFile);
+const router = express.Router();
 
 class Json {
   constructor(filePath) {
@@ -28,8 +19,9 @@ class Json {
     if (uglify) {
       fs.writeFile(this.file, JSON.stringify(this.obj));
     }
-
-    fs.writeFile(this.file, JSON.stringify(this.obj, null, 2));
+    else {
+      fs.writeFile(this.file, JSON.stringify(this.obj, null, 2));
+    }
   }
 
   getElementsByPropertyValue(property, value) {
@@ -49,18 +41,18 @@ class Json {
   }
 
   getElementByPropertyValue(property, value) {
-    //return this.getElementsByPropertyValue(property, value)[0];
     const result = this.obj.find(element => {
       return element[property] === value;
     });
 
     return result;
   }
-} 
+}
 
 class UsersJson extends Json {
-  constructor() {
-    this.getUserByLogin = this.getElementByPropertyValue(this, "login");
+  constructor(...rest) {
+    super(...rest);
+    this.getUserByLogin = super.getElementByPropertyValue.bind(this, "login");
   }
 
   // getUserByLogin(userLogin) {
@@ -71,9 +63,10 @@ class UsersJson extends Json {
   getUserByToken(userToken) {
     const tokenArray = userToken.split(' '); //OR store "BEARER *TOKEN*" in database
     const tokenType = tokenArray[0];
-    const token = tokenArray[1];
+    const token = Number(tokenArray[1]);
+
     if (tokenType === "Bearer") {
-      return this.getElementByPropertyValue("token", userToken);
+      return this.getElementByPropertyValue("token", token);
     }
   }
 
@@ -82,14 +75,15 @@ class UsersJson extends Json {
     const userCredentialsArray = userCredentials.split(':');
     const userLogin = userCredentialsArray[0];
     const userPassword = userCredentialsArray[1];
-  
-    const resultUser = users.find(user => {
+
+    const resultUser = this.obj.find(user => {
       return user.email === userLogin && user.password === userPassword;
     });
-  
+
     return resultUser;
   }
 }
+const users = new UsersJson(path.join(__dirname + '/../data/users.json'));
 
 class ProductsJson extends Json {
   getProductsFromCategory(categoryUrlName) {
@@ -100,12 +94,12 @@ class ProductsJson extends Json {
     return this.getElementByPropertyValue("id", itemId);
   }
 }
-const productss = new ProductsJson('../data/products.json');
+const products = new ProductsJson('../data/products.json');
 
 class CatalogJson extends Json {
-  constructor(filePath) {
-    super(filePath);
-    this.getCategoryByName = this.getElementByPropertyValue.bind(this, "name");
+  constructor(...rest) {
+    super(...rest);
+    this.getCategoryByName = super.getElementByPropertyValue.bind(this, "name");
   }
   // getCategoryByName(name) {
   //   return this.getElementByPropertyValue("name", name);
@@ -113,58 +107,6 @@ class CatalogJson extends Json {
   // }
 }
 const catalog = new CatalogJson('../data/catalog.json');
-
-function getCategoryByName(name) {
-  const result = catalog.categories.filter(item => {
-    return item.title.replace(/ /g, '-').toLowerCase() === name;
-  });
-
-  return result[0];
-}
-
-function getProductsFromSpecificCategory(categoryName) {
-  const result = products.filter(item => {
-    return item.category.replace(/ /g, '-').toLowerCase() === categoryName;
-  });
-
-  return result;
-}
-
-function getItemById(itemId) {
-  const result = products.filter(item => {
-    return item.id === itemId;
-  });
-  return result[0];
-}
-
-function getUserByLogin(userLogin) {
-  const result = users.filter(user => {
-    return user.login === userLogin;
-  });
-
-  return result[0];
-}
-
-function getUserByCredentials(userCredentialsBase64) {
-  const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
-  const userCredentialsArray = userCredentials.split(':');
-  const userLogin = userCredentialsArray[0];
-  const userPassword = userCredentialsArray[1];
-
-  const resultUser = users.filter(user => {
-    return user.login === userLogin && user.password === userPassword;
-  });
-
-  return resultUser[0];
-}
-
-function getUserByToken(userToken) {
-  const result = users.find(user => {
-    return "Bearer " + user.token === userToken;
-  });
-
-  return result;
-}
 
 function generateRandomToken() {
   //window.crypto.getRandomValues(array);
@@ -177,15 +119,10 @@ function generateRandomToken() {
   return randomNumber;
 }
 
-// router.get(paths.cart.url, (req, res) => {
-//   res.send(cart);
-// });
-
 router.get(paths.categories.url, (req, res) => {
   res.setHeader("Cache-Control", "public, max-age=2592");
   res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
 
-  // res.send(catalog);
   res.send(catalog.obj);
 });
 
@@ -201,44 +138,51 @@ router.get(paths.category.url, (req, res) => {
 
 router.get(paths.category.products.url, (req, res) => {
   const categoryUrlName = req.params.categoryName;
-  const products = productss.getProductsFromCategory(categoryUrlName);
+  const items = products.getProductsFromCategory(categoryUrlName);
 
-  res.send(products);
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
+  res.send(items);
 });
 
-router.get(paths.category.products.product.url, (req, res, next) => {
-  const categoryName = req.params.categoryName;
+router.get(paths.category.products.product.url, (req, res) => {
   const itemId = Number(req.params.itemId);
-  const item = getItemById(itemId);
+  const item = products.getItemById(itemId);
+
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
 
   res.send(item);
 });
 
 router.get(paths.users.url, (req, res) => {
-  res.send(users);
+  res.send(users.obj);
 });
 
 router.get(paths.users.user.url, (req, res) => {
   const userLogin = req.params.userLogin;
-  const user = getUserByLogin(userLogin);
+  const user = users.getUserByLogin(userLogin);
 
   res.send(user);
 });
 
 router.get(paths.cart.url, (req, res) => {
   const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-  const user = getUserByToken(userToken); // || unauthorized cart -> session storage 
+  const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
 
   res.send(user.cart);
 });
 
 router.post(paths.cart.add.url, (req, res, next) => {
   const productId = Number(req.body.id) || res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+  //res.setHeader("WWW-Authenticate", "Bearer"); <------
   const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-  const item = getItemById(productId);
+  const item = products.getItemById(productId);
 
   if (item && item.availability) {
-    const user = getUserByToken(userToken);
+    const user = users.getUserByToken(userToken);
+
     const productInCart = user.cart.filter(item => {
       return item.id === productId;
     });
@@ -250,8 +194,8 @@ router.post(paths.cart.add.url, (req, res, next) => {
     }
 
     //user.cart.pop(); // delete request
-    
-    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+
+    users.writeInFile();
 
     res.send(user.cart);
   } else {
@@ -260,31 +204,31 @@ router.post(paths.cart.add.url, (req, res, next) => {
 });
 
 router.post(paths.login.url, (req, res, next) => {
+
   const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
-  const user = getUserByCredentials(userCredentialsBase64); 
+  const user = users.getUserByCredentials(userCredentialsBase64) || res.status(401).send({ success: false, message: 'Invalid login or password.'});
 
-  if (user) {
-    user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
+  user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
 
-    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+  users.writeInFile();
 
-    res.setHeader("Cache-Control", "public, max-age=2592");
-    res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-  
-    res.send(user);
-  } else {
-    res.status(401).send({ success: false, message: 'Invalid login or password.'});
-  }
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
+  res.setHeader("Cache-Control", "public, max-age=2592");
+  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+
+  res.send(user);
 });
 
-router.post(paths.register.url, (req, res, next) => {
+router.post(paths.register.url, (req, res) => {
   const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
   const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
   const userCredentialsArray = userCredentials.split(':');
   const userLogin = userCredentialsArray[0];
   const userPassword = userCredentialsArray[1];
 
-  let user = getUserByLogin(userLogin); 
+  let user = users.getUserByLogin(userLogin);
 
   if (user) {
     res.status(403).send({ success: false, message: 'This email is already used.'});
@@ -295,20 +239,19 @@ router.post(paths.register.url, (req, res, next) => {
       "email": userLogin + "@domain.com",
       "password": userPassword,
       "token": generateRandomToken(),
-      "cart": []
+      "cart": []  // OR cart from session storage
     };
-    users.push(newUser);
+    users.obj.push(newUser);
 
     //user.token  // -> to session storage // = unAuthorizedToken || userToken
     ///
 
-    fs.writeFile(usersDir, JSON.stringify(users, null, 2));
+    users.writeInFile();
 
     res.setHeader("Cache-Control", "public, max-age=2592");
     res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
 
-    //user = getUserByLogin(userLogin);
-    res.send(newUser);
+    res.send(users.obj);
   }
 });
 

@@ -7,7 +7,7 @@
     "cart": [
       {
         "id": 2,
-        "quantity": 18
+        "quantity": 25
       },
       {
         "id": 3,
@@ -48,7 +48,12 @@
     "email": "new@domain.com",
     "password": "new",
     "token": 6533703287,
-    "cart": []
+    "cart": [
+      {
+        "id": 2,
+        "quantity": 10
+      }
+    ]
   },
   {
     "login": "newUser",
@@ -61,5 +66,19 @@
         "quantity": 1
       }
     ]
+  },
+  {
+    "login": "test",
+    "email": "test@domain.com",
+    "password": "test",
+    "token": 23798960059,
+    "cart": []
+  },
+  {
+    "login": "",
+    "email": "@domain.com",
+    "password": "",
+    "token": 39192946410,
+    "cart": []
   }
 ]
