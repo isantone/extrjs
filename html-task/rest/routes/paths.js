@@ -6,6 +6,10 @@ module.exports = {
     }
   },
 
+  client: {
+    url: "http://localhost:7777"
+  },
+
   cart: {
     url: "/cart"
   },

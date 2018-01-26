@@ -125,6 +125,7 @@ router.post(paths.cart.url, (req, res, next) => {
 router.get(paths.categories.url, (req, res) => {
   res.setHeader("Cache-Control", "public, max-age=2592");
   res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  res.setHeader("Access-Control-Allow-Origin", paths.client.url);
 
   res.send(catalog.obj);
 });

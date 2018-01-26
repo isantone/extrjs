@@ -5,6 +5,8 @@ import IndexView from '../views/index-view';
 
 import Database from '../database';
 
+import paths from '../paths';
+
 function IndexPresenter() {
 	//Presenter.apply(this, arguments);
 	this.view = new IndexView();
@@ -15,7 +17,19 @@ function IndexPresenter() {
 //IndexPresenter.prototype.constructor = IndexPresenter;
 
 IndexPresenter.prototype.init = function() {
-	this.render(this.view.getTemplate(this.model.getData(Database())));
+	this.model.getData(paths.categories.url)
+		.then(response => {
+			console.log(response);
+			let categories = JSON.parse(response);
+			return categories;
+		})
+		.then(categories => {
+			return this.view.getTemplate(categories);
+		})
+		.then(compiledTemplate => {
+			this.render(compiledTemplate);
+		});
+	
 	this.getButtons();
 	this.bindEvents();
 };

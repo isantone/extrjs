@@ -1,11 +1,13 @@
 [
   {
     "name": "snowboard",
-    "title": "Snowboard"
+    "title": "Snowboard",
+    "image": "http://localhost:3000/images/products/snowboard/category.png"
   },
   {
     "name": "alpine-ski",
-    "title": "Alpine ski"
+    "title": "Alpine ski",
+    "image": "http://localhost:3000/images/products/alpine-ski/category.png"
   }
 ]
 
