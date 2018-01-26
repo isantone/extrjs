@@ -7,7 +7,7 @@
     "cart": [
       {
         "id": 2,
-        "quantity": 27
+        "quantity": 34
       },
       {
         "id": 3,
@@ -15,7 +15,15 @@
       },
       {
         "id": 1,
-        "quantity": 5
+        "quantity": 6
+      },
+      {
+        "id": 4,
+        "quantity": 2
+      },
+      {
+        "id": 5,
+        "quantity": 21
       }
     ]
   },

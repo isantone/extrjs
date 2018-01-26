@@ -2,33 +2,38 @@ module.exports = {
   host: {
     url: "http://localhost:3000/",
     api: {
-      url: "http://localhost:3000/api/",
+      url: "http://localhost:3000/api/"
     }
   },
+
   cart: {
-    url: "/cart",
+    url: "/cart"
   },
-  category: {
-    url: "/categories/:categoryName",
-    products: {
-      url: "/categories/:categoryName/products",
-      product: {
-        url: "/categories/:categoryName/products/:itemId"
+
+  categories: {
+    url: "/categories",
+    category: {
+      url: "/categories/:categoryName",
+      products: {
+        url: "/categories/:categoryName/products",
+        product: {
+          url: "/categories/:categoryName/products/:itemId"
+        }
       }
     }
   },
-  categories: {
-    url: "/categories"
-  },
+
   users: {
     url: "/users",
     user: {
-      url: "/users/:userLogin",
+      url: "/users/:userLogin"
     }
   },
+
   login: {
     url: "/login"
   },
+
   register: {
     url: "/register"
   }
