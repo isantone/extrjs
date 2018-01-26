@@ -7,9 +7,6 @@ module.exports = {
   },
   cart: {
     url: "/cart",
-    add: {
-      url: "/cart/add"
-    }
   },
   category: {
     url: "/categories/:categoryName",

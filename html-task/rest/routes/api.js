@@ -174,7 +174,7 @@ router.get(paths.cart.url, (req, res) => {
   res.send(user.cart);
 });
 
-router.post(paths.cart.add.url, (req, res, next) => {
+router.post(paths.cart.url, (req, res, next) => {
   const productId = Number(req.body.id) || res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
   //res.setHeader("WWW-Authenticate", "Bearer"); <------
   const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
@@ -204,7 +204,6 @@ router.post(paths.cart.add.url, (req, res, next) => {
 });
 
 router.post(paths.login.url, (req, res, next) => {
-
   const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
   const user = users.getUserByCredentials(userCredentialsBase64) || res.status(401).send({ success: false, message: 'Invalid login or password.'});
 
