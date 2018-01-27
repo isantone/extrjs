@@ -9,7 +9,7 @@ import paths from './paths';
 function Router() {}
 var prevPres = [];
 
-Router.prototype.dispatch = function(hash) { 
+Router.prototype.dispatch = function(hash) {
   switch (hash) {
     case paths.pages.index:
       return [new IndexPresenter()];
@@ -18,13 +18,12 @@ Router.prototype.dispatch = function(hash) {
     case paths.pages.cart:
       return [new CartPresenter()];
     default:
-      if (hash.indexOf(paths.pages.product) !== -1) { // ES6 includes
-        const idOfProduct = Number(hash.split("=")[1]);
-        return [new ProductPresenter(idOfProduct)];
+      if (hash.includes(paths.pages.product)) {
+        return [new ProductPresenter()];
       }
 
       if (hash.includes(paths.pages.category)) {
-        const nameOfCategory = hash.split("=")[1];
+        const nameOfCategory = hash.split("/")[1];
         return [new CategoryPresenter(nameOfCategory)];
       }
 

@@ -1,11 +1,3 @@
-function IndexModel() {}
+import Model from './model';
 
-IndexModel.prototype.getData = function(database) {
-  let arrayOfCategories = [];
-  for (let key in database) {
-    arrayOfCategories.push(key);
-  }
-  return arrayOfCategories;
-};
-
-export default IndexModel;
+export default class IndexModel extends Model {}

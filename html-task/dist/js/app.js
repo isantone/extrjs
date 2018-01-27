@@ -11,7 +11,7 @@ App.prototype.renderPage = function(hash) {
 	this.blocks = this.router.dispatch(hash);
 	if (this.oldBlocks) {
 		forEach(this.oldBlocks, function(block) {
-			block.remove();
+			block.delete();
 		});
 	}
 	if (this.blocks) {

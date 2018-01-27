@@ -1,10 +1,23 @@
+const host = "http://localhost:3000/api";
+
 const paths = {
   pages: {
     index:   "",
     catalog: "#catalog",
-    category: "#category?name=",
-    product: "#product?id=",
+    category: "#categories/",
+    product: "#products/",
     cart: "#cart"
+  },
+
+  ajax: {
+    index: {
+      url: host + "/categories",
+      params: { method: 'GET' }
+    },
+    category: {
+      url: host + "/categories/",
+      params: { method: 'GET' }
+    }
   }
 };
 

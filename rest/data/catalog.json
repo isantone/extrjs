@@ -1,0 +1,15 @@
+[
+  {
+    "name": "snowboard",
+    "title": "Snowboard",
+    "productsUrl": "http://localhost:3000/api/categories/snowboard/products",
+    "image": "http://localhost:3000/images/products/snowboard/category.png"
+  },
+  {
+    "name": "alpine-ski",
+    "title": "Alpine ski",
+    "productsUrl": "http://localhost:3000/api/categories/alpine-ski/products",
+    "image": "http://localhost:3000/images/products/alpine-ski/category.png"
+  }
+]
+
