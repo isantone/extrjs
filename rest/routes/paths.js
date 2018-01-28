@@ -17,7 +17,7 @@ module.exports = {
       products: {
         url: "/categories/:categoryName/products",
         product: {
-          url: "/categories/:categoryName/products/:itemId"
+          url: "/products/:itemId"
         }
       }
     }

@@ -1,6 +1,5 @@
 export default class CategoryView {
   getTemplate(data) {
-
     const CategoryTemplate = 
     `<div id="pageContent" class="page-main">
       <!-- Navigation -->
@@ -16,12 +15,12 @@ export default class CategoryView {
 
   const productTemplate =
     `<div class="product product_grid">
-      <a href="#categories/{{this.category}}/products/{{this.id}}">
+      <a href="#/products/{{this.id}}">
         <img class="product__image" src="{{this.images.[0]}}">
       </a>
       <div class="product__wrapper product__wrapper_grid">
         <div class="product__left-part">
-          <a href="#categories/{{this.category}}/products/{{this.id}}">
+          <a href="#products/{{this.id}}">
             <p class="product__name">
               {{this.title}}
             </p>
@@ -30,7 +29,7 @@ export default class CategoryView {
         </div>
         <div class="product__right-part">
           <p class="product__price">Price: \$ {{this.price}}</p>
-          <button data-id="{{this.id}}" class="button input-size turquoise add-to-cart">Add to cart</button>
+          <button data-id="{{this.id}}" class="button button_color input-size add-to-cart">Add to cart</button>
         </div>
       </div>
     </div>`;

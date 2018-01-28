@@ -3,6 +3,7 @@ export default class Presenter {
     this.pageFooter = document.getElementById('pageFooter');
     this.fetchReq = fetchReq;
   }
+
   init() {
     document.title = this.title;
 

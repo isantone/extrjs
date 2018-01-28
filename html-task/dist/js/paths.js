@@ -17,6 +17,10 @@ const paths = {
     category: {
       url: host + "/categories/",
       params: { method: 'GET' }
+    },
+    product: {
+      url: host + "/products/",
+      params: { method: 'GET' }
     }
   }
 };

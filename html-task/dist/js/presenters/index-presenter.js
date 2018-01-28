@@ -1,5 +1,3 @@
-//import Presenter from './presenter';
-//import IndexPresenter from './index-page';
 import paths from '../paths';
 
 import Presenter from './presenter';

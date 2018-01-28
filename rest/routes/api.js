@@ -157,7 +157,8 @@ router.get(paths.categories.category.products.product.url, (req, res) => {
   const item = products.getItemById(itemId);
 
   res.setHeader("Cache-Control", "public, max-age=2592");
-  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(item);
 });
