@@ -1,17 +1,32 @@
+// .button {
+//   display: inline-block;
+
+//   padding: 5px 10px;
+
+//   font: $button-font;
+//   //color: $button-font-color;
+//   color: #4e4e4e;
+
+//   //border: none;
+//   border: 1px solid #e5e5e5;
+//   background: #f5f5f5;//none;
+//   text-transform: uppercase;
+//   -webkit-appearance: none;
+
+//   outline: 0; //reset chrome outline
+// }
+
 .button {
-  display: inline-block;
-
-  padding: 5px 10px;
-
   font: $button-font;
-  //color: $button-font-color;
-  color: #4e4e4e;
-
-  //border: none;
-  border: 1px solid #e5e5e5;
-  background: #f5f5f5;//none;
   text-transform: uppercase;
-  -webkit-appearance: none;
 
-    outline: 0; //reset chrome outline
+  background: lightgray;
+
+  cursor: pointer;
+
+  &_color {
+    color: white;
+    border-color: $main-color;
+    background: $main-color;
+  }
 }

@@ -52,8 +52,8 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.src.scss.folder, ['sass']);
 
-  gulp.watch(paths.src.html, ['copyHtml']);
-  gulp.watch(paths.src.img, ['copyImg']);
+  //gulp.watch(paths.src.html, ['copyHtml']);
+  //gulp.watch(paths.src.img, ['copyImg']);
   //gulp.watch(paths.src.js, ['copyJs']);
 });
 

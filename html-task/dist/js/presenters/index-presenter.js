@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //import Presenter from './presenter';
 //import IndexPresenter from './index-page';
 import IndexModel from '../models/index-model';
@@ -33,41 +34,34 @@ IndexPresenter.prototype.init = function() {
 	this.getButtons();
 	this.bindEvents();
 };
+=======
+import paths from '../paths';
 
-IndexPresenter.prototype.render = function(compiledTemplate) {
-	$( compiledTemplate ).insertBefore( document.getElementById('pageFooter') );
-	this.contentContainer = document.getElementById('pageContent');
-	document.title = "EXTREME SHOP";
-};
+import Presenter from './presenter';
+>>>>>>> c3f0bff12aa562a9f860d87223d2e25b450c07d0
 
-IndexPresenter.prototype.remove = function() {
-	this.delete();
-	//this.getButtons();
-	//this.bindEvents();
-};
+import IndexModel from '../models/index-model';
+import IndexView from '../views/index-view';
 
-IndexPresenter.prototype.delete = function() {
-	//this.unbindEvents();
-	this.contentContainer.remove();
-};
+export default class IndexPresenter extends Presenter {
+	constructor() {
+		const requestUrl = paths.ajax.index.url;
+		const requestParameters = paths.ajax.index.params;
+		const indexFetchReq = new Request(requestUrl, requestParameters);
 
-IndexPresenter.prototype.getButtons = function() {
-	this.body = document.body;
-};
+		super(indexFetchReq);
 
-IndexPresenter.prototype.preventDefaultForURLs = function(event) {
-  if ((event.target.tagName === "A") || (event.target.tagName === "IMG")) {
-    event.preventDefault();
-  }
-};
+		this.view = new IndexView();
+		this.model = new IndexModel();
+		this.title = "EXTREME SHOP";
+	}
 
-IndexPresenter.prototype.bindEvents = function() {
-	//this.body.addEventListener('click', this.preventDefaultForURLs);
-	//this.button1.addEventListener('click', this.handleButtonClick, false);
-};
+	insertTemplate(compiledTemplate) {
+		this.pageFooter.insertAdjacentHTML("beforeBegin", compiledTemplate);
+		this.contentContainer = document.getElementById('pageContent');
+	}
 
-// IndexPresenter.prototype.handleButtonClick = function(event) {
-// 	console.log(`Click to button #${event.target.dataset.id}`);
-// };
-
-export default IndexPresenter;
+	removeTemplate() {
+		this.contentContainer.remove();
+	}
+}

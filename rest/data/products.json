@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "title": "Burton Custom X Flying V",
+    "images": [
+      "http://localhost:3000/images/products/snowboard/1_1_s.jpg",
+      "http://localhost:3000/images/products/snowboard/1_2_s.jpg",
+      "http://localhost:3000/images/products/snowboard/1_3_s.jpg"
+    ],
+    "description": "text description",
+    "price": 749,
+    "category": "snowboard",
+    "availability": true
+  },
+  {
+    "id": 2,
+    "title": "Burton Ripcord",
+    "images": [
+      "http://localhost:3000/images/products/snowboard/2_1_s.jpg",
+      "http://localhost:3000/images/products/snowboard/2_2_s.jpg",
+      "http://localhost:3000/images/products/snowboard/2_3_s.jpg"
+    ],
+    "description": "text description",
+    "price": 379,
+    "category": "snowboard",
+    "availability": true
+  },
+  {
+    "id": 3,
+    "title": "K2 Raygun",
+    "images": [
+      "http://localhost:3000/images/products/snowboard/3_1_s.jpg",
+      "http://localhost:3000/images/products/snowboard/3_2_s.jpg",
+      "http://localhost:3000/images/products/snowboard/3_3_s.jpg"
+    ],
+    "description": "text description",
+    "price": 399,
+    "category": "snowboard",
+    "availability": false
+  },
+  {
+    "id": 4,
+    "title": "Nordica ENFORCER 100",
+    "images": [
+      "http://localhost:3000/images/products/alpine-ski/4_1_s.jpg",
+      "http://localhost:3000/images/products/alpine-ski/4_2_s.jpg",
+      "http://localhost:3000/images/products/alpine-ski/4_3_s.jpg"
+    ],
+    "description": "text description",
+    "price": 799,
+    "category": "alpine-ski",
+    "availability": true
+  },
+  {
+    "id": 5,
+    "title": "Nordica ENFORCER 110",
+    "images": [
+      "http://localhost:3000/images/products/alpine-ski/5_1_s.jpg",
+      "http://localhost:3000/images/products/alpine-ski/5_2_s.jpg",
+      "http://localhost:3000/images/products/alpine-ski/5_3_s.jpg"
+    ],
+    "description": "text description",
+    "price": 849,
+    "category": "alpine-ski",
+    "availability": true
+  }
+]

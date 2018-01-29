@@ -8,13 +8,26 @@ function readyFn( jQuery ) {
   // $("input[type=email]").blur(inputBlurHandler);
   // $("input[type=password]").blur(inputBlurHandler);
 
-  $("#regButton").click(showRegFormAndHideLogForm);
-  $("#logButton").click(showLogFormAndHideRegForm);
+  $("#showReg").click(showRegFormAndHideLogForm);
+  $("#showLog").click(showLogFormAndHideRegForm);
 
   $("#logCancelButton").click(closeFormEventHandler);
   $("#regCancelButton").click(closeFormEventHandler);
 
   $signFormWrappers.click(closeFormEventHandler);
+
+  logButton.addEventListener("click", logUser, false);
+  regButton.addEventListener("click", regUser, false);
+}
+
+function logUser(event) {
+  event.preventDefault();
+
+}
+
+function regUser(event) {
+  event.preventDefault();
+
 }
 
 function getJqueryElements() {
@@ -27,6 +40,9 @@ function getJqueryElements() {
 
   $logForm = $("#logForm");
   $regForm = $("#regForm");
+
+  const logButton = document.getElementById('logButton');
+  const regButton = document.getElementById('regButton');
 }
 
 function hideForms() {
@@ -40,12 +56,10 @@ function closeForm() {
 }
 
 function closeFormEventHandler(event) {
-  //event.stopPropagation();
   if (event.target === event.currentTarget) {
+    event.preventDefault();
     closeForm();
   }
-
-  event.preventDefault();
 }
 
 // function inputBlurHandler(event) {
@@ -73,7 +87,7 @@ function showLogForm(event) {
   event.preventDefault();
 }
 
-function showLogFormAndHideRegForm(event) {
+function showLogFormAndHideRegForm() {
   $regForm.hide();
   $logForm.show();
 

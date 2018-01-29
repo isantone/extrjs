@@ -8,6 +8,8 @@ $blue: blue;
 //$turquoise: #39C2D7;
 $turquoise: #00aad0;
 
+$main-color: rgb(14, 119, 140);
+$light-main-color: rgb(27, 145, 169);
 
 $header-color: #18adc4;
 $footer-color: #808080;
@@ -22,6 +24,8 @@ $font-size: 12pt;
 $font: $font-size 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
 $font-family: 'Open Sans', 'Verdana', sans-serif;
 $font-color: $green;
+
+$h2-font: bold 14pt $font-family;
 
 $button-font: 12pt 'Open Sans', Arial, Verdana, Tahoma, sans-serif;
 $button-font-color: $white;

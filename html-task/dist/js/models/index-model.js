@@ -1,5 +1,6 @@
-function IndexModel() {}
+import Model from './model';
 
+<<<<<<< HEAD
 IndexModel.prototype.getData = function(url) {
   return new Promise(function(resolve, reject) {
     const xhr = new XMLHttpRequest();
@@ -26,3 +27,6 @@ IndexModel.prototype.getData = function(url) {
 };
 
 export default IndexModel;
+=======
+export default class IndexModel extends Model {}
+>>>>>>> c3f0bff12aa562a9f860d87223d2e25b450c07d0
