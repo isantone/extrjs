@@ -125,11 +125,7 @@ router.post(paths.cart.url, (req, res, next) => {
 router.get(paths.categories.url, (req, res) => {
   res.setHeader("Cache-Control", "public, max-age=2592");
   res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-<<<<<<< HEAD:html-task/rest/routes/api.js
-  res.setHeader("Access-Control-Allow-Origin", paths.client.url);
-=======
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
->>>>>>> c3f0bff12aa562a9f860d87223d2e25b450c07d0:rest/routes/api.js
 
   res.send(catalog.obj);
 });
