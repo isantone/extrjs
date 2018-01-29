@@ -20,12 +20,7 @@ module.exports = class UsersJson extends Json {
     }
   }
 
-  getUserByCredentials(userCredentialsBase64) {
-    const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
-    const userCredentialsArray = userCredentials.split(':');
-    const userLogin = userCredentialsArray[0];
-    const userPassword = userCredentialsArray[1];
-
+  getUserByCredentials(userLogin, userPassword) {
     const resultUser = this.obj.find(user => {
       return user.email === userLogin && user.password === userPassword;
     });

@@ -1,7 +1,7 @@
 export default class Presenter {
-  constructor(fetchReq) {
+  constructor(/*fetchReq*/) {
     this.pageFooter = document.getElementById('pageFooter');
-    this.fetchReq = fetchReq;
+    //this.fetchReq = fetchReq;
   }
 
   init() {

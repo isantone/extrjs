@@ -8,10 +8,14 @@ export default class RegPresenter extends Presenter {
 	constructor() {
     super();
 
-		const requestUrl = paths.ajax.index.url;
-    const requestParameters = paths.ajax.index.params;
+		// const requestUrl = paths.ajax.register.url;
+    // //const requestParameters = paths.ajax.register.params;
+    // const requestParameters = {
+    //   method: 'POST',
+    //   body: new FormData(this.signFormForm)
+    // };
 
-    this.fetchReq = new Request(requestUrl, requestParameters);
+    // this.fetchReq = new Request(requestUrl, requestParameters);
     this.title = "EXTREME SHOP";
 
 		this.view = new RegView();
@@ -39,16 +43,26 @@ export default class RegPresenter extends Presenter {
   getEventTargets() {
     return new Promise((resolve, reject) => {
       document.addEventListener("DOMContentLoaded", (event) => {
+        this.signFormOverlay = document.getElementById("signOverlay");
+        this.signFormWrapper = document.getElementById("signWrapper");
         this.signFormHeader = document.getElementById("signHeader");
         this.signFormForm = document.getElementById("signForm");
-        this.signFormWrapper = document.getElementById("signWrapper");
-        this.signFormOverlay = document.getElementById("signOverlay");
+
+        this.changeFormLink = document.getElementById("changeForm");
+        this.signBtn = document.getElementById("signButton");
+
+        this.sendFormBtn = document.getElementById("sendFormButton");
 
         this.emailInput = document.getElementById("emailInput");
+        this.passwordInput = document.getElementById("passwordInput");
 
-        //this.signForm = this.signFormWrapper; // <--- !!!!
+        this.formData = new FormData(this.signFormForm);
 
-        this.signButton = document.getElementById('signButton');
+        this.rememberLabel = document.getElementById("rememberMe");
+        this.forgotPassLink = document.getElementById("forgotPassword");
+        this.tipsLineDiv = document.getElementById("tipsLine");
+
+        this.logFormActive = true; 
 
         resolve();
       });
@@ -62,16 +76,16 @@ export default class RegPresenter extends Presenter {
     // $("input[type=email]").blur(inputBlurHandler);
     // $("input[type=password]").blur(inputBlurHandler);
 
-    //document.getElementById("showReg").addEventListener("click", showRegFormAndHideLogForm);
-    //document.getElementById("showReg").addEventListener("click", this.showLogFormAndHideRegForm.bind(this), false);
-
-    //document.getElementById("logCancelButton").addEventListener("click", closeFormEventHandler);
     document.getElementById("cancelButton").addEventListener("click", this.closeFormEventHandler.bind(this), false);
+
+    this.sendFormBtn.addEventListener("click", this.sendForm.bind(this), false);
 
     this.signFormOverlay.addEventListener("click", this.closeFormEventHandler.bind(this));
 
+    this.changeFormLink.addEventListener("click", this.changeForm.bind(this), false);
+
     //logButton.addEventListener("click", logUser, false);
-    this.signButton.addEventListener("click", regUser, false);
+    //this.signButton.addEventListener("click", regUser, false);
   }
 
   showRegForm(event) {
@@ -84,7 +98,6 @@ export default class RegPresenter extends Presenter {
     }) // PROMISE DOESNT WORK
       .then(() => {
         setTimeout(() => { /// WAIT 20 ms FOR "DISPLAY:NONE" FINISHING. <---- ????
-
           this.signFormOverlay.classList.add("overlay_visible");
           this.signFormHeader.classList.add("sign-form__header_visible");
           this.signFormForm.classList.add("sign-form__form_visible");
@@ -110,6 +123,54 @@ export default class RegPresenter extends Presenter {
       event.preventDefault();
       this.closeForm();
     }
+  }
+
+  changeForm(event) {
+    if (this.logFormActive) {
+      this.logFormActive = false;
+
+      this.signFormHeader.innerText = "PLEASE SIGN UP";
+      this.changeFormLink.innerText = "Log In";
+      this.sendFormBtn.innerText = "SIGN UP";
+
+      this.rememberLabel.remove();
+      this.forgotPassLink.remove();
+
+      this.emailInput.focus();
+    }
+    else {
+      this.logFormActive = true;
+
+      this.signFormHeader.innerText = "PLEASE LOG IN";
+      this.changeFormLink.innerText = "Sign Up";
+      this.sendFormBtn.innerText = "LOG IN";
+
+      this.tipsLineDiv.insertAdjacentElement("beforeBegin", this.rememberLabel);
+      this.tipsLineDiv.insertAdjacentElement("afterBegin", this.forgotPassLink);
+
+      this.emailInput.focus();
+    }
+  }
+
+  sendForm() {
+    this.formData.set("login", this.emailInput.value);
+    this.formData.set("password", this.passwordInput.value);
+
+    let requestUrl;
+    let requestParameters;
+
+    if (this.logFormActive) {
+      requestUrl = paths.ajax.login.url;
+      requestParameters = paths.ajax.login.params;
+      requestParameters.body = this.formData;
+    } else {
+      requestUrl = paths.ajax.register.url;
+      requestParameters = paths.ajax.register.params;
+      requestParameters.body = this.formData;  
+    }
+
+    this.fetchReq = new Request(requestUrl, requestParameters);
+    fetch(this.fetchReq);
   }
 }
 
@@ -198,5 +259,4 @@ function logUser(event) {
 
 function regUser(event) {
   event.preventDefault();
-
 }

@@ -11,7 +11,8 @@ export default class IndexPresenter extends Presenter {
 		const requestParameters = paths.ajax.index.params;
 		const indexFetchReq = new Request(requestUrl, requestParameters);
 
-		super(indexFetchReq);
+		super(/*indexFetchReq*/);
+		this.fetchReq = indexFetchReq;
 
 		this.view = new IndexView();
 		this.model = new IndexModel();

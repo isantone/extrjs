@@ -767,6 +767,7 @@ template {
   height: 80px;
   line-height: 80px;
   color: white;
+  text-transform: uppercase;
   background: #0e778c;
   transition: left 0.2s ease-out; }
   .sign-form__header_visible {

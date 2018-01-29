@@ -2,6 +2,8 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
 const path = require('path');
 
 const paths = require('./paths');
@@ -17,22 +19,21 @@ const catalog = new CatalogJson(path.join(__dirname, '..', 'data', 'catalog.json
 const products = new ProductsJson(path.join(__dirname, '..', 'data', 'products.json'));
 
 function generateRandomToken() {
-  //window.crypto.getRandomValues(array);
-  let randomNumber = Math.round(Math.random() * 100000000000);
-
-  if (!randomNumber || randomNumber === 1) {
-    randomNumber = Math.round(Math.random() * 100000000000);
-  }
-
-  return randomNumber;
+  return Math.round(Math.random() * 100000000000);
 }
 
-router.post(paths.register.url, (req, res) => {
-  const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
-  const userCredentials = new Buffer(userCredentialsBase64, 'base64').toString();
-  const userCredentialsArray = userCredentials.split(':');
-  const userLogin = userCredentialsArray[0];
-  const userPassword = userCredentialsArray[1];
+router.post('/send', upload.array(), (req, res) => {
+  let formData = req.body;
+  console.log('form data: ', formData);
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  res.sendStatus(200);
+});
+
+router.post(paths.register.url, upload.array(), (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+
+  const userLogin = req.body.login;
+  const userPassword = req.body.password;
 
   let user = users.getUserByLogin(userLogin);
 
@@ -42,7 +43,7 @@ router.post(paths.register.url, (req, res) => {
     //CreateUser//
     const newUser = {
       "login": userLogin,
-      "email": userLogin + "@domain.com",
+      "email": userLogin,
       "password": userPassword,
       "token": generateRandomToken(),
       "cart": []  // OR cart from session storage
@@ -54,25 +55,32 @@ router.post(paths.register.url, (req, res) => {
 
     users.writeInFile();
 
-    res.setHeader("Cache-Control", "public, max-age=2592");
-    res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-
     res.send(users.obj);
   }
 });
 
-router.post(paths.login.url, (req, res, next) => {
-  const userCredentialsBase64 = req.headers.authorization.split(' ')[1];
-  const user = users.getUserByCredentials(userCredentialsBase64) || res.status(401).send({ success: false, message: 'Invalid login or password.'});
+router.post(paths.login.url, upload.array(), (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
-  user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
+  const userCredentials = req.body;
+  const userLogin = userCredentials.login;
+  const userPassword = userCredentials.password;
 
-  users.writeInFile();
+  console.log(userCredentials);
 
-  res.setHeader("Cache-Control", "public, max-age=2592");
-  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  console.log(userLogin);
+  console.log(userPassword);
 
-  res.send(user);
+  const user = users.getUserByCredentials(userLogin, userPassword);
+
+  if (user) {
+    user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
+    users.writeInFile(); 
+    res.send(user);
+  }
+  else {
+    res.status(401).send({ success: false, message: 'Invalid login or password.'});
+  }
 });
 
 router.get(paths.users.url, (req, res) => {

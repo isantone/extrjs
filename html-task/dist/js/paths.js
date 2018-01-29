@@ -64,6 +64,19 @@ const paths = {
     product: {
       url: host + "/products/",
       params: { method: 'GET' }
+    },
+    register: {
+      //url: host + "/register",
+      url: host + "/register",
+      params: {
+        method: 'POST',
+      }
+    },
+    login: {
+      url: host + "/login",
+      params: {
+        method: 'POST'
+      }
     }
   }
 };

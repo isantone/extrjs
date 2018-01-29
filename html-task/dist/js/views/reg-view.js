@@ -9,22 +9,22 @@ export default class RegView {
       <form id="signForm" class="sign-form__form" novalidate>
         <label>
           <i class="fas fa-envelope"></i>
-          <input id="emailInput" class="input-size sign-form__input email-input" type="email" placeholder="E-mail@example.com" required>
+          <input id="emailInput" class="input-size sign-form__input email-input" type="email" placeholder="E-mail@example.com">
           <!-- <p class="sign-form__validation-message tiny-top-margin hide">Enter an e-mail</p> -->
         </label>
         <label>
           <i class="fas fa-unlock"></i>
-          <input  id="passwordInput" class="input-size mid-top-margin password-input" type="password" placeholder="Password" required>
+          <input  id="passwordInput" class="input-size mid-top-margin password-input" type="password" placeholder="Password">
           <!-- <p class="sign-form__validation-message tiny-top-margin hide">Enter a password</p> -->
         </label>
-        <label class="sign-form__remember small-top-margin">
+        <label id="rememberMe" class="sign-form__remember small-top-margin">
           <input type="checkbox"> Remember me
         </label>
-        <div class="two-cols-line small-top-margin">
-          <a class="two-cols-line__left" href="#">Forgot password?</a>
-          <a id="showReg" class="two-cols-line__right" href="#">Sign Up</a>
+        <div id="tipsLine" class="two-cols-line small-top-margin">
+          <a id="forgotPassword" class="two-cols-line__left" href="#">Forgot password?</a>
+          <a id="changeForm" class="two-cols-line__right" href="#">Sign Up</a>
         </div>
-        <button id="signButton" class="button button_color mid-top-margin">LOG IN</button>
+        <button id="sendFormButton" class="button button_color mid-top-margin">LOG IN</button>
         <button id="cancelButton" class="button mid-top-margin">CANCEL</button>
       </form>
     </div>
