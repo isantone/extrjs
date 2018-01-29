@@ -3,11 +3,11 @@ const Json = require('./json');
 module.exports = class UsersJson extends Json {
   // constructor(...rest) {
   //   super(...rest);
-  //   this.getUserByLogin = super.getElementByPropertyValue.bind(this, "login");
+  //   this.getUserByEmail = super.getElementByPropertyValue.bind(this, "email");
   // }
 
-  getUserByLogin(userLogin) {
-    return this.getElementByPropertyValue("login", userLogin);
+  getUserByEmail(userEmail) {
+    return this.getElementByPropertyValue("email", userEmail);
   }
 
   getUserByToken(userToken) {
@@ -20,9 +20,9 @@ module.exports = class UsersJson extends Json {
     }
   }
 
-  getUserByCredentials(userLogin, userPassword) {
+  getUserByCredentials(userEmail, userPassword) {
     const resultUser = this.obj.find(user => {
-      return user.email === userLogin && user.password === userPassword;
+      return user.email === userEmail && user.password === userPassword;
     });
 
     return resultUser;

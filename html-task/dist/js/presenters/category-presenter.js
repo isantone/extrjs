@@ -12,11 +12,12 @@ import forEach from 'lodash/forEach';
 
 export default class CategoryPresenter extends Presenter {
 	constructor(nameOfCategory) {
+		super();
+
 		const requestUrl = paths.ajax.category.url + nameOfCategory + "/products";
 		const requestParameters = paths.ajax.category.params;
-		const categoryFetchReq = new Request(requestUrl, requestParameters);
 
-		super(categoryFetchReq);
+		this.fetchReq = new Request(requestUrl, requestParameters);
 
 		this.view = new CategoryView();
 		this.model = new CategoryModel();
@@ -43,7 +44,7 @@ export default class CategoryPresenter extends Presenter {
 		this.viewChangeButton.addEventListener('click', changeView, false);
 
 		forEach(this.products, (product) => {
-			product.addEventListener('click', this.addToCart, false);
+			product.addEventListener('click', this.addToCart.bind(this), false);
 		});
 	}
 
@@ -51,37 +52,37 @@ export default class CategoryPresenter extends Presenter {
 		this.viewChangeButton.removeEventListener('click', changeView, false);
 
 		forEach(this.products, (product) => {
-			product.removeEventListener('click', this.addToCart, false);
+			product.removeEventListener('click', this.addToCart.bind(this), false);
 		});
 	}
 
-	addToCart(event) {
-		//ajax
-		event.preventDefault();
+	// addToCart(event) {
+	// 	//ajax
+	// 	event.preventDefault();
 
-		let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
+	// 	let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
 
-		var cartJSON = localStorage.getItem("cart");
-		var cart;
+	// 	var cartJSON = localStorage.getItem("cart");
+	// 	var cart;
 
-		if (cartJSON) {
-			cart = JSON.parse(cartJSON);
-		} else {
-			cart = [];
-		}
+	// 	if (cartJSON) {
+	// 		cart = JSON.parse(cartJSON);
+	// 	} else {
+	// 		cart = [];
+	// 	}
 
-		let thisProduct = find(cart, ["id", idOfProduct]);
-		if (thisProduct) {
-			thisProduct.quantity++;
-		}
+	// 	let thisProduct = find(cart, ["id", idOfProduct]);
+	// 	if (thisProduct) {
+	// 		thisProduct.quantity++;
+	// 	}
 
-		else {
-			cart.push({
-				id: idOfProduct,
-				quantity: 1
-			});
-		}
+	// 	else {
+	// 		cart.push({
+	// 			id: idOfProduct,
+	// 			quantity: 1
+	// 		});
+	// 	}
 
-		localStorage.setItem("cart", JSON.stringify(cart));
-	}
+	// 	localStorage.setItem("cart", JSON.stringify(cart));
+	// }
 }

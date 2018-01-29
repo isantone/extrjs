@@ -1,4 +1,6 @@
-//import Presenter from './presenter';
+import paths from '../paths';
+
+import Presenter from './presenter';
 
 import CartModel from '../models/cart-model';
 import CartView from '../views/cart-view';

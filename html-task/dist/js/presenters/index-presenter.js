@@ -7,12 +7,12 @@ import IndexView from '../views/index-view';
 
 export default class IndexPresenter extends Presenter {
 	constructor() {
+		super();
+
 		const requestUrl = paths.ajax.index.url;
 		const requestParameters = paths.ajax.index.params;
-		const indexFetchReq = new Request(requestUrl, requestParameters);
 
-		super(/*indexFetchReq*/);
-		this.fetchReq = indexFetchReq;
+		this.fetchReq = new Request(requestUrl, requestParameters);
 
 		this.view = new IndexView();
 		this.model = new IndexModel();

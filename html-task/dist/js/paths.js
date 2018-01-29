@@ -77,6 +77,18 @@ const paths = {
       params: {
         method: 'POST'
       }
+    },
+    cart: {
+      url: host + "/cart",
+      params: {
+        method: 'GET'
+      },
+      add: {
+        url: host + "/cart",
+        params: {
+          method: 'POST'
+        }
+      }
     }
   }
 };

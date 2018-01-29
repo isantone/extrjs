@@ -8,14 +8,6 @@ export default class RegPresenter extends Presenter {
 	constructor() {
     super();
 
-		// const requestUrl = paths.ajax.register.url;
-    // //const requestParameters = paths.ajax.register.params;
-    // const requestParameters = {
-    //   method: 'POST',
-    //   body: new FormData(this.signFormForm)
-    // };
-
-    // this.fetchReq = new Request(requestUrl, requestParameters);
     this.title = "EXTREME SHOP";
 
 		this.view = new RegView();
@@ -62,7 +54,7 @@ export default class RegPresenter extends Presenter {
         this.forgotPassLink = document.getElementById("forgotPassword");
         this.tipsLineDiv = document.getElementById("tipsLine");
 
-        this.logFormActive = true; 
+        this.logFormActive = true;
 
         resolve();
       });
@@ -153,7 +145,9 @@ export default class RegPresenter extends Presenter {
   }
 
   sendForm() {
-    this.formData.set("login", this.emailInput.value);
+    event.preventDefault();
+
+    this.formData.set("email", this.emailInput.value);
     this.formData.set("password", this.passwordInput.value);
 
     let requestUrl;
@@ -162,101 +156,28 @@ export default class RegPresenter extends Presenter {
     if (this.logFormActive) {
       requestUrl = paths.ajax.login.url;
       requestParameters = paths.ajax.login.params;
-      requestParameters.body = this.formData;
+
     } else {
       requestUrl = paths.ajax.register.url;
       requestParameters = paths.ajax.register.params;
-      requestParameters.body = this.formData;  
     }
 
+    requestParameters.body = this.formData;
+
     this.fetchReq = new Request(requestUrl, requestParameters);
-    fetch(this.fetchReq);
-  }
-}
 
-function showRegForm(event) {
+    fetch(this.fetchReq)
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        localStorage.setItem("user", JSON.stringify(responseJson));
+      })
+      .catch(function(ex) {
+        console.log('Parsing of the data failed: ', ex);
+      });
 
-  const $signFormHeaders   = $(".sign-form__header");
-  const $signFormForms     = $(".sign-form__form");
-
-  // $signFormHeaders.animate({ left: "-=1500px" }, 200);
-  // $signFormForms.animate({ left: "+=1500px" }, 200);
-
-  [].forEach.call(this.signFormHeaders, (element) => {
-    element.style.left = 0;
-  });
-  [].forEach.call(this.signFormForms, (element) => {
-    element.style.left = 0;
-  });
-
-  $("#regForm").fadeIn(200);
-
-  //$logEmail.focus();
-
-  event.preventDefault();
-}
-
-// function showLogForm(event) {
-//   $signFormHeaders.animate({ left: "-=1500px" }, 200);
-//   $signFormForms.animate({ left: "+=1500px" }, 200);
-//   $logForm.fadeIn(200);
-
-//   $logEmail.focus();
-
-//   event.preventDefault();
-// }
-
-function showLogFormAndHideRegForm() {
-  $regForm.hide();
-  $logForm.show();
-
-  $logEmail.focus();
-
-  event.preventDefault();
-}
-
-function showRegFormAndHideLogForm() {
-  $logForm.hide();
-  $regForm.show();
-
-  $regEmail.focus();
-
-  event.preventDefault();
-}
-
-function hideForms() {
-  $signFormWrappers.hide();
-}
-
-function closeForm() {
-  //$signFormHeaders   = $(".sign-form__header");
-  //$signFormForms     = $(".sign-form__form");
-
-  [].forEach.call(this.signFormHeaders, (element) => {
-    element.classList.remove("sign-form__header_animated");
-  });
-
-  [].forEach.call(this.signFormForms, (element) => {
-    element.classList.remove("sign-form__form_animated");
-  });
-
-  setTimeout(() => {
-    this.regForm.classList.remove("hide");
-  }, 20);
-}
-
-function closeFormEventHandler(event) {
-  if (event.target === event.currentTarget) {
-    event.preventDefault();
     this.closeForm();
   }
-}
-
-function logUser(event) {
-  event.preventDefault();
-
-}
-
-function regUser(event) {
-  event.preventDefault();
 }

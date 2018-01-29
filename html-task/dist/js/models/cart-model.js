@@ -1,34 +1,38 @@
-import forEach from 'lodash/forEach';
-import find from 'lodash/find';
-import intersectionBy from 'lodash/intersectionBy';
-import flattenDeep from 'lodash/flattenDeep';
+// import forEach from 'lodash/forEach';
+// import find from 'lodash/find';
+// import intersectionBy from 'lodash/intersectionBy';
+// import flattenDeep from 'lodash/flattenDeep';
 
 //import forOwn from 'lodash/forOwn';
 
-function CartModel() {}
+import Model from './model';
 
-CartModel.prototype.getData = function(database) {
-  let cartJSON = localStorage.getItem("cart");
-	let cart;
+export default class CartModel extends Model {}
 
-	if (cartJSON) {
-		cart = JSON.parse(cartJSON);
-	} else {
-		cart = [];
-	}
+// function CartModel() {}
 
-	let cartCol = [];
-	forEach(database, function(category) {
-		cartCol.push(intersectionBy(category, cart, "id"));
-	});
-	cartCol = flattenDeep(cartCol);
+// CartModel.prototype.getData = function(database) {
+//   let cartJSON = localStorage.getItem("cart");
+// 	let cart;
 
-	for (let i = 0; i < cartCol.length; i++) {
-		cartCol[i].quantity = cart[i].quantity; //ORDER BY SOMETHING BOTH COLLECTIONS
-	}
+// 	if (cartJSON) {
+// 		cart = JSON.parse(cartJSON);
+// 	} else {
+// 		cart = [];
+// 	}
 
-	//localStorage.setItem("cart", JSON.stringify(cart));
-	return cartCol;
-};
+// 	let cartCol = [];
+// 	forEach(database, function(category) {
+// 		cartCol.push(intersectionBy(category, cart, "id"));
+// 	});
+// 	cartCol = flattenDeep(cartCol);
 
-export default CartModel;
+// 	for (let i = 0; i < cartCol.length; i++) {
+// 		cartCol[i].quantity = cart[i].quantity; //ORDER BY SOMETHING BOTH COLLECTIONS
+// 	}
+
+// 	//localStorage.setItem("cart", JSON.stringify(cart));
+// 	return cartCol;
+// };
+
+// export default CartModel;

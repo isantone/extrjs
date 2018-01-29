@@ -11,11 +11,12 @@ import forEach from 'lodash/forEach';
 
 export default class ProductPresenter extends Presenter {
 	constructor(idOfProduct) {
+		super();
+
 		const requestUrl = paths.ajax.product.url + idOfProduct;
 		const requestParameters = paths.ajax.product.params;
-		const productFetchReq = new Request(requestUrl, requestParameters);
 
-		super(productFetchReq);
+		this.fetchReq = new Request(requestUrl, requestParameters);
 
 		this.view = new ProductView();
 		this.model = new ProductModel();

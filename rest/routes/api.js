@@ -22,28 +22,20 @@ function generateRandomToken() {
   return Math.round(Math.random() * 100000000000);
 }
 
-router.post('/send', upload.array(), (req, res) => {
-  let formData = req.body;
-  console.log('form data: ', formData);
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
-  res.sendStatus(200);
-});
-
 router.post(paths.register.url, upload.array(), (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
-  const userLogin = req.body.login;
+  const userEmail = req.body.email;
   const userPassword = req.body.password;
 
-  let user = users.getUserByLogin(userLogin);
+  let user = users.getUserByEmail(userEmail);
 
   if (user) {
-    res.status(403).send({ success: false, message: 'This email is already used.'});
+    res.status(403).send({ success: false, message: 'This email is already taken.'});
   } else {
     //CreateUser//
     const newUser = {
-      "login": userLogin,
-      "email": userLogin,
+      "email": userEmail,
       "password": userPassword,
       "token": generateRandomToken(),
       "cart": []  // OR cart from session storage
@@ -63,23 +55,19 @@ router.post(paths.login.url, upload.array(), (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   const userCredentials = req.body;
-  const userLogin = userCredentials.login;
+  const userEmail = userCredentials.email;
   const userPassword = userCredentials.password;
 
-  console.log(userCredentials);
-
-  console.log(userLogin);
-  console.log(userPassword);
-
-  const user = users.getUserByCredentials(userLogin, userPassword);
+  const user = users.getUserByCredentials(userEmail, userPassword);
 
   if (user) {
     user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
-    users.writeInFile(); 
+    users.writeInFile();
+    delete user.password;
     res.send(user);
   }
   else {
-    res.status(401).send({ success: false, message: 'Invalid login or password.'});
+    res.status(401).send({ success: false, message: 'Invalid email or password.'});
   }
 });
 
@@ -88,23 +76,34 @@ router.get(paths.users.url, (req, res) => {
 });
 
 router.get(paths.users.user.url, (req, res) => {
-  const userLogin = req.params.userLogin;
-  const user = users.getUserByLogin(userLogin);
+  const userEmail = req.params.userEmail;
+  const user = users.getUserByEmail(userEmail);
 
   res.send(user);
 });
 
 router.get(paths.cart.url, (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
   const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
   const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
 
   res.send(user.cart);
 });
 
-router.post(paths.cart.url, (req, res, next) => {
-  const productId = Number(req.body.id) || res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+router.post(paths.cart.url, upload.array(), (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+
+  const productId = Number(req.body.id);
+
+  if (productId) {
+
+  } else {
+    res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+  }
+  console.log("I GOT: " + productId);
   //res.setHeader("WWW-Authenticate", "Bearer"); <------
   const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+  console.log("I GOT: " + userToken);
   const item = products.getItemById(productId);
 
   if (item && item.availability) {

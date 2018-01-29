@@ -15,7 +15,7 @@ export default class CategoryView {
 
   const productTemplate =
     `<div class="product product_grid">
-      <a href="#/products/{{this.id}}">
+      <a href="#products/{{this.id}}">
         <img class="product__image" src="{{this.images.[0]}}">
       </a>
       <div class="product__wrapper product__wrapper_grid">
