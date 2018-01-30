@@ -10,73 +10,46 @@ import Database from '../database';
 //import changeView from '../view-changer';
 //import {setActive, nextSlide, previousSlide} from '../slider';
 
-import forEach from 'lodash/forEach';
+//import forEach from 'lodash/forEach';
 
-function CartPresenter() {
-	//Presenter.apply(this, arguments);
-	this.view = new CartView();
-	this.model = new CartModel();
+export default class CartPresenter extends Presenter {
+	constructor() {
+		super();
+
+		const requestUrl = paths.ajax.cart.url;
+		const requestParameters = paths.ajax.cart.params;
+
+		let userData = JSON.parse(localStorage.getItem("user"));
+
+		requestParameters.headers = new Headers({
+      'Authorization': 'Bearer ' + userData.token,
+    });
+
+		this.fetchReq = new Request(requestUrl, requestParameters);
+
+		this.view = new CartView();
+		this.model = new CartModel();
+	}
+
+	insertTemplate(compiledTemplate) {
+		this.pageFooter.insertAdjacentHTML("beforeBegin", compiledTemplate);
+		this.contentContainer = document.getElementById('pageContent');
+	}
+
+	removeTemplate() {
+		this.contentContainer.remove();
+	}
+
+	getEventTargets() {
+	}
+
+	bindEvents() {
+	}
+
+	unbindEvents() {
+	}
+
+	deleteFromCart() {
+		
+	}
 }
-
-//IndexPresenter.prototype = Object.create(Presenter.prototype);
-//IndexPresenter.prototype.constructor = IndexPresenter;
-
-CartPresenter.prototype.init = function() {
-	this.render(this.view.getTemplate(this.model.getData(Database())));
-	this.getEventTargets();
-	//this.bindEvents();
-};
-
-CartPresenter.prototype.render = function(compiledTemplate) {
-	$( compiledTemplate ).insertBefore( document.getElementById('pageFooter') );
-	this.contentContainer = document.getElementById('pageContent');
-};
-
-CartPresenter.prototype.remove = function() {
-  //this.unbindEvents();
-  this.delete();
-};
-
-CartPresenter.prototype.delete = function() {
-	this.contentContainer.remove();
-};
-
-CartPresenter.prototype.getEventTargets = function() {
-  //this.viewChangeButton = document.getElementById('viewChanger');
-  this.logo = document.getElementById('logo');
-	this.body = document.body;
-
-	this.sliderLeftControl = document.getElementById('leftControl');
-	this.sliderRightControl = document.getElementById('rightControl');
-	this.sliderPreviews = document.getElementsByClassName('slider__preview-image');
-};
-
-CartPresenter.prototype.bindEvents = function() {
-	this.sliderLeftControl.addEventListener('click', previousSlide, false);
-	this.sliderRightControl.addEventListener('click', nextSlide, false);
-	// forEach(this.sliderPreviews, function(preview) {
-	// 	preview.addEventListener('click', setActive(preview), false);
-	// });
-	//this.sliderPreviews.addEventListener('click', setActive, false);
-	//$(".sliderPreviews").click(setActive);
-};
-
-CartPresenter.prototype.unbindEvents = function() {
-	this.sliderLeftControl.removeEventListener('click', previousSlide, false);
-	this.sliderRightControl.removeEventListener('click', nextSlide, false);
-	//this.sliderPreviews.removeEventListener('click', setActive, false);
-};
-
-CartPresenter.prototype.goToIndex = function(event) {
-  event.preventDefault();
-  location.hash = "";
-};
-
-// TEMPORARY! FOR SIMPLE TESTING! REMOVE IN CASE OF HREF FUNCTIONALITY (FOR EXAMPLE HREF TO ANOTHER SITE)
-// ProductPresenter.prototype.preventDefaultForURLs = function(event) {
-//   if ((event.target.tagName === "A") || (event.target.tagName === "IMG")) {
-//     event.preventDefault();
-//   }
-// };
-
-export default CartPresenter;

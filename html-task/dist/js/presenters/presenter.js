@@ -10,6 +10,7 @@ export default class Presenter {
 
     this.model.fetchData(this.fetchReq)
     .then((jsonData) => {
+      console.log(jsonData);
       return this.view.getTemplate(jsonData);
     })
     .then((compiledTemplate) => {
@@ -41,19 +42,18 @@ export default class Presenter {
 			this.unbindEvents();
 		}
   }
-
+ 
   addToCart(event) {
     event.preventDefault();
 
     //let userLocalData = JSON.parse(localStorage.getItem("user"));
     //let cart = userLocalData.cart || [];
     const requestUrl = paths.ajax.cart.add.url;
-    const requestParameters = paths.ajax.cart.add.params;
+    const requestParameters = { method: 'POST' }; //paths.ajax.cart.add.params;
 
     let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
 
     let userData = JSON.parse(localStorage.getItem("user"));
-    debugger
 
     let reqData = new FormData();
     reqData.append( "id", idOfProduct );
@@ -67,6 +67,14 @@ export default class Presenter {
 
 		const fetchReq = new Request(requestUrl, requestParameters);
 
-    this.model.fetchData(fetchReq);
+    this.model.fetchData(fetchReq)
+      .then((response) => {
+        if (response.cart) {
+          let userData = JSON.parse(localStorage.getItem("user"));
+          userData.cart = response.cart;
+          localStorage.setItem("user", JSON.stringify(userData));
+        }
+        console.log(response);
+      });
   }
 }

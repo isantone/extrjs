@@ -496,16 +496,6 @@ template {
   min-height: 100vh;
   font: 12pt "Open Sans", Verdana, Tahoma, Arial, sans-serif; }
 
-.button {
-  font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
-  text-transform: uppercase;
-  background: lightgray;
-  cursor: pointer; }
-  .button_color {
-    color: white;
-    border-color: #0e778c;
-    background: #0e778c; }
-
 .slider {
   max-width: 700px;
   width: 100%;
@@ -1068,3 +1058,13 @@ input[type=checkbox] {
 
 .hide {
   display: none; }
+
+.button {
+  font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
+  text-transform: uppercase;
+  background: lightgray;
+  cursor: pointer; }
+  .button_color {
+    color: white;
+    border: 1px solid #0e778c;
+    background: #0e778c; }

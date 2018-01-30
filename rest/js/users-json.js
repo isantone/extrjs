@@ -7,6 +7,8 @@ module.exports = class UsersJson extends Json {
   // }
 
   getUserByEmail(userEmail) {
+    console.log("--->" + userEmail);
+    console.log("--->" + typeof(userEmail));
     return this.getElementByPropertyValue("email", userEmail);
   }
 
@@ -24,7 +26,6 @@ module.exports = class UsersJson extends Json {
     const resultUser = this.obj.find(user => {
       return user.email === userEmail && user.password === userPassword;
     });
-
     return resultUser;
   }
 };

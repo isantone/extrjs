@@ -23,37 +23,37 @@ function generateRandomToken() {
 }
 
 router.post(paths.register.url, upload.array(), (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  //res.setHeader("Access-Control-Allow-Credentials", "true");
 
   const userEmail = req.body.email;
   const userPassword = req.body.password;
 
-  let user = users.getUserByEmail(userEmail);
+  if (userEmail && userPassword) {
+    let user = users.getUserByEmail(userEmail);
+    console.log(">>>>" + user + "<<<<<");
+    if (user) {
+      res.status(403).send({ success: false, message: 'This email is already taken.'});
+    } else {
+      //CreateUser//
+      console.log("Creating user");
+      const newUser = {
+        "email": userEmail,
+        "password": userPassword,
+        "token": generateRandomToken(),
+        "cart": []  // OR cart from session storage
+      };
+      users.obj.push(newUser);
+      users.writeInFile();
 
-  if (user) {
-    res.status(403).send({ success: false, message: 'This email is already taken.'});
+      delete users.obj.password;
+      res.send(users.obj);
+    }
   } else {
-    //CreateUser//
-    const newUser = {
-      "email": userEmail,
-      "password": userPassword,
-      "token": generateRandomToken(),
-      "cart": []  // OR cart from session storage
-    };
-    users.obj.push(newUser);
-
-    //user.token  // -> to session storage // = unAuthorizedToken || userToken
-    ///
-
-    users.writeInFile();
-
-    res.send(users.obj);
+    res.status(403).send({ success: false, message: 'Wrong email or password.'});
   }
 });
 
 router.post(paths.login.url, upload.array(), (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
-
   const userCredentials = req.body;
   const userEmail = userCredentials.email;
   const userPassword = userCredentials.password;
@@ -83,49 +83,83 @@ router.get(paths.users.user.url, (req, res) => {
 });
 
 router.get(paths.cart.url, (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
-  const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-  const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
+  const userToken = req.headers.authorization;
+  if (userToken) {
+    const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
+    //delete user.password;
 
-  res.send(user.cart);
+    user.cart.forEach((element) => {
+      element.product = products.getItemById(element.id);
+    });
+    console.log(user);
+    res.send(user);
+
+  } else {
+    res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+  }
 });
 
-router.post(paths.cart.url, upload.array(), (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
-
+router.post("/cart", upload.array(), (req, res, next) => {
   const productId = Number(req.body.id);
 
   if (productId) {
+    const userToken = req.headers.authorization;
+    if (userToken) {
+      const item = products.getItemById(productId);
 
+      if (item && item.availability) {
+        const user = users.getUserByToken(userToken);
+
+        const productInCart = user.cart.find(item => {
+          return item.id === productId;
+        });
+
+        if (productInCart) {
+          productInCart.quantity++;
+        } else {
+          user.cart.push({id: productId, quantity: 1});
+        }
+
+        users.writeInFile();
+        delete user.password;
+        res.send(user);
+      } else {
+        res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
+      }
+    } else {
+      res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+    } 
   } else {
     res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
   }
-  console.log("I GOT: " + productId);
-  //res.setHeader("WWW-Authenticate", "Bearer"); <------
-  const userToken = req.headers.authorization || res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-  console.log("I GOT: " + userToken);
-  const item = products.getItemById(productId);
+});
 
-  if (item && item.availability) {
-    const user = users.getUserByToken(userToken);
+router.delete("/cart", upload.array(), (req, res, next) => {
+  const productId = Number(req.body.id);
 
-    const productInCart = user.cart.filter(item => {
-      return item.id === productId;
-    });
-
-    if (productInCart[0]) {
-      productInCart[0].quantity++;
+  if (productId) {
+    const userToken = req.headers.authorization;
+    if (userToken) {
+        const user = users.getUserByToken(userToken);
+        const indexOfProduct = user.cart.findIndex((element) => {
+          return element.id === productId;
+        });
+        if (indexOfProduct > 0) {
+          console.log(user.cart);
+          user.cart.splice(indexOfProduct, 1);
+          console.log(user.cart);
+  
+          users.writeInFile();
+          delete user.password;
+          res.send(user);
+        } else {
+          res.status(404).send({ success: false, message: 'Error: No such product in cart.'});
+        }
     } else {
-      user.cart.push({id: productId, quantity: 1});
-    }
-
-    //user.cart.pop(); // delete request
-
-    users.writeInFile();
-
-    res.send(user.cart);
+      res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+    } 
   } else {
-    res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
+    res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
   }
 });
 

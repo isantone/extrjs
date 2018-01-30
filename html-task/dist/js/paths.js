@@ -69,7 +69,7 @@ const paths = {
       //url: host + "/register",
       url: host + "/register",
       params: {
-        method: 'POST',
+        method: 'POST'
       }
     },
     login: {

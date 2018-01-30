@@ -23,6 +23,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:7777');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Authorization');
+
+  next();
+});
+
 app.use('/api', require('./routes/api'));
 
 // unknown endpoint

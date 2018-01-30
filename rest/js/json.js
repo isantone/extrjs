@@ -35,7 +35,6 @@ module.exports = class Json {
     const result = this.obj.find(element => {
       return element[property] === value;
     });
-
     return result;
   }
 };

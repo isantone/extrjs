@@ -29,7 +29,7 @@ export default class RegPresenter extends Presenter {
 
 	removeTemplate() {
     //this.contentContainer.remove();
-    this.closeForm();
+    //this.closeForm();
   }
 
   getEventTargets() {
@@ -172,7 +172,9 @@ export default class RegPresenter extends Presenter {
       })
       .then((responseJson) => {
         console.log(responseJson);
-        localStorage.setItem("user", JSON.stringify(responseJson));
+        if (responseJson.token) {
+          localStorage.setItem("user", JSON.stringify(responseJson));
+        } 
       })
       .catch(function(ex) {
         console.log('Parsing of the data failed: ', ex);
