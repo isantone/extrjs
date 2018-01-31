@@ -772,6 +772,15 @@ template {
   .sign-form__form_visible {
     left: 0; }
 
+.sign-form__icon {
+  position: absolute;
+  top: -5px;
+  right: 11px;
+  fill: #1b91a9; }
+
+.sign-form__pass {
+  top: -2px; }
+
 .sign-form__remember {
   display: inline-block;
   cursor: pointer; }
@@ -780,7 +789,6 @@ template {
   position: absolute;
   top: 4px;
   right: 14px;
-  color: gray;
   color: #1b91a9; }
 
 @media screen and (min-width: 425px) {
@@ -1048,7 +1056,7 @@ button:hover, input[type="submit"]:hover {
 
 .email-input, .password-input {
   padding: 11px;
-  padding-right: 40px; }
+  padding-right: 44px; }
 
 input[type=checkbox] {
   width: 17px;
@@ -1058,6 +1066,9 @@ input[type=checkbox] {
 
 .hide {
   display: none; }
+
+a {
+  text-decoration-style: dashed; }
 
 .button {
   font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;

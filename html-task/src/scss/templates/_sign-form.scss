@@ -72,6 +72,17 @@ $form-bg: #e1e5ec;
     }
   }
 
+  &__icon {
+    position: absolute;
+    top: -5px;
+    right: 11px;
+    fill: $light-main-color;
+  }
+
+  &__pass {
+    top: -2px;
+  }
+
   &__remember {
     display: inline-block;
 
@@ -83,7 +94,7 @@ $form-bg: #e1e5ec;
   position: absolute;
   top: 4px;
   right: 14px;
-  color: gray;
+  //color: gray;
   color: $light-main-color;
 }
 
