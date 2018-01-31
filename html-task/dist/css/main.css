@@ -633,8 +633,6 @@ template {
   .header__search-form {
     height: 0;
     min-width: 310px;
-    padding: 0 15px;
-    margin-top: 0;
     align-self: center;
     flex-grow: 2;
     order: 4;
@@ -642,8 +640,7 @@ template {
     overflow: hidden;
     box-sizing: border-box; }
     .header__search-form_visible {
-      height: 40px;
-      margin-top: 20px; }
+      height: 40px; }
   .header__search-input {
     box-sizing: border-box;
     width: 100%;
@@ -1068,3 +1065,82 @@ input[type=checkbox] {
     color: white;
     border: 1px solid #0e778c;
     background: #0e778c; }
+
+.nav-btn {
+  padding: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 7px 0;
+  cursor: pointer; }
+  .nav-btn__top, .nav-btn__mid, .nav-btn__bot {
+    display: block;
+    height: 4px;
+    width: 50px;
+    margin-bottom: 8px;
+    background: #696969;
+    transform: rotate(0deg);
+    transition: .2s ease all; }
+  .nav-btn:focus {
+    outline-width: 0; }
+  .nav-btn__bot {
+    margin-bottom: 0; }
+  .nav-btn__top_opened {
+    transform: rotate(45deg);
+    transform-origin: 15% 15%; }
+  .nav-btn__mid_opened {
+    opacity: 0; }
+  .nav-btn__bot_opened {
+    transform: rotate(-45deg);
+    transform-origin: 15% 95%; }
+
+.search-form {
+  width: 100%;
+  display: flex; }
+  .search-form__input {
+    height: 18px;
+    padding: 10px 10px;
+    flex-grow: 2;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    border: 1px solid #e7e7e7;
+    background: #eee;
+    color: black;
+    font-weight: normal;
+    font-style: italic; }
+    .search-form__input:focus {
+      outline: 0;
+      background: #fff;
+      border: 1px solid #0e778c;
+      border-right: 1px solid #e7e7e7; }
+  .search-form__submit {
+    overflow: visible;
+    position: relative;
+    border: 0;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #0e778c;
+    cursor: pointer; }
+    .search-form__submit:hover {
+      background: #e54040; }
+    .search-form__submit:hover:before {
+      border-right-color: #e54040; }
+    .search-form__submit:active, .search-form__submit:focus {
+      outline: 0;
+      background: #c42f2f; }
+      .search-form__submit:active:before, .search-form__submit:focus:before {
+        border-right-color: #c42f2f; }
+    .search-form__submit:before {
+      content: '';
+      position: absolute;
+      border-width: 8px 8px 8px 0;
+      border-style: solid solid solid none;
+      border-color: transparent #0e778c transparent;
+      top: 12px;
+      left: -6px; }
+  .search-form__fa-search {
+    font-size: 18px;
+    text-shadow: 0px 0px 1px #555; }

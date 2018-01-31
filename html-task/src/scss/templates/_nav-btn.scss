@@ -1,0 +1,43 @@
+.nav-btn {
+  padding: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 7px 0;
+  
+  cursor: pointer;
+  
+  &__top, &__mid, &__bot {
+    display: block;
+
+    //border-radius: 4px;
+    height: 4px;
+    width: 50px;
+    margin-bottom: 8px;
+    
+    background: #696969; //white;    
+    transform: rotate(0deg);
+    transition: .2s ease all;
+  }
+  
+  &:focus {
+    outline-width: 0;
+  }
+  
+  &__bot {
+    margin-bottom: 0;
+  }
+  
+  &__top_opened {
+    transform: rotate(45deg);
+    transform-origin: 15% 15%;
+  }
+  
+  &__mid_opened {
+    opacity: 0;
+  }
+  
+  &__bot_opened {
+    transform: rotate(-45deg);
+    transform-origin: 15% 95%;
+  }
+}
