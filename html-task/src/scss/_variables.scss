@@ -18,14 +18,21 @@ $border-color: #ddd;
 //$main-color: #18adc4;
 
 /* Font */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 
+//@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab');
+
+$font-size-small: 11pt;
 $font-size: 12pt;
 $font: $font-size 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
 $font-family: 'Open Sans', 'Verdana', sans-serif;
-$font-color: $green;
 
-$h2-font: bold 14pt $font-family;
+$font-color: #494949;
+$font-color-light: #444444;
+
+$h2-font: bold 18pt 'Roboto Slab', $font-family;
 
 $button-font: 12pt 'Open Sans', Arial, Verdana, Tahoma, sans-serif;
 $button-font-color: $white;
@@ -37,7 +44,8 @@ $min-height: 100vh;
 $header-height: 90px;
 $footer-height: 80px;
 
-$header-width: 1400px;
+$page-max-width: 1400px;
+$header-max-width: $page-max-width;
 
 /* Input */
 $input-width: 300px;

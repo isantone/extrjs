@@ -10,9 +10,9 @@
 
     margin: 0 auto;
     //min-height: $header-height;
-    max-width: $header-width;
+    max-width: $header-max-width;
 
-	  justify-content: center;
+	  //justify-content: center;
     align-items: center;
   }
 
@@ -52,6 +52,26 @@
       height: 25px;
 
       background: url(http://localhost:3000/images/ex_shop_logo_m.png) no-repeat;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    &__logo-wrapper {
+      flex-grow: 0;
+      padding: 15px;
+    }
+
+    &__logo {
+      width: 310px;
+      height: 70px;
+
+      background: url(http://localhost:3000/images/ex_shop_logo.png) no-repeat;
+    }
+
+    &__nav-btn, &__search-btn {
+      display: none;
     }
   }
 }
