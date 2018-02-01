@@ -607,16 +607,34 @@ template {
 
 .header {
   width: 100%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-bottom: 20px; }
   .header__container {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
     max-width: 1400px;
     justify-content: center;
     align-items: center; }
-  .header__logo {
+  .header__nav-btn {
+    margin-right: 20px; }
+  .header__logo-wrapper {
     flex-grow: 2;
     text-align: center; }
+  .header__logo {
+    display: block;
+    width: 152px;
+    height: 23px;
+    margin: 0 auto;
+    background: url(http://localhost:3000/images/ex_shop_m.png) no-repeat; }
+  .header__search-btn {
+    fill: #696969; }
+
+@media screen and (min-width: 370px) {
+  .header__logo {
+    width: 173px;
+    height: 25px;
+    background: url(http://localhost:3000/images/ex_shop_logo_m.png) no-repeat; } }
 
 .navigation {
   max-height: 0;
