@@ -20,33 +20,20 @@
 
 		<header id="pageHeader" class="header">
 			<div id="logo" class="header__container">
+				<button id="navBtn" class="nav-btn mobile-btn" onclick="toggleNav();">
+					<span class="nav-btn__top"></span>
+					<span class="nav-btn__mid"></span>
+					<span class="nav-btn__bot"></span>
+				</button>
 				<div class="header__logo">
 					<a class="non-text-link" href="#">
 						<img src="http://localhost:3000/images/ex_shop_logo_m.png">
 					</a>
 				</div>
-
-				<div class="header__buttons">
-					<button id="navBtn" class="nav-btn" onclick="toggleNav();">
-						<span class="nav-btn__top"></span>
-						<span class="nav-btn__mid"></span>
-						<span class="nav-btn__bot"></span>
-					</button>
-
-					<div id="searchButton" class="header__search" onclick="toggleSearch();">
-						<a href="#">
-							<img src="http://localhost:3000/images/search.svg">
-							<svg height="32" class="octicon octicon-search" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
-						</a>
-					</div>
-					<div class="header__cart">
-						<a href="#cart">
-							<img src="http://localhost:3000/images/cart.svg">
-						</a>
-					</div>
-					<div id="signButton" class="header__profile">
-						<img src="http://localhost:3000/images/profile.svg">
-					</div>
+				<div class="header__cart mobile-btn">
+					<a href="#cart">
+						<img src="http://localhost:3000/images/cart_m.svg">
+					</a>
 				</div>
 				<div id="searchForm" class="search-form header__search-form">
 					<form class="search-form form-wrapper">
@@ -55,6 +42,7 @@
 					</form>
 					<!-- <input class="header__search-input" placeholder="Search"> -->
 				</div>
+
 			</div>
 		</header>
 

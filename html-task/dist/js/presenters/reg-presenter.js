@@ -41,7 +41,7 @@ export default class RegPresenter extends Presenter {
         this.signFormForm = document.getElementById("signForm");
 
         this.changeFormLink = document.getElementById("changeForm");
-        this.signBtn = document.getElementById("signButton");
+        //this.signBtn = document.getElementById("signButton");
 
         this.sendFormBtn = document.getElementById("sendFormButton");
 
@@ -63,7 +63,7 @@ export default class RegPresenter extends Presenter {
 
   bindEvents() {
     //document.getElementById("signButton").addEventListener("click", showLogForm, false);
-    document.getElementById("signButton").addEventListener("click", this.showRegForm.bind(this), false);
+    //document.getElementById("signButton").addEventListener("click", this.showRegForm.bind(this), false);
 
     // $("input[type=email]").blur(inputBlurHandler);
     // $("input[type=password]").blur(inputBlurHandler);

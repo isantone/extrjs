@@ -39,22 +39,14 @@
   #viewChanger {
     display: none;
   }
+}
 
-  // &_list-view {
-  //   box-sizing: border-box;
-  //   width: 100%;
-
-  //   padding: 20px;
-
-  //   text-align: left;
-  //   text-align-last: left;
-  // }
-
-  // &_grid-view {
-  //   @extend .flex;
-  //   flex-wrap: wrap;
-  //   width: 100%;
-  //   //flex-direction: row;
-  //   align-content: flex-start; /* vertical */
-  // }
+@media screen and (min-width: 565px) {
+  .page-main {
+    flex-direction: row;
+    
+    #viewChanger {
+      display: inline-block;
+    }
+  }
 }

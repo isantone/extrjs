@@ -11,3 +11,13 @@
   align-items: flex-start;
 }
 
+@media screen and (min-width: 765px) {
+  .sign-page {
+    //width: auto;
+  
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+  }
+}
+
