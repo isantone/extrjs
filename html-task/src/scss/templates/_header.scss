@@ -1,3 +1,5 @@
+@import 'menu';
+
 .header {
   width: 100%;
   box-sizing: border-box;
@@ -66,12 +68,23 @@
     &__logo {
       width: 310px;
       height: 70px;
-
       background: url(http://localhost:3000/images/ex_shop_logo.png) no-repeat;
     }
 
     &__nav-btn, &__search-btn {
       display: none;
+    }
+
+    &__cart {
+      order: 4;
+      box-sizing: border-box;
+      width: 70px;
+    }
+  }
+
+  .desktop-menu {
+    &__container {
+      display: block;
     }
   }
 }

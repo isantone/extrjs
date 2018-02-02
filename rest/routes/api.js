@@ -157,7 +157,7 @@ router.delete("/cart", upload.array(), (req, res, next) => {
         }
     } else {
       res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-    } 
+    }
   } else {
     res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
   }

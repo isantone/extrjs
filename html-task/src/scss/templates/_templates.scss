@@ -1,9 +1,15 @@
 @import 'page';
 //@import 'grid';
 //@import 'list-item';
+
+@import 'globals';
+@import 'button';
+@import 'nav-btn';
+
 @import 'slider';
 @import 'product';
 @import 'full-product';
+
 
 @import 'header';
 @import 'navigation';
@@ -15,9 +21,8 @@
 @import 'cart-page';
 @import 'address-page';
 
-@import 'globals';
-@import 'button';
-@import 'nav-btn';
 @import 'search-form';
 
 @import 'catalog';
+
+@import 'primary';

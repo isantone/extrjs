@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab");
+@import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Bree+Serif");
 a {
   text-decoration: none; }
 
@@ -496,6 +497,146 @@ template {
   min-height: 100vh;
   font: 12pt "Open Sans", Verdana, Tahoma, Arial, sans-serif; }
 
+.gray {
+  background-color: gray; }
+
+.turquoise {
+  background-color: #00aad0; }
+
+.big-bottom-margin {
+  margin-bottom: 35px; }
+
+.big-top-margin {
+  margin-top: 35px; }
+
+.small-top-margin {
+  margin-top: 20px; }
+
+.small-right-margin {
+  margin-right: 20px; }
+
+.small-bottom-margin {
+  margin-bottom: 20px; }
+
+.tiny-top-margin {
+  margin-top: 8px; }
+
+.tiny-bottom-margin {
+  margin-bottom: 8px; }
+
+.tiny-left-margin {
+  margin-left: 8px; }
+
+.mid-top-margin {
+  margin-top: 24px; }
+
+p, h2 {
+  margin: 0;
+  padding: 0; }
+
+h2 {
+  font: 18pt "Bree Serif", "Open Sans", "Verdana", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #494949; }
+
+label {
+  position: relative; }
+
+.input-size {
+  width: 100%;
+  max-width: 500px;
+  height: 40px;
+  padding: 5px;
+  line-height: 100%;
+  border: 1px solid gray;
+  box-sizing: border-box; }
+
+button:hover, input[type="submit"]:hover {
+  cursor: pointer; }
+
+.email-input, .password-input, .button {
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+  border: 1px solid lightgray;
+  outline: 0;
+  box-sizing: border-box; }
+  .email-input:focus, .password-input:focus, .button:focus {
+    border-color: #1b91a9;
+    background: white; }
+
+.email-input, .password-input {
+  padding: 11px;
+  padding-right: 44px; }
+
+input[type=checkbox] {
+  width: 17px;
+  height: 17px;
+  vertical-align: middle;
+  cursor: pointer; }
+
+a {
+  text-decoration-style: dashed; }
+
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #494949; }
+
+.button {
+  font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: lightgray;
+  cursor: pointer; }
+  .button_color {
+    color: white;
+    border: 1px solid #0e778c;
+    background: #0e778c; }
+
+.mobile-btn {
+  width: 44px;
+  height: 44px;
+  line-height: 45px;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer; }
+  .mobile-btn a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center; }
+
+.nav-btn__top, .nav-btn__mid, .nav-btn__bot {
+  display: block;
+  height: 2px;
+  width: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4px;
+  background: #696969;
+  transform: rotate(0deg);
+  transition: .2s ease all; }
+
+.nav-btn:focus {
+  outline-width: 0; }
+
+.nav-btn__bot {
+  margin-bottom: 0; }
+
+.nav-btn__top_opened {
+  transform: rotate(45deg);
+  transform-origin: 15% 15%; }
+
+.nav-btn__mid_opened {
+  opacity: 0; }
+
+.nav-btn__bot_opened {
+  transform: rotate(-45deg);
+  transform-origin: 15% 95%; }
+
 .slider {
   max-width: 700px;
   width: 100%;
@@ -605,6 +746,44 @@ template {
 .full-product {
   text-align: center; }
 
+.desktop-menu__container {
+  font: 16pt "Bree Serif", "Open Sans", "Verdana", sans-serif;
+  padding: 20px;
+  flex-grow: 2;
+  display: none;
+  text-align: center; }
+
+.desktop-menu__btn {
+  margin-right: 30px;
+  color: #494949; }
+  .desktop-menu__btn:last-child {
+    margin-right: none; }
+  .desktop-menu__btn:hover, .desktop-menu__btn :active {
+    color: #0e778c;
+    border-bottom: 3px solid #0e778c; }
+
+.desktop-menu__sub-menu {
+  font: 12pt 'Open Sans'; }
+
+.desktop-menu__sub-header {
+  font-weight: bold;
+  color: #0e778c; }
+  .desktop-menu__sub-header:hover, .desktop-menu__sub-header :active {
+    color: #145a6c; }
+
+.desktop-menu__sub-ul {
+  display: inline-block;
+  min-width: 180px;
+  list-style: none;
+  padding-left: 20px;
+  line-height: 2;
+  border-right: 1px solid lightgray; }
+  .desktop-menu__sub-ul:last-child {
+    border-right: none; }
+
+.desktop-menu__sub-link:hover, .desktop-menu__sub-link :active {
+  color: #0e778c; }
+
 .header {
   width: 100%;
   box-sizing: border-box;
@@ -613,7 +792,7 @@ template {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1300px;
     align-items: center; }
   .header__nav-btn {
     margin-right: 20px; }
@@ -644,7 +823,13 @@ template {
     height: 70px;
     background: url(http://localhost:3000/images/ex_shop_logo.png) no-repeat; }
   .header__nav-btn, .header__search-btn {
-    display: none; } }
+    display: none; }
+  .header__cart {
+    order: 4;
+    box-sizing: border-box;
+    width: 70px; }
+  .desktop-menu__container {
+    display: block; } }
 
 .navigation {
   max-height: 0;
@@ -930,154 +1115,15 @@ template {
   align-items: flex-start;
   justify-content: center; }
 
-.gray {
-  background-color: gray; }
-
-.turquoise {
-  background-color: #00aad0; }
-
-.big-bottom-margin {
-  margin-bottom: 35px; }
-
-.big-top-margin {
-  margin-top: 35px; }
-
-.small-top-margin {
-  margin-top: 20px; }
-
-.small-right-margin {
-  margin-right: 20px; }
-
-.small-bottom-margin {
-  margin-bottom: 20px; }
-
-.tiny-top-margin {
-  margin-top: 8px; }
-
-.tiny-bottom-margin {
-  margin-bottom: 8px; }
-
-.tiny-left-margin {
-  margin-left: 8px; }
-
-.mid-top-margin {
-  margin-top: 24px; }
-
-p, h2 {
-  margin: 0;
-  padding: 0; }
-
-h2 {
-  font: bold 18pt "Roboto Slab", "Open Sans", "Verdana", sans-serif;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  color: #494949; }
-
-label {
-  position: relative; }
-
-.input-size {
-  width: 100%;
-  max-width: 500px;
-  height: 40px;
-  padding: 5px;
-  line-height: 100%;
-  border: 1px solid gray;
-  box-sizing: border-box; }
-
-button:hover, input[type="submit"]:hover {
-  cursor: pointer; }
-
-.email-input, .password-input, .button {
-  box-sizing: border-box;
-  width: 100%;
-  height: 43px;
-  border: 1px solid lightgray;
-  outline: 0;
-  box-sizing: border-box; }
-  .email-input:focus, .password-input:focus, .button:focus {
-    border-color: #1b91a9;
-    background: white; }
-
-.email-input, .password-input {
-  padding: 11px;
-  padding-right: 44px; }
-
-input[type=checkbox] {
-  width: 17px;
-  height: 17px;
-  vertical-align: middle;
-  cursor: pointer; }
-
-.hide {
-  display: none; }
-
-a {
-  text-decoration-style: dashed; }
-
-main {
-  max-width: 1400px;
-  margin: 0 auto;
-  color: #494949; }
-
-.button {
-  font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: lightgray;
-  cursor: pointer; }
-  .button_color {
-    color: white;
-    border: 1px solid #0e778c;
-    background: #0e778c; }
-
-.mobile-btn {
-  width: 44px;
-  height: 44px;
-  line-height: 45px;
-  text-align: center;
-  border: none;
-  background: none;
-  cursor: pointer; }
-  .mobile-btn a {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center; }
-
-.nav-btn__top, .nav-btn__mid, .nav-btn__bot {
-  display: block;
-  height: 2px;
-  width: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 4px;
-  background: #696969;
-  transform: rotate(0deg);
-  transition: .2s ease all; }
-
-.nav-btn:focus {
-  outline-width: 0; }
-
-.nav-btn__bot {
-  margin-bottom: 0; }
-
-.nav-btn__top_opened {
-  transform: rotate(45deg);
-  transform-origin: 15% 15%; }
-
-.nav-btn__mid_opened {
-  opacity: 0; }
-
-.nav-btn__bot_opened {
-  transform: rotate(-45deg);
-  transform-origin: 15% 95%; }
-
 .search-form {
   width: 100%;
   display: flex; }
+  .search-form__form-wrapper {
+    display: flex;
+    width: 100%;
+    height: 40px; }
   .search-form__input {
-    height: 18px;
+    min-width: 100px;
     padding: 10px 10px;
     flex-grow: 2;
     float: left;
@@ -1100,6 +1146,7 @@ main {
     padding: 0;
     height: 40px;
     width: 40px;
+    min-width: 40px;
     line-height: 40px;
     color: #fff;
     text-transform: uppercase;
@@ -1128,7 +1175,15 @@ main {
 
 @media screen and (min-width: 1024px) {
   .search-form {
-    width: 300px; }
+    width: auto;
+    flex-grow: 2;
+    max-width: 200px;
+    order: 2;
+    transition: max-width .5s ease-in-out; }
+    .search-form__form-wrapper {
+      flex-grow: 2; }
+    .search-form__input {
+      min-width: 100px; }
     .search-form__input {
       border-left: 1px solid #e7e7e7; } }
 
@@ -1170,3 +1225,6 @@ main {
 @media screen and (min-width: 600px) {
   .catalog__container {
     min-height: 230px; } }
+
+.hide {
+  display: none; }
