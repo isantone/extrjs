@@ -1,5 +1,7 @@
 'use strict';
 
+const mode = process.env.MODE;
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -9,6 +11,8 @@ function staticF(dirname, age) {
   console.log('http://localhost:3000/public');
   return express.static('http://localhost:3000/public', { maxAge: age });
 }
+
+console.log(mode);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +46,13 @@ app.use(function(req, res, next) {
 });
 
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
   console.log('The server is listening on http://localhost:3000');
 });
+
+function stop() {
+  server.close();
+}
+
+module.exports = server;
+module.exports.stop = stop;
