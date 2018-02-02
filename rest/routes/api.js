@@ -148,7 +148,7 @@ router.delete("/cart", upload.array(), (req, res, next) => {
           console.log(user.cart);
           user.cart.splice(indexOfProduct, 1);
           console.log(user.cart);
-  
+
           users.writeInFile();
           //delete user.password;
           res.send(user);

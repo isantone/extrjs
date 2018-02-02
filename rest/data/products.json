@@ -10,6 +10,7 @@
     "description": "text description",
     "price": 749,
     "category": "snowboard",
+    "type": "snowboards",
     "availability": true
   },
   {
@@ -23,6 +24,7 @@
     "description": "text description",
     "price": 379,
     "category": "snowboard",
+    "type": "snowboards",
     "availability": true
   },
   {
@@ -36,6 +38,7 @@
     "description": "text description",
     "price": 399,
     "category": "snowboard",
+    "type": "snowboards",
     "availability": false
   },
   {
@@ -49,6 +52,7 @@
     "description": "text description",
     "price": 799,
     "category": "alpine-ski",
+    "type": "alpine-skis",
     "availability": true
   },
   {
@@ -62,6 +66,7 @@
     "description": "text description",
     "price": 849,
     "category": "alpine-ski",
+    "type": "alpine-skis",
     "availability": true
   }
 ]

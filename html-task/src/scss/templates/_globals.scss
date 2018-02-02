@@ -64,6 +64,9 @@ p, h2 {
 
 h2 {
   font: $h2-font;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: $font-color;
 }
 
 label {
@@ -129,4 +132,10 @@ input[type=checkbox] {
 
 a {
   text-decoration-style: dashed;
+}
+
+main {
+  max-width: $page-max-width;
+  margin: 0 auto;
+  color: $font-color;
 }
