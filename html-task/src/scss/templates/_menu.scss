@@ -12,6 +12,8 @@
     margin-right: 30px;
     color: $font-color;
 
+    transition: border .15s;
+
     &:last-child {
       margin-right: none;
     }

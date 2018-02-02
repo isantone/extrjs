@@ -51,3 +51,14 @@
     justify-content: center;
   }
 }
+
+.svg-btn {
+  fill:#696969;
+  width: 24px
+}
+
+@media screen and (min-width: 1024px) {
+  .svg-btn {
+    width: 30px;
+  }
+}
