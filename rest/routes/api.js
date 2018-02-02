@@ -45,7 +45,7 @@ router.post(paths.register.url, upload.array(), (req, res) => {
       users.obj.push(newUser);
       users.writeInFile();
 
-      delete users.obj.password;
+      //delete users.obj.password;
       res.send(users.obj);
     }
   } else {
@@ -63,7 +63,7 @@ router.post(paths.login.url, upload.array(), (req, res, next) => {
   if (user) {
     user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
     users.writeInFile();
-    delete user.password;
+    //delete user.password;
     res.send(user);
   }
   else {
@@ -121,7 +121,7 @@ router.post("/cart", upload.array(), (req, res, next) => {
         }
 
         users.writeInFile();
-        delete user.password;
+        //delete user.password;
         res.send(user);
       } else {
         res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
@@ -150,7 +150,7 @@ router.delete("/cart", upload.array(), (req, res, next) => {
           console.log(user.cart);
   
           users.writeInFile();
-          delete user.password;
+          //delete user.password;
           res.send(user);
         } else {
           res.status(404).send({ success: false, message: 'Error: No such product in cart.'});

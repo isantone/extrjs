@@ -8,10 +8,14 @@ module.exports = class Json {
 
   writeInFile(uglify) {
     if (uglify) {
-      fs.writeFile(this.file, JSON.stringify(this.obj));
+      fs.writeFile(this.file, JSON.stringify(this.obj), (error) => {
+        //console.log("Couldn't write data in file"); 
+      });
     }
     else {
-      fs.writeFile(this.file, JSON.stringify(this.obj, null, 2));
+      fs.writeFile(this.file, JSON.stringify(this.obj, null, 2), (error) => {
+        //console.log("Couldn't write data in file"); 
+      });
     }
   }
 

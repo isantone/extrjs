@@ -1,8 +1,98 @@
 [
   {
-    "email": "user@user",
+    "email": "user@user.com",
     "password": "user",
-    "token": 71288796542,
+    "token": 14705801082,
+    "cart": [
+      {
+        "id": 5,
+        "quantity": 1,
+        "product": {
+          "id": 5,
+          "title": "Nordica ENFORCER 110",
+          "images": [
+            "http://localhost:3000/images/products/alpine-ski/5_1_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/5_2_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/5_3_s.jpg"
+          ],
+          "description": "text description",
+          "price": 849,
+          "category": "alpine-ski",
+          "availability": true
+        }
+      },
+      {
+        "id": 4,
+        "quantity": 1,
+        "product": {
+          "id": 4,
+          "title": "Nordica ENFORCER 100",
+          "images": [
+            "http://localhost:3000/images/products/alpine-ski/4_1_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/4_2_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/4_3_s.jpg"
+          ],
+          "description": "text description",
+          "price": 799,
+          "category": "alpine-ski",
+          "availability": true
+        }
+      },
+      {
+        "id": 2,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "email": "user",
+    "password": "u",
+    "token": 22715156237,
+    "cart": [
+      {
+        "id": 5,
+        "quantity": 1,
+        "product": {
+          "id": 5,
+          "title": "Nordica ENFORCER 110",
+          "images": [
+            "http://localhost:3000/images/products/alpine-ski/5_1_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/5_2_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/5_3_s.jpg"
+          ],
+          "description": "text description",
+          "price": 849,
+          "category": "alpine-ski",
+          "availability": true
+        }
+      },
+      {
+        "id": 4,
+        "quantity": 1,
+        "product": {
+          "id": 4,
+          "title": "Nordica ENFORCER 100",
+          "images": [
+            "http://localhost:3000/images/products/alpine-ski/4_1_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/4_2_s.jpg",
+            "http://localhost:3000/images/products/alpine-ski/4_3_s.jpg"
+          ],
+          "description": "text description",
+          "price": 799,
+          "category": "alpine-ski",
+          "availability": true
+        }
+      },
+      {
+        "id": 2,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "email": "test@test.com",
+    "token": 32729709040,
+    "password": "test",
     "cart": [
       {
         "id": 5,
