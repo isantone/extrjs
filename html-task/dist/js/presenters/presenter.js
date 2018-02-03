@@ -3,6 +3,7 @@ import paths from '../paths';
 export default class Presenter {
   constructor() {
     this.pageFooter = document.getElementById('pageFooter');
+    this.body = document.body;
   }
 
   init() {
@@ -30,8 +31,11 @@ export default class Presenter {
         //});
       }
     })
-    .catch(function(ex) {
+    .catch((ex) => {
       console.log('Displaying of the data failed: ', ex);
+      if (ex.status == 401) {
+        this.insertTemplate(this.emptyCartView.getTemplate());
+      }
     });
   }
 
@@ -42,7 +46,7 @@ export default class Presenter {
 			this.unbindEvents();
 		}
   }
- 
+
   addToCart(event) {
     event.preventDefault();
 

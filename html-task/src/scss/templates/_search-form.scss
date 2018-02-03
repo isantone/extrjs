@@ -1,3 +1,5 @@
+$search-input-height: 36px;
+
 .search-form {
   position: relative;
 
@@ -9,34 +11,45 @@
 
   &__input {
     box-sizing: border-box;
+
     width: 100%;
+    height: $search-input-height;
     min-width: 100px;
-    padding: 10px 10px;
+
+    padding: 3px 38px 0 8px;
 
     font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
     font-weight: normal;
     font-style: italic;
     color: black;
+    text-align: center;
 
     background: #eee;
     border: none;
     border-bottom: 2px solid transparent;
 
-    transition: border-bottom .3s;
+    transition: border-bottom .2s;
 
     &:focus {
+      text-align: left;
       background: #fff;
       outline: 0; // Web-kit default action fix
       border-bottom: 2px solid $main-color;
+
+      &::placeholder {
+        //color: transparent;
+        color: #ddd;
+      }
     }
   }
 
   &__fa-search {
     position: absolute;
-    vertical-align: middle;
-    height: 40px;
-    width: 24px;
+
+    height: $search-input-height;
+    width: 26px;
     right: 6px;
+
     fill:#696969;
 
     &:hover {
@@ -49,13 +62,15 @@
 @media screen and (min-width: 1024px) {
   .search-form {
     width: auto;
+    max-width: 200px; // Increase max-width to 350px for active search-input
+
     flex-grow: 2;
-    max-width: 200px; // Increase max-width to 400px for active search-input
     order: 2;
 
-    border: 1px solid transparent;
-    border-bottom: 1px solid #e7e7e7;
-    border-radius: 1px;
+    left: -34px;
+
+    border: none;
+    border-bottom: 1px solid #ddd;
 
     transition: max-width .5s ease-in-out;
 
@@ -64,14 +79,19 @@
     }
 
     &__input {
-      border: 1px solid #e7e7e7;
-      border-bottom: 2px solid transparent;
-      min-width: 100px;
+      padding: 5px 0 0 0;
+
+      background: none;
+
+      transition: border-bottom .4s;
 
       &:focus {
-        border: 1px solid transparent;
         border-bottom: 2px solid $main-color;
       }
+    }
+
+    &__fa-search {
+      right: -37px;
     }
   }
 }

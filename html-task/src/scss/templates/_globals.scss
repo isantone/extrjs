@@ -65,7 +65,7 @@ p, h2 {
 h2 {
   font: $h2-font;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: $font-color;
 }
 
@@ -127,7 +127,9 @@ input[type=checkbox] {
 }
 
 a {
-  text-decoration-style: dashed;
+  &:active, &:focus, &:hover {
+    color: $main-color;
+  }
 }
 
 main {

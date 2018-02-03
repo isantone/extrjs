@@ -4,46 +4,36 @@ import CategoryPresenter from './presenters/category-presenter';
 import ProductPresenter from './presenters/product-presenter';
 import CartPresenter from './presenters/cart-presenter';
 import RegPresenter from './presenters/reg-presenter';
+import HeaderPresenter from './presenters/header-presenter';
 
 import paths from './paths';
 
-function Router() {}
-var prevPres = [];
+let prevPres = [];
 
-var regPresenter = regPresenter || new RegPresenter();
+export var signPresenter = signPresenter || new RegPresenter();
+export var headerPresenter = headerPresenter || new HeaderPresenter();
 
-Router.prototype.dispatch = function(hash) {
-  switch (hash) {
-    case paths.pages.index:
-      return [new IndexPresenter(), regPresenter];
-    case paths.pages.catalog:
-      return [new CatalogPresenter(), regPresenter];
-    case paths.pages.cart:
-      return [new CartPresenter()];
-    default:
-      if (hash.includes(paths.pages.product)) {
-        const idOfProduct = Number(hash.split("/")[1]);
-        return [new ProductPresenter(idOfProduct)];
-      }
+export class Router {
+  dispatch(hash) {
+    switch (hash) {
+      case paths.pages.index:
+        return [headerPresenter, new IndexPresenter(), signPresenter];
+      case paths.pages.catalog:
+        return [headerPresenter, new CatalogPresenter(), signPresenter];
+      case paths.pages.cart:
+        return [headerPresenter, new CartPresenter(), signPresenter];
+      default:
+        if (hash.includes(paths.pages.product)) {
+          const idOfProduct = Number(hash.split("/")[1]);
+          return [headerPresenter, new ProductPresenter(idOfProduct), signPresenter];
+        }
 
-      if (hash.includes(paths.pages.category)) {
-        const nameOfCategory = hash.split("/")[1];
-        return [new CategoryPresenter(nameOfCategory), regPresenter];
-      }
+        if (hash.includes(paths.pages.category)) {
+          const nameOfCategory = hash.split("/")[1];
+          return [headerPresenter, new CategoryPresenter(nameOfCategory), signPresenter];
+        }
 
-      return []; // 404
+        return []; // 404
+    }
   }
-};
-
-// function getQueryVariable(variable)
-// {
-//   var query = window.location.search.substring(1);
-//   var vars = query.split("&");
-//   for (var i=0;i<vars.length;i++) {
-//     var pair = vars[i].split("=");
-//     if(pair[0] == variable){return pair[1];}
-//   }
-//   return(false);
-// }
-
-export default Router;
+}

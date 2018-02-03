@@ -4,6 +4,7 @@ import Presenter from './presenter';
 
 import CartModel from '../models/cart-model';
 import CartView from '../views/cart-view';
+import EmptyCartView from '../views/empty-cart-view';
 
 import Database from '../database';
 
@@ -28,6 +29,7 @@ export default class CartPresenter extends Presenter {
 		this.fetchReq = new Request(requestUrl, requestParameters);
 
 		this.view = new CartView();
+		this.emptyCartView = new EmptyCartView();
 		this.model = new CartModel();
 	}
 
@@ -50,6 +52,6 @@ export default class CartPresenter extends Presenter {
 	}
 
 	deleteFromCart() {
-		
+
 	}
 }

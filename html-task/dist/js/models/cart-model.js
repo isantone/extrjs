@@ -7,7 +7,12 @@
 
 import Model from './model';
 
-export default class CartModel extends Model {}
+export default class CartModel extends Model {
+  getModifiedData(jsonObj) {
+    if (jsonObject.success) {
+    }
+  }
+}
 
 // function CartModel() {}
 

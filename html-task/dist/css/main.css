@@ -495,7 +495,7 @@ template {
   align-content: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  font: 12pt "Open Sans", Verdana, Tahoma, Arial, sans-serif; }
+  font: 11pt "Open Sans", Verdana, Tahoma, Arial, sans-serif; }
 
 .gray {
   background-color: gray; }
@@ -537,7 +537,7 @@ p, h2 {
 h2 {
   font: 18pt "Bree Serif", "Open Sans", "Verdana", sans-serif;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: #494949; }
 
 label {
@@ -576,8 +576,8 @@ input[type=checkbox] {
   vertical-align: middle;
   cursor: pointer; }
 
-a {
-  text-decoration-style: dashed; }
+a:active, a:focus, a:hover {
+  color: #0e778c; }
 
 main {
   max-width: 1400px;
@@ -612,6 +612,8 @@ main {
 .svg-btn {
   fill: #696969;
   width: 24px; }
+  .svg-btn:hover, .svg-btn:active, .svg-btn:focus {
+    fill: #0e778c; }
 
 @media screen and (min-width: 1024px) {
   .svg-btn {
@@ -707,7 +709,6 @@ main {
   display: flex; }
   .product__image {
     display: inline-block;
-    margin-right: 10px;
     flex-grow: 0; }
   .product__description {
     display: inline-block;
@@ -722,7 +723,9 @@ main {
     display: inline-block;
     min-width: 150px; }
   .product_grid {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
@@ -739,17 +742,21 @@ main {
   .product_grid {
     max-width: 50%; } }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .product_grid {
     max-width: 33.3333%; } }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
   .product_grid {
     max-width: 25%; } }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1200px) {
   .product_grid {
     max-width: 20%; } }
+
+@media screen and (min-width: 1400px) {
+  .product_grid {
+    max-width: 16.6666%; } }
 
 .full-product {
   text-align: center; }
@@ -772,19 +779,26 @@ main {
     border-bottom: 3px solid #0e778c; }
 
 .desktop-menu__sub-menu {
-  font: 12pt 'Open Sans'; }
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: white;
+  padding-bottom: 30px; }
 
 .desktop-menu__sub-header {
   font-weight: bold;
+  text-transform: uppercase;
   color: #0e778c; }
   .desktop-menu__sub-header:hover, .desktop-menu__sub-header :active {
     color: #145a6c; }
 
 .desktop-menu__sub-ul {
   display: inline-block;
-  min-width: 180px;
+  min-width: 200px;
   list-style: none;
   padding-left: 20px;
+  text-align: left;
   line-height: 2;
   border-right: 1px solid lightgray; }
   .desktop-menu__sub-ul:last-child {
@@ -929,6 +943,7 @@ main {
   left: 1500px;
   width: 100%;
   height: 80px;
+  margin: 0;
   line-height: 80px;
   color: white;
   text-transform: uppercase;
@@ -1134,25 +1149,29 @@ main {
   .search-form__input {
     box-sizing: border-box;
     width: 100%;
+    height: 36px;
     min-width: 100px;
-    padding: 10px 10px;
+    padding: 3px 38px 0 8px;
     font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
     font-weight: normal;
     font-style: italic;
     color: black;
+    text-align: center;
     background: #eee;
     border: none;
     border-bottom: 2px solid transparent;
-    transition: border-bottom .3s; }
+    transition: border-bottom .2s; }
     .search-form__input:focus {
+      text-align: left;
       background: #fff;
       outline: 0;
       border-bottom: 2px solid #0e778c; }
+      .search-form__input:focus::placeholder {
+        color: #ddd; }
   .search-form__fa-search {
     position: absolute;
-    vertical-align: middle;
-    height: 40px;
-    width: 24px;
+    height: 36px;
+    width: 26px;
     right: 6px;
     fill: #696969; }
     .search-form__fa-search:hover {
@@ -1162,22 +1181,23 @@ main {
 @media screen and (min-width: 1024px) {
   .search-form {
     width: auto;
-    flex-grow: 2;
     max-width: 200px;
+    flex-grow: 2;
     order: 2;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #e7e7e7;
-    border-radius: 1px;
+    left: -34px;
+    border: none;
+    border-bottom: 1px solid #ddd;
     transition: max-width .5s ease-in-out; }
     .search-form__form-wrapper {
       flex-grow: 2; }
     .search-form__input {
-      border: 1px solid #e7e7e7;
-      border-bottom: 2px solid transparent;
-      min-width: 100px; }
+      padding: 5px 0 0 0;
+      background: none;
+      transition: border-bottom .4s; }
       .search-form__input:focus {
-        border: 1px solid transparent;
-        border-bottom: 2px solid #0e778c; } }
+        border-bottom: 2px solid #0e778c; }
+    .search-form__fa-search {
+      right: -37px; } }
 
 .catalog__header-container {
   width: 100%; }

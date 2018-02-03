@@ -3,8 +3,20 @@ class Model {
   //   this.fetchUrl = fetchUrl;
   //   this.fetchParameters = fetchParameters;
   // }
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    } else {
+      let error = new Error(response.statusText);
+      error.status = response.status;
+      error.response = response;
+      throw error;
+    }
+  }
+
   fetchData(fetchReq) {
     return fetch(fetchReq)
+    .then(this.checkStatus)
     .then((response) => {
       return response.json();
     })
@@ -14,8 +26,9 @@ class Model {
       }
       return jsonObj;
     })
-    .catch(function(ex) {
+    .catch((ex) => {
       console.log('Parsing of the data failed: ', ex);
+      return Promise.reject(ex);
     });
   }
 }

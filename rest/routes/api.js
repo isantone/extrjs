@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const multer = require('multer');
 const upload = multer();
 const path = require('path');
@@ -87,50 +88,79 @@ router.get(paths.cart.url, (req, res) => {
   if (userToken) {
     const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
     //delete user.password;
-
-    user.cart.forEach((element) => {
-      element.product = products.getItemById(element.id);
-    });
-    console.log(user);
-    res.send(user);
+    if (user) {
+      user.cart.forEach((element) => {
+        element.product = products.getItemById(element.id);
+      });
+      res.send(user);
+    } else {
+      res.status(401).send({ success: false, message: 'Invalid email or password.'});
+    }
 
   } else {
     res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
   }
 });
 
-router.post("/cart", upload.array(), (req, res, next) => {
-  const productId = Number(req.body.id);
+router.post("/cart", jsonParser, (req, res, next) => {
+  //const productId = Number(req.body.id);
+  const reqCart = req.body;
 
-  if (productId) {
-    const userToken = req.headers.authorization;
-    if (userToken) {
-      const item = products.getItemById(productId);
+  console.log("-----");
+  console.log(reqCart);
+  console.log("-----");
 
-      if (item && item.availability) {
-        const user = users.getUserByToken(userToken);
+  if (!reqCart || reqCart.length < 1 || !Array.isArray(reqCart)) return res.sendStatus(400);
 
-        const productInCart = user.cart.find(item => {
-          return item.id === productId;
+  const userToken = req.headers.authorization;
+
+  if (!userToken) return res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+
+  if (userToken) {
+    const user = users.getUserByToken(userToken);
+    if (!user) return res.sendStatus(401); // continue and check availability, etc. ???
+
+    if (reqCart.length > 1)
+    {
+      reqCart.forEach((cartItem) => {
+        const product = products.getItemById(cartItem.id);
+
+        if (product && product.availability && cartItem.quantity) {
+          const productInServerCart = user.cart.find(serverCartItem => {
+            return serverCartItem.id === cartItem.id;
+          });
+
+          if (productInServerCart) {
+            productInServerCart.quantity += cartItem.quantity;
+          } else {
+            user.cart.push({id: cartItem.id, quantity: cartItem.quantity});
+          }
+        }
+      });
+    } else {
+      const cartItem = reqCart[0];
+      const product = products.getItemById(cartItem.id);
+
+      if (product && product.availability) {
+        const productInServerCart = user.cart.find(serverCartItem => {
+          return serverCartItem.id === cartItem.id;
         });
 
-        if (productInCart) {
-          productInCart.quantity++;
+        if (productInServerCart) {
+          productInServerCart.quantity += cartItem.quantity;
         } else {
-          user.cart.push({id: productId, quantity: 1});
+          user.cart.push({id: cartItem.id, quantity: cartItem.quantity});
         }
-
-        users.writeInFile();
-        //delete user.password;
-        res.send(user);
-      } else {
-        res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
       }
-    } else {
-      res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
-    } 
+    }
+      users.writeInFile();
+      //delete user.password;
+      res.send({
+        token: user.token,
+        cart: user.cart
+      });
   } else {
-    res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+    res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
   }
 });
 

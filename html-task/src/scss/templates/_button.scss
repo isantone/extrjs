@@ -54,7 +54,11 @@
 
 .svg-btn {
   fill:#696969;
-  width: 24px
+  width: 24px;
+
+  &:hover, &:active, &:focus {
+    fill: $main-color;
+  }
 }
 
 @media screen and (min-width: 1024px) {

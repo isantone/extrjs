@@ -15,11 +15,13 @@ export default class RegPresenter extends Presenter {
   }
 
   init() {
-    this.insertTemplate(this.view.getTemplate());
-    this.getEventTargets()
-      .then(() => {
-        this.bindEvents();
-      });
+		if (!this.contentContainer) { // <-- SINGLETON
+      this.insertTemplate(this.view.getTemplate());
+			this.getEventTargets()
+				.then(() => {
+					this.bindEvents();
+				});
+		}
   }
 
 	insertTemplate(compiledTemplate) {
@@ -34,14 +36,14 @@ export default class RegPresenter extends Presenter {
 
   getEventTargets() {
     return new Promise((resolve, reject) => {
-      document.addEventListener("DOMContentLoaded", (event) => {
+      //document.addEventListener("DOMContentLoaded", (event) => {
         this.signFormOverlay = document.getElementById("signOverlay");
         this.signFormWrapper = document.getElementById("signWrapper");
         this.signFormHeader = document.getElementById("signHeader");
         this.signFormForm = document.getElementById("signForm");
 
         this.changeFormLink = document.getElementById("changeForm");
-        //this.signBtn = document.getElementById("signButton");
+        this.accountBtn = document.getElementById("signButton");
 
         this.sendFormBtn = document.getElementById("sendFormButton");
 
@@ -57,14 +59,11 @@ export default class RegPresenter extends Presenter {
         this.logFormActive = true;
 
         resolve();
-      });
+      //});
     });
   }
 
   bindEvents() {
-    //document.getElementById("signButton").addEventListener("click", showLogForm, false);
-    //document.getElementById("signButton").addEventListener("click", this.showRegForm.bind(this), false);
-
     // $("input[type=email]").blur(inputBlurHandler);
     // $("input[type=password]").blur(inputBlurHandler);
 
