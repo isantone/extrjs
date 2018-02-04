@@ -127,6 +127,8 @@ input[type=checkbox] {
 }
 
 a {
+  color: $font-color; /// <-- BAD PRACTICE
+
   &:active, &:focus, &:hover {
     color: $main-color;
   }

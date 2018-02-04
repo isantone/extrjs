@@ -1,4 +1,4 @@
-export default class LocalStorage {
+class LocalStorage {
   constructor() {
     this.keyName = "user";
   }
@@ -13,13 +13,21 @@ export default class LocalStorage {
   }
 
   setKeyValue(newValue) {
-    let keyValue = getKeyValue();
+    let keyValue = this.getKeyValue();
     localStorage.setItem(this.keyName, JSON.stringify(newValue));
+  }
+
+  setPropertyOfKeyValue(property, value) {
+    let keyValue = this.getKeyValue();
+    keyValue[property] = value;
+    this.setKeyValue();
   }
 
   getToken() {
     let keyValue = this.getKeyValue();
-    return keyValue.token;
+    if (keyValue && "token" in keyValue) {
+      return keyValue.token;
+    }
   }
 
   getCart() {
@@ -30,16 +38,19 @@ export default class LocalStorage {
   setCart(newCart) {
     // let keyValue = getKeyValue();
     // keyValue.cart = newCart;
-    let cart = getCart();
+    let cart = this.getCart();
     cart = newCart;
-    setKeyValue(keyValue);
+    this.setKeyValue();
+    //setPropertyOfKeyValue("cart", keyValue);
   }
 
-  mergeCart(newCart) {
-    let cart = getCart();
-    if (cart.length > 0) {
-      
-    }
-    setCart(newCart);
+  setToken(newToken) {
+    let token = this.getToken();
+    token = newToken;
+    this.setKeyValue();
+    //setPropertyOfKeyValue("token", keyValue);
   }
 }
+
+const ls = new LocalStorage();
+export default ls;

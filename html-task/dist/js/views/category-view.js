@@ -4,6 +4,7 @@ export default class CategoryView {
     `<div id="pageContent" class="page-main">
       <!-- Navigation -->
       <div class="page-main__content">
+        <h2>Shop {{this.[0].category}} Gear</h2>
         <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
         <main id="productsMain" class="page-main__products">
           {{#each this}}

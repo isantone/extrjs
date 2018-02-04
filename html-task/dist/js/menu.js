@@ -6,7 +6,7 @@ function toggleNav() {
   let navBtnTop = document.getElementsByClassName('nav-btn__top')[0];
   let navBtnMid = document.getElementsByClassName('nav-btn__mid')[0];
   let navBtnBot = document.getElementsByClassName('nav-btn__bot')[0];
-  
+
   navBtn.addEventListener('click', function(e) {
     this.classList.toggle('nav-btn_opened');
     navBtnTop.classList.toggle('nav-btn__top_opened');

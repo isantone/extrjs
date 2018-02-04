@@ -81,7 +81,8 @@ const paths = {
     cart: {
       url: host + "/cart",
       params: {
-        method: 'GET'
+        method: 'GET',
+        credentials: 'include'
       },
       add: {
         url: host + "/cart",

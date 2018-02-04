@@ -46,8 +46,11 @@ router.post(paths.register.url, upload.array(), (req, res) => {
       users.obj.push(newUser);
       users.writeInFile();
 
-      //delete users.obj.password;
-      res.send(users.obj);
+      res.send({
+        token: newUser.token,
+        cart: newUser.cart
+      });
+      //res.send(users.obj);
     }
   } else {
     res.status(403).send({ success: false, message: 'Wrong email or password.'});
@@ -64,8 +67,12 @@ router.post(paths.login.url, upload.array(), (req, res, next) => {
   if (user) {
     user.token = generateRandomToken(); // and -> to session storage // = unAuthorizedToken || userToken
     users.writeInFile();
-    //delete user.password;
-    res.send(user);
+
+    res.send({
+      token: user.token,
+      cart: user.cart
+    });
+    //res.send(user);
   }
   else {
     res.status(401).send({ success: false, message: 'Invalid email or password.'});
@@ -83,8 +90,16 @@ router.get(paths.users.user.url, (req, res) => {
   res.send(user);
 });
 
-router.get(paths.cart.url, (req, res) => {
+router.get(paths.cart.url, (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:7777');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+
   const userToken = req.headers.authorization;
+  //return res.status(401).send({ success: false, message: 'Hello.'});
+
   if (userToken) {
     const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
     //delete user.password;
@@ -92,7 +107,19 @@ router.get(paths.cart.url, (req, res) => {
       user.cart.forEach((element) => {
         element.product = products.getItemById(element.id);
       });
-      res.send(user);
+      console.log("-----");
+      console.log(user.token);
+      console.log(user.cart);
+      console.log("-----");
+
+      //res.header('Content-Type', 'application/json');
+
+      //res.send(user);
+
+      res.send({
+        token: user.token,
+        cart: user.cart
+      });
     } else {
       res.status(401).send({ success: false, message: 'Invalid email or password.'});
     }

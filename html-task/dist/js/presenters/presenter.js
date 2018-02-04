@@ -33,8 +33,9 @@ export default class Presenter {
     })
     .catch((ex) => {
       console.log('Displaying of the data failed: ', ex);
-      if (ex.status == 401) {
-        this.insertTemplate(this.emptyCartView.getTemplate());
+
+      if (this.fetchErrorHandler) {
+        this.fetchErrorHandler(ex);
       }
     });
   }
@@ -64,7 +65,7 @@ export default class Presenter {
     //reqData.append( "id", idOfProduct );
 
     requestParameters.body = reqData;
-    //'Authorization': 'Bearer ' + token,
+
     requestParameters.headers = new Headers({
       'Authorization': 'Bearer ' + userData.token,
     });

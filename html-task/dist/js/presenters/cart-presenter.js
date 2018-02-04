@@ -1,4 +1,5 @@
 import paths from '../paths';
+import ls from '../local-storage';
 
 import Presenter from './presenter';
 
@@ -6,31 +7,67 @@ import CartModel from '../models/cart-model';
 import CartView from '../views/cart-view';
 import EmptyCartView from '../views/empty-cart-view';
 
-import Database from '../database';
-
-//import changeView from '../view-changer';
-//import {setActive, nextSlide, previousSlide} from '../slider';
-
-//import forEach from 'lodash/forEach';
-
 export default class CartPresenter extends Presenter {
 	constructor() {
+		const userToken = ls.getToken();
 		super();
 
-		const requestUrl = paths.ajax.cart.url;
-		const requestParameters = paths.ajax.cart.params;
+		if (userToken) {
+			const requestUrl = paths.ajax.cart.url;
+			const requestParameters = paths.ajax.cart.params;
 
-		let userData = JSON.parse(localStorage.getItem("user"));
+			requestParameters.headers = new Headers({
+				Authorization: 'Bearer ' + userToken,
+			});
 
-		requestParameters.headers = new Headers({
-      'Authorization': 'Bearer ' + userData.token,
-    });
-
-		this.fetchReq = new Request(requestUrl, requestParameters);
+			this.fetchReq = new Request(requestUrl, requestParameters);
+		}
 
 		this.view = new CartView();
 		this.emptyCartView = new EmptyCartView();
 		this.model = new CartModel();
+	}
+
+	init() {
+		if (this.fetchReq) {
+			document.title = this.title;
+
+			this.model.fetchData(this.fetchReq)
+			.then((jsonData) => {
+				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 1) {
+					return this.view.getTemplate(jsonData);
+				}
+				return this.emptyCartView.getTemplate();
+			})
+			.then((compiledTemplate) => {
+				return this.insertTemplate(compiledTemplate);
+			})
+			.then(() => {
+				if (this.getEventTargets) {
+					this.getEventTargets();
+				}
+			})
+			.then(() => {
+				if (this.bindEvents) {
+					this.bindEvents();
+				}
+			})
+			.catch((ex) => {
+				console.log('Displaying of the data failed: ', ex);
+
+				if (this.fetchErrorHandler) {
+					this.fetchErrorHandler(ex);
+				}
+			});
+		} else {
+			this.insertTemplate(this.emptyCartView.getTemplate());
+		}
+	}
+
+	fetchErrorHandler(ex) {
+		if (ex.status == 401) {
+			return this.insertTemplate(this.emptyCartView.getTemplate());
+		}
 	}
 
 	insertTemplate(compiledTemplate) {

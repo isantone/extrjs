@@ -576,8 +576,10 @@ input[type=checkbox] {
   vertical-align: middle;
   cursor: pointer; }
 
-a:active, a:focus, a:hover {
-  color: #0e778c; }
+a {
+  color: #494949; }
+  a:active, a:focus, a:hover {
+    color: #0e778c; }
 
 main {
   max-width: 1400px;

@@ -1,4 +1,6 @@
 import paths from '../paths';
+import localStorage from '../local-storage';
+//
 
 import Presenter from './presenter';
 import RegModel from '../models/reg-model';
@@ -172,13 +174,17 @@ export default class RegPresenter extends Presenter {
       .then((responseJson) => {
         console.log(responseJson);
         if (responseJson.token) {
-          localStorage.setItem("user", JSON.stringify(responseJson));
-        } 
+          //debugger
+          localStorage.setKeyValue(responseJson);
+          //localStorage.setItem("user", JSON.stringify(responseJson));
+        }
       })
       .catch(function(ex) {
         console.log('Parsing of the data failed: ', ex);
       });
 
+    //const hashChangeEvent = new Event('hashchange');
+    //window.dispatchEvent(hashChangeEvent);
     this.closeForm();
   }
 }

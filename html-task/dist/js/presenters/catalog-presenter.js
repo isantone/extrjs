@@ -3,8 +3,6 @@
 import CatalogModel from '../models/catalog-model';
 import CatalogView from '../views/catalog-view';
 
-import Database from '../database';
-
 import changeView from '../view-changer';
 
 function CatalogPresenter() {

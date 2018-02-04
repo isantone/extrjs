@@ -28,6 +28,7 @@ class Model {
     })
     .catch((ex) => {
       console.log('Parsing of the data failed: ', ex);
+
       return Promise.reject(ex);
     });
   }
