@@ -20,7 +20,7 @@ export default class CartPresenter extends Presenter {
 				Authorization: 'Bearer ' + userToken,
 			});
 
-			this.fetchReq = new Request(requestUrl, requestParameters);
+			this.getFetchReq = new Request(requestUrl, requestParameters);
 		}
 
 		this.view = new CartView();
@@ -29,10 +29,10 @@ export default class CartPresenter extends Presenter {
 	}
 
 	init() {
-		if (this.fetchReq) {
+		if (this.getFetchReq) {
 			document.title = this.title;
 
-			this.model.fetchData(this.fetchReq)
+			this.model.fetchData(this.getFetchReq)
 			.then((jsonData) => {
 				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
 					let lsData = ls.getKeyValue();
@@ -95,15 +95,51 @@ export default class CartPresenter extends Presenter {
 	}
 
 	getEventTargets() {
+		this.delBtns = document.getElementsByClassName('js-del-btn');
 	}
 
 	bindEvents() {
+		[].forEach.call(this.delBtns, (product) => {
+			product.addEventListener('click', this.removeFromCart.bind(this), false);
+		});
 	}
 
 	unbindEvents() {
 	}
 
-	deleteFromCart() {
+	removeFromCart(event) {
+    event.preventDefault();
 
-	}
+    const requestUrl = paths.ajax.cart.delete.url;
+    const requestParameters = paths.ajax.cart.delete.params;
+
+    const userToken = ls.getToken();
+
+    requestParameters.headers = new Headers({
+      'Authorization': 'Bearer ' + userToken,
+      'Content-Type': 'application/json'
+    });
+
+    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
+
+    let reqBody = [
+      {
+        "id": idOfProduct
+      }
+    ];
+
+    requestParameters.body = JSON.stringify(reqBody);
+
+		const delFetchReq = new Request(requestUrl, requestParameters);
+
+    this.model.fetchData(delFetchReq)
+      .then((response) => {
+        if (response.cart) {
+          // let userData = JSON.parse(localStorage.getItem("user"));
+          // userData.cart = response.cart;
+          // localStorage.setItem("user", JSON.stringify(userData));
+        }
+        console.log(response);
+      });
+  }
 }

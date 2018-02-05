@@ -530,6 +530,10 @@ template {
 .mid-top-margin {
   margin-top: 24px; }
 
+html {
+  margin-left: calc(100vw - 100%);
+  margin-right: 0; }
+
 p, h2 {
   margin: 0;
   padding: 0; }
@@ -589,6 +593,9 @@ main {
 .button {
   font: 12pt "Open Sans", Arial, Verdana, Tahoma, sans-serif;
   text-transform: uppercase;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 1px;
   outline: 0;
   background: lightgray;
   cursor: pointer; }
@@ -596,6 +603,9 @@ main {
     color: white;
     border: 1px solid #0e778c;
     background: #0e778c; }
+  .button:active, .button:hover, .button:focus {
+    color: #0e778c;
+    background: white; }
 
 .mobile-btn {
   width: 44px;
@@ -615,7 +625,8 @@ main {
   fill: #696969;
   width: 24px; }
   .svg-btn:hover, .svg-btn:active, .svg-btn:focus {
-    fill: #0e778c; }
+    fill: #0e778c;
+    cursor: pointer; }
 
 @media screen and (min-width: 1024px) {
   .svg-btn {

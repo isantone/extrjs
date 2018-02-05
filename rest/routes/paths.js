@@ -40,5 +40,9 @@ module.exports = {
 
   register: {
     url: "/register"
+  },
+
+  search: {
+    url: "/search"
   }
 };

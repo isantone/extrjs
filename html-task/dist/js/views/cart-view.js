@@ -4,41 +4,20 @@ function CartView() {}
 
 CartView.prototype.getTemplate = function(data) {
 
-  // const catalogTemplate = `
-  //   <main id="indexMain" class="index-page">
-  //     {{#each this}}
-  //       <div class="grid index-page__grid">
-  //         <a href="products.html">
-  //           <img class="grid__image index-page__image" src="/images/products/{{underscorer this}}/category.png">
-  //           <p class="grid__caption index-page__caption tiny-top-margin">{{capitalizer this}}</p>
-  //         </a>
-  //       </div>
-  //     {{/each}}
-  //   </main>
-  // `;
-
-  // !!! APPLY PARTIAL TEMPLATES FOR SLIDERS
   const catalogTemplate =
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
+      <h2>Shopping cart</h2>
       <main id="productsMain" class="page-main__products">
         {{#each cart}}
           {{> product}}
         {{/each}}
-        <br><br><br>
+        <br>
         <button onclick="localStorage.clear();" class="button input-size turquoise add-to-cart cart-page__buy-button">CLEAN</button>
       </main>
     </div>
   </div>`;
-
-// const productTemplate =
-//   `<div class="full-product page-main__full-product">
-//     <h2>{{this.title}}</h2>
-//     <p class="full-product__price small-bottom-margin">Price: \$ {{this.price}}</p>
-//     <p class="full-product__description">{{this.description}}</p>
-//     <button class="button input-size turquoise add-to-cart small-top-margin">Add to cart</button>
-//   </div>`;
 
   const productTemplate =
   `<div class="product">
@@ -54,12 +33,13 @@ CartView.prototype.getTemplate = function(data) {
         <p class="product__price">Price: \$ {{product.price}}</p>
         <p >Quantity: {{quantity}}</p>
       </div>
+      <svg class="svg-btn js-del-btn" data-id="{{product.id}}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
     </div>
   </div>
-  <button class="button">DELETE</button>
-  <button class="button button_color add-to-cart">BUY</button>
   `;
-
 
   const compiledCatalogTemplate = Handlebars.compile(catalogTemplate);
 

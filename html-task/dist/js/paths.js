@@ -88,6 +88,12 @@ const paths = {
         params: {
           method: 'POST'
         }
+      },
+      delete: {
+        url: host + "/cart",
+        params: {
+          method: 'DELETE'
+        }
       }
     }
   }

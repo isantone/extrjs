@@ -194,34 +194,76 @@ router.post("/cart", jsonParser, (req, res, next) => {
   }
 });
 
-router.delete("/cart", upload.array(), (req, res, next) => {
-  const productId = Number(req.body.id);
+router.delete(paths.cart.url, jsonParser, (req, res, next) => {
+  //const productId = Number(req.body.id);
+  const reqCart = req.body;
 
-  if (productId) {
-    const userToken = req.headers.authorization;
-    if (userToken) {
-        const user = users.getUserByToken(userToken);
-        const indexOfProduct = user.cart.findIndex((element) => {
-          return element.id === productId;
+  if (!reqCart || reqCart.length < 1 || !Array.isArray(reqCart)) return res.sendStatus(400);
+
+  const userToken = req.headers.authorization;
+
+  if (!userToken) return res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+
+  if (userToken) {
+    const user = users.getUserByToken(userToken);
+    if (!user) return res.sendStatus(401);
+
+    if (reqCart.length > 1) //then delete all elements of cart
+    {
+      reqCart.forEach((cartItem) => {
+        const newCart = user.cart.filter(serverCartItem => {
+          return serverCartItem.id != cartItem.id;
         });
-        if (indexOfProduct > 0) {
-          console.log(user.cart);
-          user.cart.splice(indexOfProduct, 1);
-          console.log(user.cart);
 
-          users.writeInFile();
-          //delete user.password;
-          res.send(user);
-        } else {
-          res.status(404).send({ success: false, message: 'Error: No such product in cart.'});
-        }
+        user.cart = newCart;
+      });
     } else {
-      res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+      const indexOfEl = user.cart.findIndex(serverCartItem => {
+        return serverCartItem.id === reqCart[0].id;
+      });
+      if (indexOfEl >= 0) {
+        user.cart.splice(indexOfEl, 1);
+      }
     }
+      users.writeInFile();
+      //delete user.password;
+      res.send({
+        token: user.token,
+        cart: user.cart
+      });
   } else {
-    res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+    res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'});
   }
 });
+
+// router.delete("/cart", upload.array(), (req, res, next) => {
+//   const productId = Number(req.body.id);
+
+//   if (productId) {
+//     const userToken = req.headers.authorization;
+//     if (userToken) {
+//         const user = users.getUserByToken(userToken);
+//         const indexOfProduct = user.cart.findIndex((element) => {
+//           return element.id === productId;
+//         });
+//         if (indexOfProduct > 0) {
+//           console.log(user.cart);
+//           user.cart.splice(indexOfProduct, 1);
+//           console.log(user.cart);
+
+//           users.writeInFile();
+//           //delete user.password;
+//           res.send(user);
+//         } else {
+//           res.status(404).send({ success: false, message: 'Error: No such product in cart.'});
+//         }
+//     } else {
+//       res.status(401).send({ success: false, message: 'Authorization error: No token provided.'});
+//     }
+//   } else {
+//     res.status(404).send({ success: false, message: 'Product error: No product ID provided.'});
+//   }
+// });
 
 router.get(paths.categories.url, (req, res) => {
   res.setHeader("Cache-Control", "public, max-age=2592");
@@ -262,6 +304,14 @@ router.get(paths.categories.category.products.product.url, (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(item);
+});
+
+router.get(paths.search.url, (req, res) => {
+  const searchQuery = req.query.q;
+  let result = products.findItemByTitle(searchQuery);
+  console.log(result);
+
+  res.send(result);
 });
 
 module.exports = router;
