@@ -34,7 +34,22 @@ export default class CartPresenter extends Presenter {
 
 			this.model.fetchData(this.fetchReq)
 			.then((jsonData) => {
-				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 1) {
+				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
+					let lsData = ls.getKeyValue();
+
+					///// ---> function Name() {}
+					let responseCart = [];
+					let index = 0;
+					jsonData.cart.forEach((productInCart) => {
+						responseCart[index] = {};
+						responseCart[index].id = productInCart.id;
+						responseCart[index].quantity = productInCart.quantity;
+						index++;
+					});
+					/////
+
+					lsData.cart = responseCart;
+					ls.setKeyValue(lsData);
 					return this.view.getTemplate(jsonData);
 				}
 				return this.emptyCartView.getTemplate();

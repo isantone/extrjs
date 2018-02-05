@@ -7,69 +7,35 @@
   },
   {
     "email": "test@test.com",
-    "token": 51152319165,
+    "token": 31806545931,
     "password": "test",
     "cart": [
       {
-        "id": 5,
-        "quantity": 1,
-        "product": {
-          "id": 5,
-          "title": "Nordica ENFORCER 110",
-          "images": [
-            "http://localhost:3000/images/products/alpine-ski/5_1_s.jpg",
-            "http://localhost:3000/images/products/alpine-ski/5_2_s.jpg",
-            "http://localhost:3000/images/products/alpine-ski/5_3_s.jpg"
-          ],
-          "description": "text description",
-          "price": 849,
-          "category": "alpine-ski",
-          "type": "alpine-skis",
-          "availability": true
-        }
-      },
-      {
-        "id": 4,
-        "quantity": 1,
-        "product": {
-          "id": 4,
-          "title": "Nordica ENFORCER 100",
-          "images": [
-            "http://localhost:3000/images/products/alpine-ski/4_1_s.jpg",
-            "http://localhost:3000/images/products/alpine-ski/4_2_s.jpg",
-            "http://localhost:3000/images/products/alpine-ski/4_3_s.jpg"
-          ],
-          "description": "text description",
-          "price": 799,
-          "category": "alpine-ski",
-          "type": "alpine-skis",
-          "availability": true
-        }
+        "id": 1,
+        "quantity": 1
       },
       {
         "id": 2,
-        "quantity": 1,
-        "product": {
-          "id": 2,
-          "title": "Burton Ripcord",
-          "images": [
-            "http://localhost:3000/images/products/snowboard/2_1_s.jpg",
-            "http://localhost:3000/images/products/snowboard/2_2_s.jpg",
-            "http://localhost:3000/images/products/snowboard/2_3_s.jpg"
-          ],
-          "description": "text description",
-          "price": 379,
-          "category": "snowboard",
-          "type": "snowboards",
-          "availability": true
-        }
+        "quantity": 1
+      },
+      {
+        "id": 6,
+        "quantity": 1
+      },
+      {
+        "id": 17,
+        "quantity": 1
+      },
+      {
+        "id": 5,
+        "quantity": 1
       }
     ]
   },
   {
     "email": "newuser@newuser.com",
     "password": "newuser",
-    "token": 3028084609,
+    "token": 2768322501,
     "cart": [
       {
         "id": 1,

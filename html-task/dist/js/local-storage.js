@@ -12,6 +12,10 @@ class LocalStorage {
     return JSON.parse(keyValueJson);
   }
 
+  removeKeyValue() {
+    localStorage.removeItem(this.keyName);
+  }
+
   setKeyValue(newValue) {
     let keyValue = this.getKeyValue();
     localStorage.setItem(this.keyName, JSON.stringify(newValue));

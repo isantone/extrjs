@@ -1,5 +1,5 @@
 import paths from '../paths';
-import localStorage from '../local-storage';
+import ls from '../local-storage';
 //
 
 import Presenter from './presenter';
@@ -45,7 +45,7 @@ export default class RegPresenter extends Presenter {
         this.signFormForm = document.getElementById("signForm");
 
         this.changeFormLink = document.getElementById("changeForm");
-        this.accountBtn = document.getElementById("signButton");
+        //this.accountBtn = document.getElementById("accountBtn"); <--- Undefined in this moment
 
         this.sendFormBtn = document.getElementById("sendFormButton");
 
@@ -83,6 +83,12 @@ export default class RegPresenter extends Presenter {
 
   showRegForm(event) {
     event.preventDefault();
+
+    if (ls.getKeyJson()) {
+      ls.removeKeyValue();
+      document.getElementById("accountBtn").innerText = "ACCOUNT";
+      return;
+    }
 
     const animationPromise = new Promise((resolve, reject) => {
       this.signFormWrapper.classList.remove("hide");
@@ -175,7 +181,8 @@ export default class RegPresenter extends Presenter {
         console.log(responseJson);
         if (responseJson.token) {
           //debugger
-          localStorage.setKeyValue(responseJson);
+          ls.setKeyValue(responseJson);
+          document.getElementById("accountBtn").innerText = "LOG OUT";
           //localStorage.setItem("user", JSON.stringify(responseJson));
         }
       })

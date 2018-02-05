@@ -91,12 +91,6 @@ router.get(paths.users.user.url, (req, res) => {
 });
 
 router.get(paths.cart.url, (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:7777');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Headers', 'Authorization');
-  res.header('Access-Control-Allow-Credentials', true);
-
   const userToken = req.headers.authorization;
   //return res.status(401).send({ success: false, message: 'Hello.'});
 
@@ -104,8 +98,15 @@ router.get(paths.cart.url, (req, res, next) => {
     const user = users.getUserByToken(userToken); // || unauthorized cart -> session storage
     //delete user.password;
     if (user) {
-      user.cart.forEach((element) => {
-        element.product = products.getItemById(element.id);
+      let responseCart = [];
+      let index = 0;
+      user.cart.forEach((productInCart) => {
+        //productInCart.product = products.getItemById(productInCart.id);
+        responseCart[index] = {};
+        responseCart[index].id = productInCart.id;
+        responseCart[index].product = products.getItemById(productInCart.id);
+        responseCart[index].quantity = productInCart.quantity;
+        index++;
       });
       console.log("-----");
       console.log(user.token);
@@ -118,7 +119,7 @@ router.get(paths.cart.url, (req, res, next) => {
 
       res.send({
         token: user.token,
-        cart: user.cart
+        cart: responseCart
       });
     } else {
       res.status(401).send({ success: false, message: 'Invalid email or password.'});
@@ -178,6 +179,8 @@ router.post("/cart", jsonParser, (req, res, next) => {
         } else {
           user.cart.push({id: cartItem.id, quantity: cartItem.quantity});
         }
+      } else {
+        return res.status(404).send({ success: false, message: 'This product is unavailable at the moment.'}); // FOR ONE PRODUCT BUT WHAT IF THERE ARE MORE THAN ONE PRODUCT?y
       }
     }
       users.writeInFile();

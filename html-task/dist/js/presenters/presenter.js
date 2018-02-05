@@ -1,4 +1,5 @@
 import paths from '../paths';
+import ls from '../local-storage';
 
 export default class Presenter {
   constructor() {
@@ -54,30 +55,35 @@ export default class Presenter {
     //let userLocalData = JSON.parse(localStorage.getItem("user"));
     //let cart = userLocalData.cart || [];
     const requestUrl = paths.ajax.cart.add.url;
-    const requestParameters = { method: 'POST' }; //paths.ajax.cart.add.params;
+    const requestParameters = paths.ajax.cart.add.params;
 
-    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
-
-    let userData = JSON.parse(localStorage.getItem("user"));
-
-    let reqData = new FormData();
-    reqData.append( "id", idOfProduct );
-    //reqData.append( "id", idOfProduct );
-
-    requestParameters.body = reqData;
+    const userToken = ls.getToken();
 
     requestParameters.headers = new Headers({
-      'Authorization': 'Bearer ' + userData.token,
+      'Authorization': 'Bearer ' + userToken,
+      'Content-Type': 'application/json'
     });
+
+    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
+    let quantityOfProduct = 1; /////////// ?
+
+    let reqBody = [
+      {
+        "id": idOfProduct,
+        "quantity": quantityOfProduct
+      }
+    ];
+
+    requestParameters.body = JSON.stringify(reqBody);
 
 		const fetchReq = new Request(requestUrl, requestParameters);
 
     this.model.fetchData(fetchReq)
       .then((response) => {
         if (response.cart) {
-          let userData = JSON.parse(localStorage.getItem("user"));
-          userData.cart = response.cart;
-          localStorage.setItem("user", JSON.stringify(userData));
+          // let userData = JSON.parse(localStorage.getItem("user"));
+          // userData.cart = response.cart;
+          // localStorage.setItem("user", JSON.stringify(userData));
         }
         console.log(response);
       });
