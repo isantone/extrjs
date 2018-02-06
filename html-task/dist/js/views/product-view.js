@@ -11,7 +11,7 @@ export default class ProductView {
         <main id="productsMain" class="page-main__products">
         <div class="slider">
           <div class="slider__view-section">
-            <img id="activeImage" class="w3-animate-right slider__big-image" src="{{this.images.[0]}}" alt="Product image">
+            <img id="activeImage" class="w3-animate-right slider__big-image" src="{{this.images.[1]}}" alt="Product image">
           </div>
           <div class="slider__preview-section">
             <div id="leftControl" class="slider__control">

@@ -34,23 +34,25 @@ export default class CartPresenter extends Presenter {
 
 			this.model.fetchData(this.getFetchReq)
 			.then((jsonData) => {
+				
 				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
-					let lsData = ls.getKeyValue();
+					this.refreshLocalCart(jsonData);
+				// 	let lsData = ls.getKeyValue();
 
-					///// ---> function Name() {}
-					let responseCart = [];
-					let index = 0;
-					jsonData.cart.forEach((productInCart) => {
-						responseCart[index] = {};
-						responseCart[index].id = productInCart.id;
-						responseCart[index].quantity = productInCart.quantity;
-						index++;
-					});
-					/////
+				// 	///// ---> function Name() {}
+				// 	let responseCart = [];
+				// 	let index = 0;
+				// 	jsonData.cart.forEach((productInCart) => {
+				// 		responseCart[index] = {};
+				// 		responseCart[index].id = productInCart.id;
+				// 		responseCart[index].quantity = productInCart.quantity;
+				// 		index++;
+				// 	});
+				// 	/////
 
-					lsData.cart = responseCart;
-					ls.setKeyValue(lsData);
-					return this.view.getTemplate(jsonData);
+				// 	lsData.cart = responseCart;
+				// 	ls.setKeyValue(lsData);
+				return this.view.getTemplate(jsonData);
 				}
 				return this.emptyCartView.getTemplate();
 			})
@@ -135,11 +137,24 @@ export default class CartPresenter extends Presenter {
     this.model.fetchData(delFetchReq)
       .then((response) => {
         if (response.cart) {
-          // let userData = JSON.parse(localStorage.getItem("user"));
-          // userData.cart = response.cart;
-          // localStorage.setItem("user", JSON.stringify(userData));
+					this.refreshInfo(response);
+					/*
+					this.refreshLocalCart(response);
+					setTimeout(() => { /// promise
+						this.refreshHeaderInfo();
+					});
+					*/
         }
         console.log(response);
-      });
-  }
+			});
+		
+			const productDiv = event.currentTarget.parentNode.parentNode; // apply data-id attribute to this div?
+			productDiv.remove();
+
+			
+			if (!document.getElementsByClassName("product").length) {
+				this.removeTemplate();
+				return this.insertTemplate(this.emptyCartView.getTemplate());
+			}
+	}
 }

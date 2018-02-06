@@ -27,6 +27,13 @@ module.exports = {
     }
   },
 
+  type: {
+    url: "/type",
+    products: {
+      url: "/type/:typeName/products"
+    }
+  },
+
   users: {
     url: "/users",
     user: {

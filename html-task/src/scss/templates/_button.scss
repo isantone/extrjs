@@ -31,15 +31,29 @@
 
   cursor: pointer;
 
+  &_auto-width {
+    width: auto;
+  }
+
   &_color {
     color: white;
     border: 1px solid $main-color;
     background: $main-color;
+
   }
 
-  &:active, &:hover, &:focus {
-    color: $main-color;
-    background: white;
+  &_color, &_gray {
+    &:active, &:hover, &:focus {
+      color: $main-color;
+      background: white;
+    }
+  }
+
+  &_disabled {
+    color: gray;
+    &:active, &:hover, &:focus {
+      cursor: not-allowed;
+    }
   }
 }
 
