@@ -308,7 +308,13 @@ router.get(paths.categories.category.products.product.url, (req, res) => {
 
 router.get(paths.search.url, (req, res) => {
   const searchQuery = req.query.q;
+  if (!searchQuery || searchQuery == " " || searchQuery.length < 2) return res.send([]);
+
   let result = products.findItemByTitle(searchQuery);
+
+  // if (result.length == 0) {
+  //   res.send([{ title: "No results for your query"}]);
+  // }
   console.log(result);
 
   res.send(result);

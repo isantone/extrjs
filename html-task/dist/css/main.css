@@ -1,5 +1,5 @@
 @import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Bree+Serif");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Bree+Serif|Roboto");
 a {
   text-decoration: none; }
 
@@ -529,10 +529,6 @@ template {
 
 .mid-top-margin {
   margin-top: 24px; }
-
-html {
-  margin-left: calc(100vw - 100%);
-  margin-right: 0; }
 
 p, h2 {
   margin: 0;
@@ -1190,6 +1186,18 @@ main {
     .search-form__fa-search:hover {
       fill: #0e778c;
       cursor: pointer; }
+
+.search-results {
+  position: absolute;
+  width: 100%;
+  background: white;
+  z-index: 100; }
+  .search-results .search-results__result {
+    padding: 10px;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: "Roboto", "Open Sans", "Verdana", sans-serif; }
+    .search-results .search-results__result:hover {
+      background: #fafcfc; }
 
 @media screen and (min-width: 1024px) {
   .search-form {

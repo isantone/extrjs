@@ -95,6 +95,12 @@ const paths = {
           method: 'DELETE'
         }
       }
+    },
+    search: {
+      url: host + "/search?q=",
+      params: {
+        method: 'GET'
+      }
     }
   }
 };

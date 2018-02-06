@@ -57,10 +57,10 @@
 }
 /////
 
-html { // Prevent page from left-right twitching when scrollbar appears/disappears
-  margin-left: calc(100vw - 100%);
-  margin-right: 0;
-}
+// html { // Prevent page from left-right twitching when scrollbar appears/disappears
+//   margin-left: calc(100vw - 100%);
+//   margin-right: 0;
+// }
 
 p, h2 {
   margin: 0;

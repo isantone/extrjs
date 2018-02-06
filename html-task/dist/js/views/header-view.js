@@ -31,24 +31,25 @@ export default class HeaderView {
 				</div>
 				<div id="searchForm" class="search-form">
 					<svg class="svg-btn search-form__fa-search" class="search-form__fa-search" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
-					<input class="search-form__input" type="text" placeholder="Search here..." required>
+					<input id="searchInput" class="search-form__input" type="text" placeholder="Search here..." required>
 				</div>
-      </div>
+			</div>
+			<div id="searchResults" class="search-results">
+			</div>
 
 			<div id="submenuContainer" class="desktop-menu__sub-menu hide">
-
-			{{#each this}}
-				<ul class="desktop-menu__sub-ul">
-					<li>
-						<a class="desktop-menu__sub-header" href="#categories/{{this.name}}/products">{{this.title}}</a>
-					</li>
-					{{#each catalog}}
-						<li class="desktop-menu__sub-btn">
-							<a href="#categories/{{this.name}}/products" class="desktop-menu__sub-link">{{this.title}}</a>
+				{{#each this}}
+					<ul class="desktop-menu__sub-ul">
+						<li>
+							<a class="desktop-menu__sub-header" href="#categories/{{this.name}}/products">{{this.title}}</a>
 						</li>
-					{{/each}}
-				</ul>
-			{{/each}}
+						{{#each catalog}}
+							<li class="desktop-menu__sub-btn">
+								<a href="#categories/{{this.name}}/products" class="desktop-menu__sub-link">{{this.title}}</a>
+							</li>
+						{{/each}}
+					</ul>
+				{{/each}}
 			</div>
 		</header>
     `;

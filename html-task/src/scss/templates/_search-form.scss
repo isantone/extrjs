@@ -59,6 +59,23 @@ $search-input-height: 36px;
   }
 }
 
+.search-results {
+  position: absolute;
+  width: 100%;
+  background: white;
+  z-index: 100;
+
+  .search-results__result {
+    padding: 10px;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: 'Roboto', $font-family;
+
+    &:hover {
+      background: #fafcfc;
+    }
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .search-form {
     width: auto;
