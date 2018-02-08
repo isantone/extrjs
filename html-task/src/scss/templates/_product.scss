@@ -12,6 +12,8 @@ $max-height: 150px;
   display: flex;
 
   &__image {
+    max-width: 150px;
+    max-height: 150px;
     display: inline-block;
     flex-grow: 0;
   }
@@ -33,7 +35,7 @@ $max-height: 150px;
 
   &__right-part {
     display: inline-block;
-    min-width: 150px;
+    min-width: 170px;
   }
 
   &_grid {

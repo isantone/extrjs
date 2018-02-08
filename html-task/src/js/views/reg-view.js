@@ -25,7 +25,7 @@ export default class RegView {
           <a id="changeForm" class="two-cols-line__right" href="#">Sign Up</a>
         </div>
         <button id="sendFormButton" class="button button_color mid-top-margin">LOG IN</button>
-        <button id="cancelButton" class="button mid-top-margin">CANCEL</button>
+        <button id="cancelButton" class="button button_gray mid-top-margin">CANCEL</button>
       </form>
     </div>
     `;

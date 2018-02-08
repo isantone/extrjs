@@ -1,4 +1,5 @@
 import paths from '../paths';
+import ls from '../local-storage';
 
 import Presenter from './presenter';
 
@@ -44,8 +45,13 @@ export default class HeaderPresenter extends Presenter {
 			this.catalogBtn = document.getElementById("catalogBtn");
 			this.navContainer = document.getElementById("navContainer");
 			this.submenuContainer = document.getElementById("submenuContainer");
+
+			this.cartValue = document.getElementById("cartValue");
+
+			this.searchForm = document.getElementById("searchForm");
 			this.searchInput = document.getElementById("searchInput");
 			this.searchResultsContainer = document.getElementById("searchResults");
+			this.searchBtn = document.getElementById("searchIcon");
 
 			resolve();
     });
@@ -59,8 +65,40 @@ export default class HeaderPresenter extends Presenter {
 		//this.navContainer.addEventListener("mouseover", this.closeMenu.bind(this));
 		this.submenuContainer.addEventListener("mouseleave", this.closeMenu.bind(this));
 
+		this.searchInput.addEventListener("focus", this.animateSearchForm.bind(this), false);
+		this.searchInput.addEventListener("blur", this.animateSearchForm.bind(this), false);
 		this.searchInput.addEventListener("input", this.showSearchResults.bind(this), false);
+
+		this.refreshHeaderInfo();
+
+		///// ---- WATCHER ------ /////////
+
+		// Select the node that will be observed for mutations
+		setTimeout(() => {
+			//var targetNode = document.querySelector("#pageContent");
+			var targetNode = document.body;
+
+			// Options for the observer (which mutations to observe)
+			var config = { attributes: true, childList: true };
+
+			// Callback function to execute when mutations are observed
+			var callback = (mutationsList) => {
+				this.refreshHeaderInfo();
+			};
+
+			// Create an observer instance linked to the callback function
+			var observer = new MutationObserver(callback);
+
+			// Start observing the target node for configured mutations
+			observer.observe(targetNode, config);
+
+			// Later, you can stop observing
+			//observer.disconnect();
+		}, 1000);
+		///// ----- WATCHER ----- //////
 	}
+
+
 
 	showRegForm(event) {
 		signPresenter.showRegForm(event);
@@ -70,7 +108,7 @@ export default class HeaderPresenter extends Presenter {
 		event.preventDefault();
 
 		this.submenuContainer.classList.remove("hide");
-		//this.menuContainer.classList.toggle("hide");
+		//this.submenuContainer.classList.toggle("hide");
 	}
 
 	closeMenu(event) {
@@ -89,6 +127,20 @@ export default class HeaderPresenter extends Presenter {
 		//if (event.clientY > 250 || event.currentTarget === this.navContainer) {
 			//this.submenuContainer.classList.add("hide");
 		//}
+	}
+
+	animateSearchForm(event) {
+		event.preventDefault();
+
+		this.searchForm.classList.toggle("search-form_focused");
+		this.searchBtn.classList.toggle("search-form__fa-search_focused");
+		setTimeout(()=> { 
+			this.searchResultsContainer.classList.toggle("hide"); 
+		}, 200);
+		
+		if (this.searchForm.classList.contains("search-form_focused")) {
+			event.currentTarget.select();
+		}
 	}
 
 	showSearchResults(event) {

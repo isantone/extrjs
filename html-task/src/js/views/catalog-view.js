@@ -19,7 +19,7 @@ CatalogView.prototype.getTemplate = function(data) {
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
-      <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
+      <button id="viewChanger" class="button button_color tiny-bottom-margin">GRID / LIST</button>
       <main id="productsMain" class="page-main__products">
         {{#each this}}
           {{#each this}}

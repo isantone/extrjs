@@ -87,6 +87,7 @@ export default class RegPresenter extends Presenter {
     if (ls.getKeyJson()) {
       ls.removeKeyValue();
       document.getElementById("accountBtn").innerText = "ACCOUNT";
+      this.refreshHeaderInfo();
       return;
     }
 
@@ -183,6 +184,7 @@ export default class RegPresenter extends Presenter {
           //debugger
           ls.setKeyValue(responseJson);
           document.getElementById("accountBtn").innerText = "LOG OUT";
+          this.refreshHeaderInfo();
           //localStorage.setItem("user", JSON.stringify(responseJson));
         }
       })

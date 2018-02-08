@@ -3,7 +3,7 @@ export default class SearchResultsView {
     const searchResultsTemplate = `
     {{#each this}}
       <a href="#products/{{this.id}}">
-        <p class="search-results__result">{{this.title}}</p>
+        <p class="search-form__result">{{this.title}}</p>
       </a>
     {{/each}}
     `;

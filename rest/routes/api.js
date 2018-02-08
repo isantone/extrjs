@@ -266,9 +266,9 @@ router.delete(paths.cart.url, jsonParser, (req, res, next) => {
 // });
 
 router.get(paths.categories.url, (req, res) => {
-  res.setHeader("Cache-Control", "public, max-age=2592");
-  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  //res.setHeader("Cache-Control", "public, max-age=2592");
+  //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(catalog.obj);
 });
@@ -277,9 +277,9 @@ router.get(paths.categories.category.url, (req, res) => {
   const name = req.params.categoryName;
   const category = catalog.getCategoryByName(name);
 
-  res.setHeader("Cache-Control", "public, max-age=2592");
-  res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  //res.setHeader("Cache-Control", "public, max-age=2592");
+  //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(category);
 });
@@ -288,9 +288,20 @@ router.get(paths.categories.category.products.url, (req, res) => {
   const categoryUrlName = req.params.categoryName;
   const items = products.getProductsFromCategory(categoryUrlName);
 
-  res.setHeader("Cache-Control", "public, max-age=2592");
+  //res.setHeader("Cache-Control", "public, max-age=2592");
   //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+
+  res.send(items);
+});
+
+router.get(paths.type.products.url, (req, res) => {
+  const typeName = req.params.categoryName;
+  const items = products.getProductsByType(typeName);
+
+  //res.setHeader("Cache-Control", "public, max-age=2592");
+  //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
+  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(items);
 });
@@ -299,9 +310,9 @@ router.get(paths.categories.category.products.product.url, (req, res) => {
   const itemId = Number(req.params.itemId);
   const item = products.getItemById(itemId);
 
-  res.setHeader("Cache-Control", "public, max-age=2592");
+  //res.setHeader("Cache-Control", "public, max-age=2592");
   //res.setHeader("Expires", new Date(Date.now() + 2592000).toUTCString());
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
+  //res.setHeader("Access-Control-Allow-Origin", "http://localhost:7777");
 
   res.send(item);
 });

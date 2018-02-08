@@ -13,8 +13,6 @@ CartView.prototype.getTemplate = function(data) {
         {{#each cart}}
           {{> product}}
         {{/each}}
-        <br>
-        <button onclick="localStorage.clear();" class="button input-size turquoise add-to-cart cart-page__buy-button">CLEAN</button>
       </main>
     </div>
   </div>`;

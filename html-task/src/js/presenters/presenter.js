@@ -81,11 +81,72 @@ export default class Presenter {
     this.model.fetchData(fetchReq)
       .then((response) => {
         if (response.cart) {
-          // let userData = JSON.parse(localStorage.getItem("user"));
-          // userData.cart = response.cart;
-          // localStorage.setItem("user", JSON.stringify(userData));
+          this.refreshInfo(response);
         }
         console.log(response);
       });
   }
+
+  refreshInfo(json) {
+    this.refreshLocalCart(json)
+      .then(this.refreshHeaderInfo);
+  }
+
+  refreshLocalCart(jsonData) {
+    return new Promise((resolve, reject) => {
+      let lsData = ls.getKeyValue();
+
+			///// ---> function Name() {}
+			let responseCart = [];
+			let index = 0;
+			jsonData.cart.forEach((productInCart) => {
+				responseCart[index] = {};
+				responseCart[index].id = productInCart.id;
+				responseCart[index].quantity = productInCart.quantity;
+				index++;
+			});
+			/////
+
+			lsData.cart = responseCart;
+      resolve(ls.setKeyValue(lsData));
+    });
+    /*
+		//if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
+			let lsData = ls.getKeyValue();
+
+			///// ---> function Name() {}
+			let responseCart = [];
+			let index = 0;
+			jsonData.cart.forEach((productInCart) => {
+				responseCart[index] = {};
+				responseCart[index].id = productInCart.id;
+				responseCart[index].quantity = productInCart.quantity;
+				index++;
+			});
+			/////
+
+			lsData.cart = responseCart;
+			ls.setKeyValue(lsData);
+    //}
+    */
+  }
+  
+  refreshHeaderInfo() {
+    const lsData = ls.getKeyValue();
+    const accountBtn = document.getElementById("accountBtn");
+    const cartValue = document.getElementById("cartValue");
+
+		if (lsData) {
+			accountBtn.innerText = "LOG OUT";
+
+			if (lsData.cart.length > 0) {
+				cartValue.innerText = lsData.cart.length;
+				cartValue.classList.remove('hide');
+			} else {
+				cartValue.classList.add('hide');
+			}
+		} else {
+			cartValue.classList.add('hide');
+		}
+	}
 }

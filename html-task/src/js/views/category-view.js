@@ -5,7 +5,7 @@ export default class CategoryView {
       <!-- Navigation -->
       <div class="page-main__content">
         <h2>Shop {{this.[0].category}} Gear</h2>
-        <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
+        <button id="viewChanger" class="button button_color button_auto-width tiny-bottom-margin">GRID / LIST</button>
         <main id="productsMain" class="page-main__products">
           {{#each this}}
             {{> product}}
@@ -30,7 +30,7 @@ export default class CategoryView {
         </div>
         <div class="product__right-part">
           <p class="product__price">Price: \$ {{this.price}}</p>
-          <button data-id="{{this.id}}" class="button button_color input-size add-to-cart">Add to cart</button>
+          <button data-id="{{this.id}}" class="button {{#if this.availability}}button_color add-to-cart">Add to cart{{else}}button_disabled add-to-cart" disabled>Out of stock{{/if}}</button>
         </div>
       </div>
     </div>`;

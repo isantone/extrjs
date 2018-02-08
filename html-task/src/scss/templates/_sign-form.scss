@@ -1,5 +1,7 @@
 @import 'two-cols-line';
 
+$appearance-transition: left .3s ease-in-out;
+
 $form-max-width: 400px;
 //$form-min-width: 320px;
 
@@ -51,7 +53,7 @@ $form-bg: #e1e5ec;
 
     background: $main-color;
 
-    transition: left 0.2s ease-out;
+    transition: $appearance-transition; 
 
     &_visible {
       left: 0;
@@ -67,7 +69,7 @@ $form-bg: #e1e5ec;
     //background: rgb(235, 235, 235);
     padding: 10px;
 
-    transition: left 0.2s ease-out;
+    transition: $appearance-transition;
 
     &_visible {
       left: 0;

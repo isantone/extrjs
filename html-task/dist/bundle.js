@@ -267,13 +267,74 @@ class Presenter {
     this.model.fetchData(fetchReq)
       .then((response) => {
         if (response.cart) {
-          // let userData = JSON.parse(localStorage.getItem("user"));
-          // userData.cart = response.cart;
-          // localStorage.setItem("user", JSON.stringify(userData));
+          this.refreshInfo(response);
         }
         console.log(response);
       });
   }
+
+  refreshInfo(json) {
+    this.refreshLocalCart(json)
+      .then(this.refreshHeaderInfo);
+  }
+
+  refreshLocalCart(jsonData) {
+    return new Promise((resolve, reject) => {
+      let lsData = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyValue();
+
+			///// ---> function Name() {}
+			let responseCart = [];
+			let index = 0;
+			jsonData.cart.forEach((productInCart) => {
+				responseCart[index] = {};
+				responseCart[index].id = productInCart.id;
+				responseCart[index].quantity = productInCart.quantity;
+				index++;
+			});
+			/////
+
+			lsData.cart = responseCart;
+      resolve(__WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].setKeyValue(lsData));
+    });
+    /*
+		//if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
+			let lsData = ls.getKeyValue();
+
+			///// ---> function Name() {}
+			let responseCart = [];
+			let index = 0;
+			jsonData.cart.forEach((productInCart) => {
+				responseCart[index] = {};
+				responseCart[index].id = productInCart.id;
+				responseCart[index].quantity = productInCart.quantity;
+				index++;
+			});
+			/////
+
+			lsData.cart = responseCart;
+			ls.setKeyValue(lsData);
+    //}
+    */
+  }
+  
+  refreshHeaderInfo() {
+    const lsData = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyValue();
+    const accountBtn = document.getElementById("accountBtn");
+    const cartValue = document.getElementById("cartValue");
+
+		if (lsData) {
+			accountBtn.innerText = "LOG OUT";
+
+			if (lsData.cart.length > 0) {
+				cartValue.innerText = lsData.cart.length;
+				cartValue.classList.remove('hide');
+			} else {
+				cartValue.classList.add('hide');
+			}
+		} else {
+			cartValue.classList.add('hide');
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Presenter;
 
@@ -796,8 +857,6 @@ CartView.prototype.getTemplate = function(data) {
         {{#each cart}}
           {{> product}}
         {{/each}}
-        <br>
-        <button onclick="localStorage.clear();" class="button input-size turquoise add-to-cart cart-page__buy-button">CLEAN</button>
       </main>
     </div>
   </div>`;
@@ -1173,7 +1232,7 @@ CatalogView.prototype.getTemplate = function(data) {
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
-      <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
+      <button id="viewChanger" class="button button_color tiny-bottom-margin">GRID / LIST</button>
       <main id="productsMain" class="page-main__products">
         {{#each this}}
           {{#each this}}
@@ -2286,7 +2345,7 @@ class CategoryView {
       <!-- Navigation -->
       <div class="page-main__content">
         <h2>Shop {{this.[0].category}} Gear</h2>
-        <button id="viewChanger" class="button input-size tiny-bottom-margin">GRID / LIST</button>
+        <button id="viewChanger" class="button button_color button_auto-width tiny-bottom-margin">GRID / LIST</button>
         <main id="productsMain" class="page-main__products">
           {{#each this}}
             {{> product}}
@@ -2311,7 +2370,7 @@ class CategoryView {
         </div>
         <div class="product__right-part">
           <p class="product__price">Price: \$ {{this.price}}</p>
-          <button data-id="{{this.id}}" class="button button_color input-size add-to-cart">Add to cart</button>
+          <button data-id="{{this.id}}" class="button {{#if this.availability}}button_color add-to-cart">Add to cart{{else}}button_disabled add-to-cart" disabled>Out of stock{{/if}}</button>
         </div>
       </div>
     </div>`;
@@ -2432,7 +2491,7 @@ class ProductView {
         <main id="productsMain" class="page-main__products">
         <div class="slider">
           <div class="slider__view-section">
-            <img id="activeImage" class="w3-animate-right slider__big-image" src="{{this.images.[0]}}" alt="Product image">
+            <img id="activeImage" class="w3-animate-right slider__big-image" src="{{this.images.[1]}}" alt="Product image">
           </div>
           <div class="slider__preview-section">
             <div id="leftControl" class="slider__control">
@@ -2573,23 +2632,25 @@ class CartPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defa
 
 			this.model.fetchData(this.getFetchReq)
 			.then((jsonData) => {
+				
 				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
-					let lsData = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyValue();
+					this.refreshLocalCart(jsonData);
+				// 	let lsData = ls.getKeyValue();
 
-					///// ---> function Name() {}
-					let responseCart = [];
-					let index = 0;
-					jsonData.cart.forEach((productInCart) => {
-						responseCart[index] = {};
-						responseCart[index].id = productInCart.id;
-						responseCart[index].quantity = productInCart.quantity;
-						index++;
-					});
-					/////
+				// 	///// ---> function Name() {}
+				// 	let responseCart = [];
+				// 	let index = 0;
+				// 	jsonData.cart.forEach((productInCart) => {
+				// 		responseCart[index] = {};
+				// 		responseCart[index].id = productInCart.id;
+				// 		responseCart[index].quantity = productInCart.quantity;
+				// 		index++;
+				// 	});
+				// 	/////
 
-					lsData.cart = responseCart;
-					__WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].setKeyValue(lsData);
-					return this.view.getTemplate(jsonData);
+				// 	lsData.cart = responseCart;
+				// 	ls.setKeyValue(lsData);
+				return this.view.getTemplate(jsonData);
 				}
 				return this.emptyCartView.getTemplate();
 			})
@@ -2674,13 +2735,26 @@ class CartPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defa
     this.model.fetchData(delFetchReq)
       .then((response) => {
         if (response.cart) {
-          // let userData = JSON.parse(localStorage.getItem("user"));
-          // userData.cart = response.cart;
-          // localStorage.setItem("user", JSON.stringify(userData));
+					this.refreshInfo(response);
+					/*
+					this.refreshLocalCart(response);
+					setTimeout(() => { /// promise
+						this.refreshHeaderInfo();
+					});
+					*/
         }
         console.log(response);
-      });
-  }
+			});
+		
+			const productDiv = event.currentTarget.parentNode.parentNode; // apply data-id attribute to this div?
+			productDiv.remove();
+
+			
+			if (!document.getElementsByClassName("product").length) {
+				this.removeTemplate();
+				return this.insertTemplate(this.emptyCartView.getTemplate());
+			}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CartPresenter;
 
@@ -2818,6 +2892,7 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
     if (__WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyJson()) {
       __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].removeKeyValue();
       document.getElementById("accountBtn").innerText = "ACCOUNT";
+      this.refreshHeaderInfo();
       return;
     }
 
@@ -2914,6 +2989,7 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
           //debugger
           __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].setKeyValue(responseJson);
           document.getElementById("accountBtn").innerText = "LOG OUT";
+          this.refreshHeaderInfo();
           //localStorage.setItem("user", JSON.stringify(responseJson));
         }
       })
@@ -2973,7 +3049,7 @@ class RegView {
           <a id="changeForm" class="two-cols-line__right" href="#">Sign Up</a>
         </div>
         <button id="sendFormButton" class="button button_color mid-top-margin">LOG IN</button>
-        <button id="cancelButton" class="button mid-top-margin">CANCEL</button>
+        <button id="cancelButton" class="button button_gray mid-top-margin">CANCEL</button>
       </form>
     </div>
     `;
@@ -2991,11 +3067,12 @@ class RegView {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_model__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_header_view__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_search_results_view__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__presenter__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_header_model__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_header_view__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_search_results_view__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__router__ = __webpack_require__(7);
 
 
 
@@ -3006,7 +3083,8 @@ class RegView {
 
 
 
-class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* default */] {
+
+class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* default */] {
 	constructor() {
 		super();
 
@@ -3015,10 +3093,10 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 
 		this.fetchReq = new Request(requestUrl, requestParameters);
 
-		this.view = new __WEBPACK_IMPORTED_MODULE_3__views_header_view__["a" /* default */]();
-		this.model = new __WEBPACK_IMPORTED_MODULE_2__models_header_model__["a" /* default */]();
+		this.view = new __WEBPACK_IMPORTED_MODULE_4__views_header_view__["a" /* default */]();
+		this.model = new __WEBPACK_IMPORTED_MODULE_3__models_header_model__["a" /* default */]();
 
-		this.searchResultsView = new __WEBPACK_IMPORTED_MODULE_4__views_search_results_view__["a" /* default */]();
+		this.searchResultsView = new __WEBPACK_IMPORTED_MODULE_5__views_search_results_view__["a" /* default */]();
 	}
 
 	init() { // <-- SINGLETON
@@ -3042,8 +3120,13 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 			this.catalogBtn = document.getElementById("catalogBtn");
 			this.navContainer = document.getElementById("navContainer");
 			this.submenuContainer = document.getElementById("submenuContainer");
+
+			this.cartValue = document.getElementById("cartValue");
+
+			this.searchForm = document.getElementById("searchForm");
 			this.searchInput = document.getElementById("searchInput");
 			this.searchResultsContainer = document.getElementById("searchResults");
+			this.searchBtn = document.getElementById("searchIcon");
 
 			resolve();
     });
@@ -3057,18 +3140,50 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 		//this.navContainer.addEventListener("mouseover", this.closeMenu.bind(this));
 		this.submenuContainer.addEventListener("mouseleave", this.closeMenu.bind(this));
 
+		this.searchInput.addEventListener("focus", this.animateSearchForm.bind(this), false);
+		this.searchInput.addEventListener("blur", this.animateSearchForm.bind(this), false);
 		this.searchInput.addEventListener("input", this.showSearchResults.bind(this), false);
+
+		this.refreshHeaderInfo();
+
+		///// ---- WATCHER ------ /////////
+
+		// Select the node that will be observed for mutations
+		setTimeout(() => {
+			//var targetNode = document.querySelector("#pageContent");
+			var targetNode = document.body;
+
+			// Options for the observer (which mutations to observe)
+			var config = { attributes: true, childList: true };
+
+			// Callback function to execute when mutations are observed
+			var callback = (mutationsList) => {
+				this.refreshHeaderInfo();
+			};
+
+			// Create an observer instance linked to the callback function
+			var observer = new MutationObserver(callback);
+
+			// Start observing the target node for configured mutations
+			observer.observe(targetNode, config);
+
+			// Later, you can stop observing
+			//observer.disconnect();
+		}, 1000);
+		///// ----- WATCHER ----- //////
 	}
 
+
+
 	showRegForm(event) {
-		__WEBPACK_IMPORTED_MODULE_5__router__["b" /* signPresenter */].showRegForm(event);
+		__WEBPACK_IMPORTED_MODULE_6__router__["b" /* signPresenter */].showRegForm(event);
 	}
 
 	showMenu(event) {
 		event.preventDefault();
 
 		this.submenuContainer.classList.remove("hide");
-		//this.menuContainer.classList.toggle("hide");
+		//this.submenuContainer.classList.toggle("hide");
 	}
 
 	closeMenu(event) {
@@ -3087,6 +3202,20 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 		//if (event.clientY > 250 || event.currentTarget === this.navContainer) {
 			//this.submenuContainer.classList.add("hide");
 		//}
+	}
+
+	animateSearchForm(event) {
+		event.preventDefault();
+
+		this.searchForm.classList.toggle("search-form_focused");
+		this.searchBtn.classList.toggle("search-form__fa-search_focused");
+		setTimeout(()=> { 
+			this.searchResultsContainer.classList.toggle("hide"); 
+		}, 200);
+		
+		if (this.searchForm.classList.contains("search-form_focused")) {
+			event.currentTarget.select();
+		}
 	}
 
 	showSearchResults(event) {
@@ -3176,21 +3305,24 @@ class HeaderView {
 				</nav>
 
 				<svg class="svg-btn header__search-btn" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
+
 				<div class="header__cart mobile-btn">
 					<a href="#cart">
 						<svg class="svg-btn" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
 							<path d="M0 0h24v24H0z" fill="none"/>
 						</svg>
+						<span id="cartValue" class="header__cart-value"></span>
 					</a>
 				</div>
 				<div id="searchForm" class="search-form">
-					<svg class="svg-btn search-form__fa-search" class="search-form__fa-search" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
+					<svg id="searchIcon" class="svg-btn search-form__fa-search" class="search-form__fa-search" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
 					<input id="searchInput" class="search-form__input" type="text" placeholder="Search here..." required>
+					<div id="searchResults" class="search-form__results hide">
+					</div>
 				</div>
 			</div>
-			<div id="searchResults" class="search-results">
-			</div>
+
 
 			<div id="submenuContainer" class="desktop-menu__sub-menu hide">
 				{{#each this}}
@@ -3227,7 +3359,7 @@ class SearchResultsView {
     const searchResultsTemplate = `
     {{#each this}}
       <a href="#products/{{this.id}}">
-        <p class="search-results__result">{{this.title}}</p>
+        <p class="search-form__result">{{this.title}}</p>
       </a>
     {{/each}}
     `;
