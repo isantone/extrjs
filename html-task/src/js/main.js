@@ -1,9 +1,9 @@
-var _ = require('underscore');
-var $ = require('jquery');
+import App from './app';
 
-window.$ = window.jQuery = $;
-window._ = window.underscore = _;
+window.app = new App();
 
-//var $ = require('jquery');
-//global.jQuery = require("jquery");
-//import $ from "jquery";
+app.renderPage(location.hash);
+
+window.addEventListener('hashchange', function() {
+	app.renderPage(location.hash);
+}, false);

@@ -151,14 +151,25 @@ const paths = {
     cart: {
       url: host + "/cart",
       params: {
-        method: 'GET',
-        credentials: 'include'
+        method: 'GET'
       },
       add: {
         url: host + "/cart",
         params: {
           method: 'POST'
         }
+      },
+      delete: {
+        url: host + "/cart",
+        params: {
+          method: 'DELETE'
+        }
+      }
+    },
+    search: {
+      url: host + "/search?q=",
+      params: {
+        method: 'GET'
       }
     }
   }
@@ -172,6 +183,8 @@ const paths = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(3);
+
 
 
 class Presenter {
@@ -228,30 +241,35 @@ class Presenter {
     //let userLocalData = JSON.parse(localStorage.getItem("user"));
     //let cart = userLocalData.cart || [];
     const requestUrl = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.cart.add.url;
-    const requestParameters = { method: 'POST' }; //paths.ajax.cart.add.params;
+    const requestParameters = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.cart.add.params;
 
-    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
-
-    let userData = JSON.parse(localStorage.getItem("user"));
-
-    let reqData = new FormData();
-    reqData.append( "id", idOfProduct );
-    //reqData.append( "id", idOfProduct );
-
-    requestParameters.body = reqData;
+    const userToken = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getToken();
 
     requestParameters.headers = new Headers({
-      'Authorization': 'Bearer ' + userData.token,
+      'Authorization': 'Bearer ' + userToken,
+      'Content-Type': 'application/json'
     });
+
+    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
+    let quantityOfProduct = 1; /////////// ?
+
+    let reqBody = [
+      {
+        "id": idOfProduct,
+        "quantity": quantityOfProduct
+      }
+    ];
+
+    requestParameters.body = JSON.stringify(reqBody);
 
 		const fetchReq = new Request(requestUrl, requestParameters);
 
     this.model.fetchData(fetchReq)
       .then((response) => {
         if (response.cart) {
-          let userData = JSON.parse(localStorage.getItem("user"));
-          userData.cart = response.cart;
-          localStorage.setItem("user", JSON.stringify(userData));
+          // let userData = JSON.parse(localStorage.getItem("user"));
+          // userData.cart = response.cart;
+          // localStorage.setItem("user", JSON.stringify(userData));
         }
         console.log(response);
       });
@@ -305,394 +323,6 @@ class Model {
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayEach = __webpack_require__(26),
-    baseEach = __webpack_require__(27),
-    castFunction = __webpack_require__(53),
-    isArray = __webpack_require__(11);
-
-/**
- * Iterates over elements of `collection` and invokes `iteratee` for each element.
- * The iteratee is invoked with three arguments: (value, index|key, collection).
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * **Note:** As with other "Collections" methods, objects with a "length"
- * property are iterated like arrays. To avoid this behavior use `_.forIn`
- * or `_.forOwn` for object iteration.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @alias each
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- * @see _.forEachRight
- * @example
- *
- * _.forEach([1, 2], function(value) {
- *   console.log(value);
- * });
- * // => Logs `1` then `2`.
- *
- * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
- *   console.log(key);
- * });
- * // => Logs 'a' then 'b' (iteration order is not guaranteed).
- */
-function forEach(collection, iteratee) {
-  var func = isArray(collection) ? arrayEach : baseEach;
-  return func(collection, castFunction(iteratee));
-}
-
-module.exports = forEach;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Symbol = __webpack_require__(8),
-    getRawTag = __webpack_require__(37),
-    objectToString = __webpack_require__(38);
-
-/** `Object#toString` result references. */
-var nullTag = '[object Null]',
-    undefinedTag = '[object Undefined]';
-
-/** Built-in value references. */
-var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
-
-/**
- * The base implementation of `getTag` without fallbacks for buggy environments.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
- */
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-  return (symToStringTag && symToStringTag in Object(value))
-    ? getRawTag(value)
-    : objectToString(value);
-}
-
-module.exports = baseGetTag;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-
-module.exports = isObjectLike;
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return signPresenter; });
-/* unused harmony export headerPresenter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__presenters_index_presenter__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenters_catalog_presenter__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__presenters_category_presenter__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__presenters_product_presenter__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__presenters_cart_presenter__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__presenters_reg_presenter__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__presenters_header_presenter__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__paths__ = __webpack_require__(0);
-
-
-
-
-
-
-
-
-
-
-let prevPres = [];
-
-var signPresenter = signPresenter || new __WEBPACK_IMPORTED_MODULE_5__presenters_reg_presenter__["a" /* default */]();
-var headerPresenter = headerPresenter || new __WEBPACK_IMPORTED_MODULE_6__presenters_header_presenter__["a" /* default */]();
-
-class Router {
-  dispatch(hash) {
-    switch (hash) {
-      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.index:
-        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_0__presenters_index_presenter__["a" /* default */](), signPresenter];
-      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.catalog:
-        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_1__presenters_catalog_presenter__["a" /* default */](), signPresenter];
-      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.cart:
-        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_4__presenters_cart_presenter__["a" /* default */](), signPresenter];
-      default:
-        if (hash.includes(__WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.product)) {
-          const idOfProduct = Number(hash.split("/")[1]);
-          return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_3__presenters_product_presenter__["a" /* default */](idOfProduct), signPresenter];
-        }
-
-        if (hash.includes(__WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.category)) {
-          const nameOfCategory = hash.split("/")[1];
-          return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_2__presenters_category_presenter__["a" /* default */](nameOfCategory), signPresenter];
-        }
-
-        return []; // 404
-    }
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Router;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_forEach__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_forEach__);
-
-
-function changeView() {
-  //let allDomElementsArray;
-  let allDomElements;
-  allDomElements = document.getElementsByClassName("product");
-
-  // [].forEach.call(allDomElements, function(domElement){
-  //   domElement.classList.toggle("product_grid");
-  // });
-
-  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
-    domElement.classList.toggle("product_grid");
-  });
-
-  allDomElements = document.getElementsByClassName("product__wrapper");
-
-  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
-    domElement.classList.toggle("product__wrapper_grid");
-  });
-
-  allDomElements = document.getElementsByClassName("product__description");
-
-  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
-    domElement.classList.toggle("product__description_grid");
-  });
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (changeView);
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var root = __webpack_require__(9);
-
-/** Built-in value references. */
-var Symbol = root.Symbol;
-
-module.exports = Symbol;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var freeGlobal = __webpack_require__(10);
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-module.exports = root;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-module.exports = freeGlobal;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)))
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-module.exports = isArray;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- * @example
- *
- * _.isLength(3);
- * // => true
- *
- * _.isLength(Number.MIN_VALUE);
- * // => false
- *
- * _.isLength(Infinity);
- * // => false
- *
- * _.isLength('3');
- * // => false
- */
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-module.exports = isLength;
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isFunction = __webpack_require__(50),
-    isLength = __webpack_require__(13);
-
-/**
- * Checks if `value` is array-like. A value is considered array-like if it's
- * not a function and has a `value.length` that's an integer greater than or
- * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- * @example
- *
- * _.isArrayLike([1, 2, 3]);
- * // => true
- *
- * _.isArrayLike(document.body.children);
- * // => true
- *
- * _.isArrayLike('abc');
- * // => true
- *
- * _.isArrayLike(_.noop);
- * // => false
- */
-function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
-}
-
-module.exports = isArrayLike;
-
-
-/***/ }),
-/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -708,6 +338,10 @@ class LocalStorage {
   getKeyValue() {
     let keyValueJson = this.getKeyJson();
     return JSON.parse(keyValueJson);
+  }
+
+  removeKeyValue() {
+    localStorage.removeItem(this.keyName);
   }
 
   setKeyValue(newValue) {
@@ -754,6 +388,394 @@ const ls = new LocalStorage();
 /* harmony default export */ __webpack_exports__["a"] = (ls);
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayEach = __webpack_require__(27),
+    baseEach = __webpack_require__(28),
+    castFunction = __webpack_require__(54),
+    isArray = __webpack_require__(12);
+
+/**
+ * Iterates over elements of `collection` and invokes `iteratee` for each element.
+ * The iteratee is invoked with three arguments: (value, index|key, collection).
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * **Note:** As with other "Collections" methods, objects with a "length"
+ * property are iterated like arrays. To avoid this behavior use `_.forIn`
+ * or `_.forOwn` for object iteration.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @alias each
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array|Object} Returns `collection`.
+ * @see _.forEachRight
+ * @example
+ *
+ * _.forEach([1, 2], function(value) {
+ *   console.log(value);
+ * });
+ * // => Logs `1` then `2`.
+ *
+ * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ *   console.log(key);
+ * });
+ * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+ */
+function forEach(collection, iteratee) {
+  var func = isArray(collection) ? arrayEach : baseEach;
+  return func(collection, castFunction(iteratee));
+}
+
+module.exports = forEach;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(9),
+    getRawTag = __webpack_require__(38),
+    objectToString = __webpack_require__(39);
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return signPresenter; });
+/* unused harmony export headerPresenter */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__presenters_index_presenter__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenters_catalog_presenter__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__presenters_category_presenter__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__presenters_product_presenter__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__presenters_cart_presenter__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__presenters_reg_presenter__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__presenters_header_presenter__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__paths__ = __webpack_require__(0);
+
+
+
+
+
+
+
+
+
+
+let prevPres = [];
+
+var signPresenter = signPresenter || new __WEBPACK_IMPORTED_MODULE_5__presenters_reg_presenter__["a" /* default */]();
+var headerPresenter = headerPresenter || new __WEBPACK_IMPORTED_MODULE_6__presenters_header_presenter__["a" /* default */]();
+
+class Router {
+  dispatch(hash) {
+    switch (hash) {
+      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.index:
+        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_0__presenters_index_presenter__["a" /* default */](), signPresenter];
+      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.catalog:
+        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_1__presenters_catalog_presenter__["a" /* default */](), signPresenter];
+      case __WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.cart:
+        return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_4__presenters_cart_presenter__["a" /* default */](), signPresenter];
+      default:
+        if (hash.includes(__WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.product)) {
+          const idOfProduct = Number(hash.split("/")[1]);
+          return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_3__presenters_product_presenter__["a" /* default */](idOfProduct), signPresenter];
+        }
+
+        if (hash.includes(__WEBPACK_IMPORTED_MODULE_7__paths__["a" /* default */].pages.category)) {
+          const nameOfCategory = hash.split("/")[1];
+          return [headerPresenter, new __WEBPACK_IMPORTED_MODULE_2__presenters_category_presenter__["a" /* default */](nameOfCategory), signPresenter];
+        }
+
+        return []; // 404
+    }
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Router;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_forEach__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_forEach__);
+
+
+function changeView() {
+  //let allDomElementsArray;
+  let allDomElements;
+  allDomElements = document.getElementsByClassName("product");
+
+  // [].forEach.call(allDomElements, function(domElement){
+  //   domElement.classList.toggle("product_grid");
+  // });
+
+  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
+    domElement.classList.toggle("product_grid");
+  });
+
+  allDomElements = document.getElementsByClassName("product__wrapper");
+
+  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
+    domElement.classList.toggle("product__wrapper_grid");
+  });
+
+  allDomElements = document.getElementsByClassName("product__description");
+
+  /*_.*/__WEBPACK_IMPORTED_MODULE_0_lodash_forEach___default()(allDomElements, function(domElement) {
+    domElement.classList.toggle("product__description_grid");
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (changeView);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(10);
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__(11);
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__(51),
+    isLength = __webpack_require__(14);
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+module.exports = isArrayLike;
+
+
+/***/ }),
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -765,41 +787,20 @@ function CartView() {}
 
 CartView.prototype.getTemplate = function(data) {
 
-  // const catalogTemplate = `
-  //   <main id="indexMain" class="index-page">
-  //     {{#each this}}
-  //       <div class="grid index-page__grid">
-  //         <a href="products.html">
-  //           <img class="grid__image index-page__image" src="/images/products/{{underscorer this}}/category.png">
-  //           <p class="grid__caption index-page__caption tiny-top-margin">{{capitalizer this}}</p>
-  //         </a>
-  //       </div>
-  //     {{/each}}
-  //   </main>
-  // `;
-
-  // !!! APPLY PARTIAL TEMPLATES FOR SLIDERS
   const catalogTemplate =
   `<div id="pageContent" class="page-main">
     <!-- Navigation -->
     <div class="page-main__content">
+      <h2>Shopping cart</h2>
       <main id="productsMain" class="page-main__products">
         {{#each cart}}
           {{> product}}
         {{/each}}
-        <br><br><br>
+        <br>
         <button onclick="localStorage.clear();" class="button input-size turquoise add-to-cart cart-page__buy-button">CLEAN</button>
       </main>
     </div>
   </div>`;
-
-// const productTemplate =
-//   `<div class="full-product page-main__full-product">
-//     <h2>{{this.title}}</h2>
-//     <p class="full-product__price small-bottom-margin">Price: \$ {{this.price}}</p>
-//     <p class="full-product__description">{{this.description}}</p>
-//     <button class="button input-size turquoise add-to-cart small-top-margin">Add to cart</button>
-//   </div>`;
 
   const productTemplate =
   `<div class="product">
@@ -815,12 +816,13 @@ CartView.prototype.getTemplate = function(data) {
         <p class="product__price">Price: \$ {{product.price}}</p>
         <p >Quantity: {{quantity}}</p>
       </div>
+      <svg class="svg-btn js-del-btn" data-id="{{product.id}}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
     </div>
   </div>
-  <button class="button">DELETE</button>
-  <button class="button button_color add-to-cart">BUY</button>
   `;
-
 
   const compiledCatalogTemplate = Handlebars.compile(catalogTemplate);
 
@@ -890,44 +892,55 @@ window.addEventListener('hashchange', function() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_forEach__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_forEach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_forEach__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_main_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router__ = __webpack_require__(7);
 
 
 
-function App() {
-	this.router = new __WEBPACK_IMPORTED_MODULE_0__router__["a" /* Router */]();
-	this.blocks = [];
+
+class App {
+	constructor() {
+		this.router = new __WEBPACK_IMPORTED_MODULE_1__router__["a" /* Router */]();
+		this.blocks = [];
+	}
+
+	renderPage(hash) {
+		this.oldBlocks = this.blocks || null;
+		this.blocks = this.router.dispatch(hash);
+
+		if (this.oldBlocks) {
+			[].forEach.call(this.oldBlocks, function(block) {
+				block.delete();
+			});
+		}
+
+		if (this.blocks) {
+			[].forEach.call(this.blocks, function(block) {
+				block.init();
+			});
+		}
+	}
 }
+/* harmony export (immutable) */ __webpack_exports__["a"] = App;
 
-App.prototype.renderPage = function(hash) {
-	this.oldBlocks = this.blocks || null;
-	this.blocks = this.router.dispatch(hash);
-	if (this.oldBlocks) {
-		__WEBPACK_IMPORTED_MODULE_1_lodash_forEach___default()(this.oldBlocks, function(block) {
-			block.delete();
-		});
-	}
-	if (this.blocks) {
-		__WEBPACK_IMPORTED_MODULE_1_lodash_forEach___default()(this.blocks, function(block) {
-			block.init();
-		});
-	}
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (App);
 
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_index_model__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_index_view__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_index_model__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_index_view__ = __webpack_require__(23);
 
 
 
@@ -962,7 +975,7 @@ class IndexPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* def
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -975,7 +988,7 @@ class IndexModel extends __WEBPACK_IMPORTED_MODULE_0__model__["a" /* default */]
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -983,6 +996,7 @@ class IndexView {
   getTemplate(data) {
     const categoryTemplate = `
       <main id="pageContent" class="index-page">
+      <!--<img src="http://localhost:3000/images/promo/1.jpg">-->
         {{#each this}}
           <div class="catalog__container">
             <div class="catalog__header-container">
@@ -1011,13 +1025,13 @@ class IndexView {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_catalog_model__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_catalog_view__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_changer__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_catalog_model__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_catalog_view__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_changer__ = __webpack_require__(8);
 //import Presenter from './presenter';
 
 
@@ -1113,7 +1127,7 @@ CatalogPresenter.prototype.preventDefaultForURLs = function(event) {
 /* harmony default export */ __webpack_exports__["a"] = (CatalogPresenter);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1134,7 +1148,7 @@ CatalogModel.prototype.getData = function(database) {
 /* harmony default export */ __webpack_exports__["a"] = (CatalogModel);
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1223,7 +1237,7 @@ const productTemplate =
 /* harmony default export */ __webpack_exports__["a"] = (CatalogView);
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /**
@@ -1251,11 +1265,11 @@ module.exports = arrayEach;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(28),
-    createBaseEach = __webpack_require__(52);
+var baseForOwn = __webpack_require__(29),
+    createBaseEach = __webpack_require__(53);
 
 /**
  * The base implementation of `_.forEach` without support for iteratee shorthands.
@@ -1271,11 +1285,11 @@ module.exports = baseEach;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseFor = __webpack_require__(29),
-    keys = __webpack_require__(31);
+var baseFor = __webpack_require__(30),
+    keys = __webpack_require__(32);
 
 /**
  * The base implementation of `_.forOwn` without support for iteratee shorthands.
@@ -1293,10 +1307,10 @@ module.exports = baseForOwn;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createBaseFor = __webpack_require__(30);
+var createBaseFor = __webpack_require__(31);
 
 /**
  * The base implementation of `baseForOwn` which iterates over `object`
@@ -1315,7 +1329,7 @@ module.exports = baseFor;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 /**
@@ -1346,12 +1360,12 @@ module.exports = createBaseFor;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(32),
-    baseKeys = __webpack_require__(46),
-    isArrayLike = __webpack_require__(14);
+var arrayLikeKeys = __webpack_require__(33),
+    baseKeys = __webpack_require__(47),
+    isArrayLike = __webpack_require__(15);
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -1389,15 +1403,15 @@ module.exports = keys;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(33),
-    isArguments = __webpack_require__(34),
-    isArray = __webpack_require__(11),
-    isBuffer = __webpack_require__(39),
-    isIndex = __webpack_require__(41),
-    isTypedArray = __webpack_require__(42);
+var baseTimes = __webpack_require__(34),
+    isArguments = __webpack_require__(35),
+    isArray = __webpack_require__(12),
+    isBuffer = __webpack_require__(40),
+    isIndex = __webpack_require__(42),
+    isTypedArray = __webpack_require__(43);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1444,7 +1458,7 @@ module.exports = arrayLikeKeys;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 /**
@@ -1470,11 +1484,11 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(35),
-    isObjectLike = __webpack_require__(5);
+var baseIsArguments = __webpack_require__(36),
+    isObjectLike = __webpack_require__(6);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1512,11 +1526,11 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(4),
-    isObjectLike = __webpack_require__(5);
+var baseGetTag = __webpack_require__(5),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]';
@@ -1536,7 +1550,7 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1563,10 +1577,10 @@ module.exports = g;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(8);
+var Symbol = __webpack_require__(9);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1615,7 +1629,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1643,11 +1657,11 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(9),
-    stubFalse = __webpack_require__(40);
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(10),
+    stubFalse = __webpack_require__(41);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -1685,10 +1699,10 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /**
@@ -1712,7 +1726,7 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1740,12 +1754,12 @@ module.exports = isIndex;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(43),
-    baseUnary = __webpack_require__(44),
-    nodeUtil = __webpack_require__(45);
+var baseIsTypedArray = __webpack_require__(44),
+    baseUnary = __webpack_require__(45),
+    nodeUtil = __webpack_require__(46);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -1773,12 +1787,12 @@ module.exports = isTypedArray;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(4),
-    isLength = __webpack_require__(13),
-    isObjectLike = __webpack_require__(5);
+var baseGetTag = __webpack_require__(5),
+    isLength = __webpack_require__(14),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]',
@@ -1839,7 +1853,7 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 /**
@@ -1859,10 +1873,10 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(10);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(11);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -1885,14 +1899,14 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPrototype = __webpack_require__(47),
-    nativeKeys = __webpack_require__(48);
+var isPrototype = __webpack_require__(48),
+    nativeKeys = __webpack_require__(49);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1924,7 +1938,7 @@ module.exports = baseKeys;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1948,10 +1962,10 @@ module.exports = isPrototype;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(49);
+var overArg = __webpack_require__(50);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -1960,7 +1974,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /**
@@ -1981,11 +1995,11 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(4),
-    isObject = __webpack_require__(51);
+var baseGetTag = __webpack_require__(5),
+    isObject = __webpack_require__(52);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -2024,7 +2038,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 /**
@@ -2061,10 +2075,10 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArrayLike = __webpack_require__(14);
+var isArrayLike = __webpack_require__(15);
 
 /**
  * Creates a `baseEach` or `baseEachRight` function.
@@ -2099,10 +2113,10 @@ module.exports = createBaseEach;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var identity = __webpack_require__(54);
+var identity = __webpack_require__(55);
 
 /**
  * Casts `value` to `identity` if it's not a function.
@@ -2119,7 +2133,7 @@ module.exports = castFunction;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports) {
 
 /**
@@ -2146,16 +2160,16 @@ module.exports = identity;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_category_model__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_category_view__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_changer__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_category_model__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_category_view__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_changer__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash_forEach__);
 
 
@@ -2249,7 +2263,7 @@ class CategoryPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* 
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2261,7 +2275,7 @@ class CategoryModel extends __WEBPACK_IMPORTED_MODULE_0__model__["a" /* default 
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2312,16 +2326,16 @@ class CategoryView {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_product_model__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_product_view__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__slider__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_product_model__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_product_view__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__slider__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash_forEach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash_forEach__);
 
 
@@ -2388,7 +2402,7 @@ class ProductPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* d
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2400,7 +2414,7 @@ class ProductModel extends __WEBPACK_IMPORTED_MODULE_0__model__["a" /* default *
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2461,7 +2475,7 @@ class ProductView {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2513,14 +2527,14 @@ function previousSlide() {
 //document.getElementById("activeImage").addEventListener("load", () => {document.getElementById("activeImage").classList.remove("disp");});
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_cart_model__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_cart_model__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_cart_view__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_empty_cart_view__ = __webpack_require__(17);
 
@@ -2545,7 +2559,7 @@ class CartPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defa
 				Authorization: 'Bearer ' + userToken,
 			});
 
-			this.fetchReq = new Request(requestUrl, requestParameters);
+			this.getFetchReq = new Request(requestUrl, requestParameters);
 		}
 
 		this.view = new __WEBPACK_IMPORTED_MODULE_4__views_cart_view__["a" /* default */]();
@@ -2554,12 +2568,27 @@ class CartPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defa
 	}
 
 	init() {
-		if (this.fetchReq) {
+		if (this.getFetchReq) {
 			document.title = this.title;
 
-			this.model.fetchData(this.fetchReq)
+			this.model.fetchData(this.getFetchReq)
 			.then((jsonData) => {
-				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 1) {
+				if (jsonData.hasOwnProperty("cart") && Array.isArray(jsonData.cart) && jsonData.cart.length > 0) {
+					let lsData = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyValue();
+
+					///// ---> function Name() {}
+					let responseCart = [];
+					let index = 0;
+					jsonData.cart.forEach((productInCart) => {
+						responseCart[index] = {};
+						responseCart[index].id = productInCart.id;
+						responseCart[index].quantity = productInCart.quantity;
+						index++;
+					});
+					/////
+
+					lsData.cart = responseCart;
+					__WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].setKeyValue(lsData);
 					return this.view.getTemplate(jsonData);
 				}
 				return this.emptyCartView.getTemplate();
@@ -2605,23 +2634,59 @@ class CartPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defa
 	}
 
 	getEventTargets() {
+		this.delBtns = document.getElementsByClassName('js-del-btn');
 	}
 
 	bindEvents() {
+		[].forEach.call(this.delBtns, (product) => {
+			product.addEventListener('click', this.removeFromCart.bind(this), false);
+		});
 	}
 
 	unbindEvents() {
 	}
 
-	deleteFromCart() {
+	removeFromCart(event) {
+    event.preventDefault();
 
-	}
+    const requestUrl = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.cart.delete.url;
+    const requestParameters = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.cart.delete.params;
+
+    const userToken = __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getToken();
+
+    requestParameters.headers = new Headers({
+      'Authorization': 'Bearer ' + userToken,
+      'Content-Type': 'application/json'
+    });
+
+    let idOfProduct = Number(event.currentTarget.getAttribute('data-id'));
+
+    let reqBody = [
+      {
+        "id": idOfProduct
+      }
+    ];
+
+    requestParameters.body = JSON.stringify(reqBody);
+
+		const delFetchReq = new Request(requestUrl, requestParameters);
+
+    this.model.fetchData(delFetchReq)
+      .then((response) => {
+        if (response.cart) {
+          // let userData = JSON.parse(localStorage.getItem("user"));
+          // userData.cart = response.cart;
+          // localStorage.setItem("user", JSON.stringify(userData));
+        }
+        console.log(response);
+      });
+  }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = CartPresenter;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2654,44 +2719,16 @@ class CartModel extends __WEBPACK_IMPORTED_MODULE_2__model__["a" /* default */] 
 /* harmony export (immutable) */ __webpack_exports__["a"] = CartModel;
 
 
-// function CartModel() {}
-
-// CartModel.prototype.getData = function(database) {
-//   let cartJSON = localStorage.getItem("cart");
-// 	let cart;
-
-// 	if (cartJSON) {
-// 		cart = JSON.parse(cartJSON);
-// 	} else {
-// 		cart = [];
-// 	}
-
-// 	let cartCol = [];
-// 	forEach(database, function(category) {
-// 		cartCol.push(intersectionBy(category, cart, "id"));
-// 	});
-// 	cartCol = flattenDeep(cartCol);
-
-// 	for (let i = 0; i < cartCol.length; i++) {
-// 		cartCol[i].quantity = cart[i].quantity; //ORDER BY SOMETHING BOTH COLLECTIONS
-// 	}
-
-// 	//localStorage.setItem("cart", JSON.stringify(cart));
-// 	return cartCol;
-// };
-
-// export default CartModel;
-
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__local_storage__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_reg_model__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_reg_view__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_reg_model__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_reg_view__ = __webpack_require__(67);
 
 
 //
@@ -2739,7 +2776,7 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
         this.signFormForm = document.getElementById("signForm");
 
         this.changeFormLink = document.getElementById("changeForm");
-        this.accountBtn = document.getElementById("signButton");
+        //this.accountBtn = document.getElementById("accountBtn"); <--- Undefined in this moment
 
         this.sendFormBtn = document.getElementById("sendFormButton");
 
@@ -2777,6 +2814,12 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
 
   showRegForm(event) {
     event.preventDefault();
+
+    if (__WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].getKeyJson()) {
+      __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].removeKeyValue();
+      document.getElementById("accountBtn").innerText = "ACCOUNT";
+      return;
+    }
 
     const animationPromise = new Promise((resolve, reject) => {
       this.signFormWrapper.classList.remove("hide");
@@ -2870,6 +2913,7 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
         if (responseJson.token) {
           //debugger
           __WEBPACK_IMPORTED_MODULE_1__local_storage__["a" /* default */].setKeyValue(responseJson);
+          document.getElementById("accountBtn").innerText = "LOG OUT";
           //localStorage.setItem("user", JSON.stringify(responseJson));
         }
       })
@@ -2886,7 +2930,7 @@ class RegPresenter extends __WEBPACK_IMPORTED_MODULE_2__presenter__["a" /* defau
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2898,7 +2942,7 @@ class RegModel extends __WEBPACK_IMPORTED_MODULE_0__model__["a" /* default */] {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2942,15 +2986,17 @@ class RegView {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paths__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__presenter__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_model__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_header_view__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_model__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_header_view__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_search_results_view__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(7);
+
 
 
 
@@ -2971,6 +3017,8 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 
 		this.view = new __WEBPACK_IMPORTED_MODULE_3__views_header_view__["a" /* default */]();
 		this.model = new __WEBPACK_IMPORTED_MODULE_2__models_header_model__["a" /* default */]();
+
+		this.searchResultsView = new __WEBPACK_IMPORTED_MODULE_4__views_search_results_view__["a" /* default */]();
 	}
 
 	init() { // <-- SINGLETON
@@ -2994,6 +3042,8 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 			this.catalogBtn = document.getElementById("catalogBtn");
 			this.navContainer = document.getElementById("navContainer");
 			this.submenuContainer = document.getElementById("submenuContainer");
+			this.searchInput = document.getElementById("searchInput");
+			this.searchResultsContainer = document.getElementById("searchResults");
 
 			resolve();
     });
@@ -3006,10 +3056,12 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 		this.catalogBtn.addEventListener("mouseleave", this.closeMenu.bind(this));
 		//this.navContainer.addEventListener("mouseover", this.closeMenu.bind(this));
 		this.submenuContainer.addEventListener("mouseleave", this.closeMenu.bind(this));
+
+		this.searchInput.addEventListener("input", this.showSearchResults.bind(this), false);
 	}
 
 	showRegForm(event) {
-		__WEBPACK_IMPORTED_MODULE_4__router__["b" /* signPresenter */].showRegForm(event);
+		__WEBPACK_IMPORTED_MODULE_5__router__["b" /* signPresenter */].showRegForm(event);
 	}
 
 	showMenu(event) {
@@ -3036,12 +3088,39 @@ class HeaderPresenter extends __WEBPACK_IMPORTED_MODULE_1__presenter__["a" /* de
 			//this.submenuContainer.classList.add("hide");
 		//}
 	}
+
+	showSearchResults(event) {
+		event.preventDefault();
+
+		const requestUrl = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.search.url + event.currentTarget.value;
+		console.log(requestUrl);
+		const requestParameters = __WEBPACK_IMPORTED_MODULE_0__paths__["a" /* default */].ajax.search.params;
+
+		const searchFetchReq = new Request(requestUrl, requestParameters);
+
+		this.model.fetchData(searchFetchReq)
+    .then((jsonData) => {
+			console.log(jsonData);
+      return this.searchResultsView.getTemplate(jsonData);
+    })
+    .then((compiledTemplate) => {
+			this.searchResultsContainer.innerHTML = compiledTemplate;
+      return true;
+    }) //PUT CATCH HERE?
+    .catch((ex) => {
+      console.log('Displaying of the search results failed: ', ex);
+
+      if (this.fetchErrorHandler) {
+        this.fetchErrorHandler(ex);
+      }
+    });
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = HeaderPresenter;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3070,7 +3149,7 @@ class HeaderModel extends __WEBPACK_IMPORTED_MODULE_0__model__["a" /* default */
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3107,24 +3186,25 @@ class HeaderView {
 				</div>
 				<div id="searchForm" class="search-form">
 					<svg class="svg-btn search-form__fa-search" class="search-form__fa-search" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
-					<input class="search-form__input" type="text" placeholder="Search here..." required>
+					<input id="searchInput" class="search-form__input" type="text" placeholder="Search here..." required>
 				</div>
-      </div>
+			</div>
+			<div id="searchResults" class="search-results">
+			</div>
 
 			<div id="submenuContainer" class="desktop-menu__sub-menu hide">
-
-			{{#each this}}
-				<ul class="desktop-menu__sub-ul">
-					<li>
-						<a class="desktop-menu__sub-header" href="#categories/{{this.name}}/products">{{this.title}}</a>
-					</li>
-					{{#each catalog}}
-						<li class="desktop-menu__sub-btn">
-							<a href="#categories/{{this.name}}/products" class="desktop-menu__sub-link">{{this.title}}</a>
+				{{#each this}}
+					<ul class="desktop-menu__sub-ul">
+						<li>
+							<a class="desktop-menu__sub-header" href="#categories/{{this.name}}/products">{{this.title}}</a>
 						</li>
-					{{/each}}
-				</ul>
-			{{/each}}
+						{{#each catalog}}
+							<li class="desktop-menu__sub-btn">
+								<a href="#categories/{{this.name}}/products" class="desktop-menu__sub-link">{{this.title}}</a>
+							</li>
+						{{/each}}
+					</ul>
+				{{/each}}
 			</div>
 		</header>
     `;
@@ -3135,6 +3215,29 @@ class HeaderView {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = HeaderView;
 
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class SearchResultsView {
+  getTemplate(data) {
+    const searchResultsTemplate = `
+    {{#each this}}
+      <a href="#products/{{this.id}}">
+        <p class="search-results__result">{{this.title}}</p>
+      </a>
+    {{/each}}
+    `;
+
+    const compiledSearchResultsTemplate = Handlebars.compile(searchResultsTemplate);
+    return compiledSearchResultsTemplate(data);
+    //return Handlebars.compile(searchResultsTemplate(data));
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SearchResultsView;
 
 
 /***/ })

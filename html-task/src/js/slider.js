@@ -1,14 +1,15 @@
-function setActive(slide) {
+export function setActive(slide) {
   document.getElementsByClassName("slider__big-image")[0].classList.add("disp");
   document.getElementsByClassName("slider__preview-image_active")[0].classList.remove("slider__preview-image_active");
 
   slide.classList.add("slider__preview-image_active");
 
   document.getElementsByClassName("slider__big-image")[0].src = slide.src.slice(0, -6) + ".jpg";
+  document.getElementById("activeImage").classList.remove("disp");
 
 }
 
-function nextSlide() {
+export function nextSlide() {
   let activeSlide = document.getElementsByClassName("slider__preview-image_active")[0];
 
   let allSlides = document.getElementsByClassName("slider__preview-image");
@@ -23,7 +24,7 @@ function nextSlide() {
   }
 }
 
-function previousSlide() {
+export function previousSlide() {
   let activeSlide = document.getElementsByClassName("slider__preview-image_active")[0];
 
   let allSlides = document.getElementsByClassName("slider__preview-image");
@@ -39,4 +40,4 @@ function previousSlide() {
 }
 
 //setInterval(nextSlide, 4000);
-document.getElementById("activeImage").addEventListener("load", () => {document.getElementById("activeImage").classList.remove("disp");});
+//document.getElementById("activeImage").addEventListener("load", () => {document.getElementById("activeImage").classList.remove("disp");});
