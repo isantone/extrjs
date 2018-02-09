@@ -7,11 +7,15 @@
   },
   {
     "email": "test@test.com",
-    "token": 6195200081,
+    "token": 34306651315,
     "password": "test",
     "cart": [
       {
-        "id": 22,
+        "id": 2,
+        "quantity": 1
+      },
+      {
+        "id": 1,
         "quantity": 1
       }
     ]

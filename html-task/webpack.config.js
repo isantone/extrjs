@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const extractSass = new ExtractTextPlugin({
 	filename: "style.css",
@@ -44,15 +45,19 @@ module.exports = {
 						}
 					]
 				})
-			}
-		],
-		loaders: [
-      {
+			},
+			{
         test: /\.html$/,
-				loader: 'html-loader'
-      }]
+				loader: 'html-loader',
+				options: {
+					minimize: true,
+					//collapseWhitespace: true
+				}
+      }
+		]
 	},
 	plugins: [
+		//new UglifyJsPlugin(),
 		extractSass,
 		new HtmlWebpackPlugin({
       template: 'src/index.html'
