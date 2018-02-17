@@ -67,16 +67,15 @@ $search-input-height: 36px;
     width: 100%;
     background: white;
     z-index: 100;
-  
-    .search-form__result {
-      padding: 10px;
-      border: 1px solid #e7e7e7;
-      border-top: none;
-      font-family: 'Roboto', $font-family;
-  
-      &:hover {
-        background: #f8f8f8;
-      }
+  }
+
+  .search-form__result {
+    padding: 10px;
+    border-bottom: 1px solid #e7e7e7;
+    font-family: 'Roboto', $font-family;
+
+    &:hover {
+      background: #f8f8f8;
     }
   }
 }
@@ -111,12 +110,17 @@ $search-input-height: 36px;
 
       border-bottom: 3px solid transparent;
       background: none;
-      
+
       transition: border-bottom .4s;
 
       &:focus {
         border-bottom: 3px solid $main-color;
       }
+    }
+
+    .search-form__result {
+      border: 1px solid #e7e7e7;
+      border-top: none;
     }
 
     // &__fa-search {

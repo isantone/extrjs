@@ -134,10 +134,10 @@ export default class HeaderPresenter extends Presenter {
 
 		this.searchForm.classList.toggle("search-form_focused");
 		this.searchBtn.classList.toggle("search-form__fa-search_focused");
-		setTimeout(()=> { 
-			this.searchResultsContainer.classList.toggle("hide"); 
+		setTimeout(()=> {
+			this.searchResultsContainer.classList.toggle("hide");
 		}, 200);
-		
+
 		if (this.searchForm.classList.contains("search-form_focused")) {
 			event.currentTarget.select();
 		}
