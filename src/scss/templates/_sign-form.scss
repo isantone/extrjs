@@ -1,0 +1,149 @@
+@import 'two-cols-line';
+
+$appearance-transition: left .3s ease-in-out;
+
+$form-max-width: 400px;
+//$form-min-width: 320px;
+
+$form-bg: #e1e5ec;
+
+// body {
+//   display: flex;
+//   min-width: $min-width;
+
+//   height: 100vh;
+//   width: 100vw;
+
+//   font: $font;
+
+//   justify-content: center;
+//   align-items: center;
+// }
+
+.overlay {
+  display: none;
+}
+
+.sign-form {
+  &__wrapper {
+    height: 100%;
+
+    text-align: center;
+
+    //background: white;
+    background-color: rgba(255, 255, 255, 0);
+
+    &_visible {
+      opacity: 1;
+    }
+  }
+
+  &__header {
+    position: relative;
+    left: 1500px;
+
+    width: 100%;
+    height: 80px;
+
+    margin: 0;
+
+    line-height: 80px;
+    color: white;
+    text-transform: uppercase;
+
+    background: $main-color;
+
+    transition: $appearance-transition; 
+
+    &_visible {
+      left: 0;
+    }
+  }
+
+  &__form {
+    position: relative;
+    left: -1500px;
+
+
+    background: rgb(242, 242, 242);
+    //background: rgb(235, 235, 235);
+    padding: 10px;
+
+    transition: $appearance-transition;
+
+    &_visible {
+      left: 0;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: -5px;
+    right: 11px;
+    fill: $light-main-color;
+  }
+
+  &__pass {
+    top: -2px;
+  }
+
+  &__remember {
+    display: inline-block;
+
+    cursor: pointer;
+  }
+}
+
+.fa-unlock, .fa-envelope {
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  //color: gray;
+  color: $light-main-color;
+}
+
+@media screen and (min-width: 425px) {
+  .overlay {
+    display: block;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+
+    transition: opacity 0.5s;
+
+    cursor: pointer;
+
+    &_visible {
+      opacity: 1;
+    }
+  }
+
+  .sign-form {
+    &__wrapper {
+      position: fixed;
+
+      display: block;
+      z-index: 99;
+
+      left: calc((100vw - 400px) / 2);
+      top: calc((100vh - 490px) / 2);
+
+      width: 100%;
+      max-width: $form-max-width;
+      height: auto;
+
+      //box-shadow: 0 0 35px rgba(0,0,0,0.35);
+    }
+
+     &__form {
+      padding: 40px;
+    }
+  }
+}

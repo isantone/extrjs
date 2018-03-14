@@ -1,0 +1,56 @@
+/* Colors */
+$black: #000;
+$white: #fff;
+$red: red;
+$gray: #999;
+$green: green;
+$blue: blue;
+//$turquoise: #39C2D7;
+$turquoise: #00aad0;
+
+$main-color: #0e778c;
+$light-main-color: #1b91a9;
+
+$header-color: #18adc4;
+$footer-color: #808080;
+$border-color: #ddd;
+
+//$main-color: #18adc4;
+
+/* Font */
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+//@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro');
+@import url('https://use.fontawesome.com/releases/v5.0.6/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Bree+Serif|Roboto');
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+$font-size-small: 11pt;
+$font-size: 11pt;
+$font: $font-size 'Open Sans', Verdana, Tahoma, Arial, sans-serif;
+$font-family: 'Open Sans', 'Verdana', sans-serif;
+
+$font-color: #494949;
+$font-color-light: #444444;
+
+$h2-font: 18pt 'Bree Serif', $font-family;
+$desktop-menu-font: 16pt 'Bree Serif', $font-family;
+
+$button-font: 12pt 'Open Sans', Arial, Verdana, Tahoma, sans-serif;
+$button-font-color: $white;
+
+/* Page */
+$min-width: 320px;
+$min-height: 100vh;
+
+$header-height: 90px;
+$footer-height: 80px;
+
+$page-max-width: 1400px;
+$header-max-width: 1300px;
+
+/* Input */
+$input-width: 300px;
+$input-height: 40px;
+$input-padding: 5px;

@@ -1,0 +1,146 @@
+.gray {
+  @include bg-color(gray);
+}
+
+.turquoise {
+  @include bg-color($turquoise);
+}
+
+.big-bottom-margin {
+  margin-bottom: 35px;
+}
+
+.big-top-margin {
+  margin-top: 35px;
+}
+
+.small-top-margin {
+  margin-top: 20px;
+}
+
+.small-right-margin {
+  margin-right: 20px;
+}
+
+.small-bottom-margin {
+  margin-bottom: 20px;
+}
+
+.tiny-top-margin {
+  margin-top: 8px;
+}
+
+.tiny-bottom-margin {
+  margin-bottom: 8px;
+}
+
+.tiny-left-margin {
+  margin-left: 8px;
+}
+
+/////
+
+// .tiny-bottom-margin {
+//   margin-bottom: 8px;
+// }
+
+// .small-bottom-margin {
+//   margin-bottom: 16px;
+// }
+
+// .small-top-margin {
+//   margin-top: 16px;
+// }
+
+.mid-top-margin {
+  margin-top: 24px;
+}
+/////
+
+// html { // Prevent page from left-right twitching when scrollbar appears/disappears
+//   margin-left: calc(100vw - 100%);
+//   margin-right: 0;
+// }
+
+p, h2 {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font: $h2-font;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  color: $font-color;
+}
+
+label {
+  position: relative;
+}
+
+.input-size {
+  //display: block;
+  //display: inline-block;
+
+  width: 100%;
+  max-width: 500px;
+
+	height: $input-height;
+  padding: $input-padding;
+
+  line-height: 100%;
+
+  border: 1px solid gray;
+
+  box-sizing: border-box;
+}
+
+button:hover, input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+.email-input, .password-input, .button {
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+
+  border: 1px solid lightgray;
+  outline: 0;
+
+  box-sizing: border-box;
+
+  //background: rgb(244, 244, 244);
+
+  &:focus {
+    border-color: $light-main-color;
+    background: white;
+  }
+}
+
+.email-input, .password-input {
+  padding: 11px;
+  padding-right: 44px;
+}
+
+input[type=checkbox] {
+  width: 17px;
+  height: 17px;
+
+  vertical-align: middle;
+
+  cursor: pointer;
+}
+
+a {
+  color: $font-color; /// <-- BAD PRACTICE
+
+  &:active, &:focus, &:hover {
+    color: $main-color;
+  }
+}
+
+main {
+  max-width: $page-max-width;
+  margin: 0 auto;
+  color: $font-color;
+}

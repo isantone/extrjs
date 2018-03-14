@@ -1,0 +1,40 @@
+.navigation {
+	max-height: 0;
+	min-width: 200px;
+	transition: 0.5s ease-in-out;
+  overflow: hidden;
+
+  &_visible {
+    max-height: 500px; ///////////////
+  }
+
+  &__list {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+
+  &__item > a {
+    display: block;
+    padding: 10px 30px;
+    color: darkred;
+
+    border: 1px solid $border-color;
+    border-top: none;
+  }
+
+  &__item > a:hover {
+    background-color: pink;
+    //color: white;
+    border: 1px solid pink;
+    /* border-left: 1px solid darkred; */
+    border-top: none;
+    transition: background-color 1s, color 0.5s, border-bottom 1s, border-left 1s;
+  }
+
+  &__item-active > a {
+    background-color: darkred;
+    color: white;
+    border: 1px solid darkred;
+    border-top: none;
+  }
+}

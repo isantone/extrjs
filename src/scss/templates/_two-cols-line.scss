@@ -1,0 +1,12 @@
+.two-cols-line {
+  @include clearfix;
+  display: block;
+
+  &__left {
+    float: left;
+  }
+
+  &__right {
+    float: right;
+  }
+}
