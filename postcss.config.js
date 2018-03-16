@@ -5,9 +5,24 @@ const mqpacker = require("css-mqpacker");
 module.exports = {
   parser: 'postcss-scss',
   map: true,
-  plugins: [
-    autoprefixer,
-    mqpacker,
-    cssnano
-  ]
+  plugins: process.env.NODE_ENV === 'production' ? productionPlugins() : defaultPlugins(),
 };
+
+function productionPlugins() {
+  return [
+    autoprefixer,
+    mqpacker({
+      sort: true,
+    }),
+    cssnano,
+  ]
+}
+
+function defaultPlugins() {
+  return [
+    autoprefixer,
+    mqpacker({
+      sort: true,
+    }),
+  ]
+}
