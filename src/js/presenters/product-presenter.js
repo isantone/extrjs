@@ -7,8 +7,6 @@ import ProductView from '../views/product-view';
 
 import {setActive, nextSlide, previousSlide} from '../slider';
 
-import forEach from 'lodash/forEach';
-
 export default class ProductPresenter extends Presenter {
 	constructor(idOfProduct) {
 		super();

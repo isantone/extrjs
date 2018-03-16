@@ -15,7 +15,7 @@ export default class ProductView {
           </div>
           <div class="slider__preview-section">
             <div id="leftControl" class="slider__control">
-              <img src="http://localhost:3000/images/left-arrow.png" alt="Left">
+              <img src="http://localhost:3003/images/left-arrow.png" alt="Left">
             </div>
             <div class="slider__image-wrapper">
               <img class="slider__preview-image slider__preview-image_active" src="{{this.images.[0]}}" alt="Product preview">
@@ -27,7 +27,7 @@ export default class ProductView {
               <img class="slider__preview-image" src="{{this.images.[2]}}" alt="Product preview">
             </div>
             <div id="rightControl" class="slider__control">
-              <img src="http://localhost:3000/images/right-arrow.png" alt="Right">
+              <img src="http://localhost:3003/images/right-arrow.png" alt="Right">
             </div>
           </div>
         </div>

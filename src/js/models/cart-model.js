@@ -1,10 +1,3 @@
-// import forEach from 'lodash/forEach';
-// import find from 'lodash/find';
-// import intersectionBy from 'lodash/intersectionBy';
-// import flattenDeep from 'lodash/flattenDeep';
-
-//import forOwn from 'lodash/forOwn';
-
 import CartView from '../views/cart-view';
 import EmptyCartView from '../views/empty-cart-view';
 

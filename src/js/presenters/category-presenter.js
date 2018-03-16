@@ -7,9 +7,6 @@ import CategoryView from '../views/category-view';
 
 import changeView from '../view-changer';
 
-import forEach from 'lodash/forEach';
-//import find from 'lodash/find';
-
 export default class CategoryPresenter extends Presenter {
 	constructor(nameOfCategory) {
 		super();
@@ -43,7 +40,7 @@ export default class CategoryPresenter extends Presenter {
 	bindEvents() {
 		this.viewChangeButton.addEventListener('click', changeView, false);
 
-		forEach(this.products, (product) => {
+		[].forEach.call(this.products, (product) => {
 			product.addEventListener('click', this.addToCart.bind(this), false);
 		});
 	}
@@ -51,7 +48,7 @@ export default class CategoryPresenter extends Presenter {
 	unbindEvents() {
 		this.viewChangeButton.removeEventListener('click', changeView, false);
 
-		forEach(this.products, (product) => {
+		[].forEach.call(this.products, (product) => {
 			product.removeEventListener('click', this.addToCart.bind(this), false);
 		});
 	}

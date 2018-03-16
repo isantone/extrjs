@@ -10,7 +10,7 @@ export default class HeaderView {
 				</button>
 				<div class="header__logo-wrapper">
 					<a class="non-text-link header__logo" href="#">
-						<!-- <img class="header__logo-img" src="http://localhost:3000/images/ex_shop_logo_m.png"> -->
+						<!-- <img class="header__logo-img" src="http://localhost:3003/images/ex_shop_logo_m.png"> -->
 					</a>
 				</div>
 

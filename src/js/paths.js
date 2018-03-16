@@ -1,10 +1,10 @@
-const host = "http://localhost:3000/api";
+const host = "http://localhost:3003/api";
 
 const paths = {
   host: {
-    url: "http://localhost:3000/",
+    url: "http://localhost:3003/",
     api: {
-      url: "http://localhost:3000/api/"
+      url: "http://localhost:3003/api/"
     }
   },
 
@@ -17,7 +17,7 @@ const paths = {
   },
 
   categories: {
-    url: "http://localhost:3000/api/categories",
+    url: "http://localhost:3003/api/categories",
     category: {
       url: "/categories/:categoryName",
       products: {

@@ -2,7 +2,7 @@ export default class IndexView {
   getTemplate(data) {
     const categoryTemplate = `
       <main id="pageContent" class="index-page">
-      <!--<img src="http://localhost:3000/images/promo/1.jpg">-->
+      <!--<img src="http://localhost:3003/images/promo/1.jpg">-->
         {{#each this}}
           <div class="catalog__container">
             <div class="catalog__header-container">
